@@ -1,0 +1,92 @@
+openapi: 3.0.0
+info:
+  title: Sensor Bridge API Version 2 Access Point Auth API
+  description: <h3>steute sWave.NET Sensor Bridge API v2</h3><ul><li>Get status information of access points and switches.</li><li>Configure groups, device parameters and notifications.</li></ul>
+  version: 2.4.1 [d4919ee69]
+  contact: {}
+servers:
+- url: http://
+- url: https://
+tags:
+- name: Auth
+paths:
+  /api/v2/auth/login:
+    post:
+      operationId: AuthController_login
+      summary: API login. Obtain JWT accessToken and refreshToken.
+      description: <p>The API uses JSON Web Tokens for authentication. See <a href="https://jwt.io/introduction/">https://jwt.io/introduction/</a> for documentation.</p><p>Default username / password is api / steute_api .<br/>     You may change the password in the web UI user settings menu.</p>     <h3>Authentication within this Swagger UI</h3><p>    <ol><li>Use the "Try it out" feature of auth/login to submit username/password and obtain an accessToken.</li>    <li>Copy the entire accessToken string (without qoutation marks)</li>    <li>Click on the green "Autorize" button in the upper right of this page.</li>    <li>Insert the accessToken String into the "bearer (apiKey)" Value field. Press "Authorize" to save it.</li>    <li>Now you are authorized for 30 minutes. Use the "Try it out" feature to explore the API.</li></ol></p>
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserLoginDto'
+      responses:
+        '200':
+          description: successful operation<br>Returns an accessToken, valid for 30 minutes and a refreshToken, valid for 180 minutes.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TokenResponseDto'
+        '400':
+          description: invalid or missing parameter
+        '403':
+          description: invalid credentials
+      tags:
+      - Auth
+  /api/v2/auth/refresh:
+    get:
+      operationId: AuthController_refresh
+      summary: Refresh login. Get updated JWT accessToken and refreshToken.
+      parameters: []
+      responses:
+        '200':
+          description: successful operation<br>Returns an accessToken, valid for 30 minutes and a refreshToken, valid for 180 minutes.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/TokenResponseDto'
+        '403':
+          description: no valid token provided
+      tags:
+      - Auth
+      security:
+      - bearer: []
+components:
+  schemas:
+    TokenResponseDto:
+      type: object
+      properties:
+        accessToken:
+          type: string
+          example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.cThIIoDvwdueQB468K5xDc5633seEFoqwxjF_xSJyQQ
+          description: JWT (see https://jwt.io) generated to authorize API access. Valid for 30 minutes.
+        refreshToken:
+          type: string
+          example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkphbmUgRG9lcyIsImlhdCI6MTUxNjIzOTkyMn0.jHx2wrj4V5VQBjEmA-ktBTj4psi2lBnPj-_EAznl9LU
+          description: JWT (see https://jwt.io) generated to authorize API access. Same as accessToken, but valid for 180 minutes.
+      required:
+      - accessToken
+      - refreshToken
+    UserLoginDto:
+      type: object
+      properties:
+        username:
+          type: string
+          example: api
+          description: API user name.
+        password:
+          type: string
+          example: steute_api
+          description: API password (May be changed via Sensor Bridge web UI in User Settings menu.
+      required:
+      - username
+      - password
+  securitySchemes:
+    bearer:
+      type: apiKey
+      in: header
+      name: JWTAuthorization

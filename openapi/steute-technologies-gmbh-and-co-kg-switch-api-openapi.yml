@@ -1,0 +1,474 @@
+openapi: 3.0.0
+info:
+  title: Sensor Bridge API Version 2 Access Point Switch API
+  description: <h3>steute sWave.NET Sensor Bridge API v2</h3><ul><li>Get status information of access points and switches.</li><li>Configure groups, device parameters and notifications.</li></ul>
+  version: 2.4.1 [d4919ee69]
+  contact: {}
+servers:
+- url: http://
+- url: https://
+tags:
+- name: Switch
+paths:
+  /api/v2/switches:
+    get:
+      operationId: SwitchController_listSwitches
+      summary: Get list of switches and their configurations.
+      description: Get a list of all switches from the database. Includes switch configuration data.
+      parameters: []
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SwitchListDto'
+        '403':
+          description: invalid credentials
+      tags:
+      - Switch
+      security:
+      - bearer: []
+  /api/v2/switches/{deviceId}:
+    get:
+      operationId: SwitchController_getSwitch
+      summary: Get a switch and its configuration.
+      description: Get a switch from the database. Includes switch configuration data.
+      parameters:
+      - name: deviceId
+        required: true
+        in: path
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SwitchDto'
+        '403':
+          description: invalid credentials
+        '404':
+          description: device id not found
+      tags:
+      - Switch
+      security:
+      - bearer: []
+    delete:
+      operationId: SwitchController_del
+      summary: Delete a switch.
+      description: Delete a switch from the database.<br>After deletion, the switch may no longer be an active part of the sWave.NET system. (Depends on default group settings.)
+      parameters:
+      - name: deviceId
+        required: true
+        in: path
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful operation
+        '400':
+          description: deviceId has to be of length 6
+        '403':
+          description: invalid credentials
+        '404':
+          description: No switch with this deviceId.
+      tags:
+      - Switch
+      security:
+      - bearer: []
+    put:
+      operationId: SwitchController_update
+      summary: Update switch configuration.
+      description: Update group assignment and parameters for one switch.
+      parameters:
+      - name: deviceId
+        required: true
+        in: path
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SwitchUpdateDto'
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SwitchDto'
+        '400':
+          description: Invalid Request.
+        '403':
+          description: invalid credentials
+        '404':
+          description: No switch with this deviceId.
+      tags:
+      - Switch
+      security:
+      - bearer: []
+  /api/v2/switches/deleteAll:
+    delete:
+      operationId: SwitchController_deleteAll
+      summary: Delete all switches.
+      description: Delete all switches from the database.<br>After deletion, the switch may no longer be an active part of the sWave.NET system. (Depends on default group settings.)
+      parameters: []
+      responses:
+        '200':
+          description: successful operation
+      tags:
+      - Switch
+      security:
+      - bearer: []
+components:
+  schemas:
+    SwitchUpdateDto:
+      type: object
+      properties:
+        groupId:
+          type: number
+          example: 1
+          description: Id of the group the switch belongs to.
+          nullable: true
+        description:
+          type: string
+          nullable: true
+          example: SWRW-H02-R01-001
+          description: Description text (e.g. position) of the switch provided by the user.
+        parameterOne:
+          type: string
+          nullable: true
+          example: 1.131.36
+          description: Optional first parameter (e.g. article number) provided by the user.
+        parameterTwo:
+          type: string
+          nullable: true
+          example: cable ties
+          description: Optional second parameter (e.g. article name) provided by the user.
+        rx4sState1:
+          type: number
+          example: 1
+          description: State of relay 1 in relay receiver upon activation (0/1).
+        rx4sState2:
+          type: number
+          example: 0
+          description: State of relay 2 in relay receiver upon activation (0/1).
+        rx4sState3:
+          type: number
+          example: 1
+          description: State of relay 3 in relay receiver upon activation (0/1).
+        rx4sState4:
+          type: number
+          example: 0
+          description: State of relay 4 in relay receiver upon activation (0/1).
+        rx4sActuateMode:
+          type: number
+          example: 0
+          description: INSTANT = 0; ECO = 1
+        makdText1:
+          type: string
+          nullable: true
+          example: I am button 1
+          description: Displaytext 1 for MAKD andon display (max. 32 chars).
+        makdText2:
+          type: string
+          nullable: true
+          example: I am button 2
+          description: Displaytext 2 for MAKD andon display (max. 32 chars).
+        makdText3:
+          type: string
+          nullable: true
+          example: I am button 3
+          description: Displaytext 3 for MAKD andon display (max. 32 chars).
+        makdWakeupText:
+          type: string
+          nullable: true
+          example: I am the wakeup text
+          description: Wakeup displaytext for MAKD andon display (max. 32 chars).
+        makdDisplayTime:
+          type: number
+          example: 5
+          description: MAKD text display duration. 0 seconds = Do not switch off display (0 - 65535 sec.).
+    SwitchDto:
+      type: object
+      properties:
+        deviceId:
+          type: string
+          example: 00311B
+          description: Device ID of the switch.
+        deviceType:
+          type: number
+          example: 10
+          description: 'Switch type: 9 = RF 10, 10 = RF 96, 11 = BF 74, 12 = RF I/O, 13 = RF HB, 14 = RF RW, 17 = RF GW, 18 = RF 96 SDS, 19 = RF 96 LDS, 25 = MAK, 26 = MAKD, 33 = RX 4S, 34 = RX 4S 48V, 35 = RF I/O VCC-EXT, 36 = RF 96 VCC-EXT, 37 = RF_UBR, 38 = OEM ACTOR, 41 = RF DESENS, 42 = OEM SENSOR'
+        groupId:
+          type: number
+          example: 1
+          description: Id of the group the switch belongs to.
+        description:
+          type: string
+          nullable: true
+          example: SWRW-H02-R01-001
+          description: Description text (e.g. position) of the switch provided by the user.
+        parameterOne:
+          type: string
+          nullable: true
+          example: 1.131.36
+          description: Optional first parameter (e.g. article number) provided by the user.
+        parameterTwo:
+          type: string
+          nullable: true
+          example: cable ties
+          description: Optional second parameter (e.g. article name) provided by the user.
+        rx4sState1:
+          type: number
+          example: 1
+          description: State of relay 1 in relay receiver upon activation (0/1).
+        rx4sState2:
+          type: number
+          example: 0
+          description: State of relay 2 in relay receiver upon activation (0/1).
+        rx4sState3:
+          type: number
+          example: 1
+          description: State of relay 3 in relay receiver upon activation (0/1).
+        rx4sState4:
+          type: number
+          example: 0
+          description: State of relay 4 in relay receiver upon activation (0/1).
+        rx4sActuateMode:
+          type: number
+          example: 0
+          description: INSTANT = 0; ECO = 1
+        makdText1:
+          type: string
+          nullable: true
+          example: I am button 1
+          description: Displaytext 1 for MAKD andon display (max. 32 chars).
+        makdText2:
+          type: string
+          nullable: true
+          example: I am button 2
+          description: Displaytext 2 for MAKD andon display (max. 32 chars).
+        makdText3:
+          type: string
+          nullable: true
+          example: I am button 3
+          description: Displaytext 3 for MAKD andon display (max. 32 chars).
+        makdWakeupText:
+          type: string
+          nullable: true
+          example: I am the wakeup text
+          description: Wakeup displaytext for MAKD andon display (max. 32 chars).
+        makdDisplayTime:
+          type: number
+          example: 5
+          description: MAKD text display duration. 0 seconds = Do not switch off display (0 - 65535 sec.).
+        ip:
+          type: string
+          example: 192.168.5.6
+          description: Accesspoint ip
+        rssi:
+          type: number
+          example: 50
+          description: RSSI value of switch
+        battVoltage:
+          type: number
+          example: 1600
+          description: Battery value of switch (in volt)
+        battState:
+          type: number
+          example: 75
+          description: Battery voltage of switch (in percent)
+        missingWakeup:
+          type: boolean
+          example: false
+          description: Missing Wakeup
+        deviceTypeName:
+          type: string
+          example: MAKD
+          description: Type of the device e.g. MAKD
+        swVersion:
+          type: string
+          example: '2.01'
+          description: Current software version of the actor
+        swVersionTimestamp:
+          type: number
+          nullable: true
+          example: 1640118081
+          description: Timestamp of requested software version of the actor
+        updateState:
+          type: number
+          example: 0
+          description: Current update status of the actor. 0 = NONE, 1 = ALLOWED, 2 = RUNNING, 3 = UPTODATE
+        broadcastCount:
+          type: number
+          example: 2100
+          description: Total of broadcast counts till power supply
+        activity:
+          type: number
+          example: 450
+          description: Total of recognized mechanical actuation counts till power supply
+        telegramSend:
+          type: number
+          example: 2100
+          description: Total of telegrams send till power supply (including repetition counts)
+        switchEventData:
+          type: number
+          nullable: true
+          example: 1
+          description: Last actor switch state
+        switchEventDataTimestamp:
+          type: number
+          nullable: true
+          example: 1640118081
+          description: Timestamp of last Actor switch state
+        switchEventFlag:
+          type: number
+          nullable: true
+          example: 64
+          description: Flag of the last switch event
+        switchChangeCount:
+          type: number
+          example: 0
+          description: Total change of switch status - important for encryption
+      required:
+      - deviceId
+      - deviceType
+      - groupId
+    SwitchListDto:
+      type: object
+      properties:
+        deviceId:
+          type: string
+          example: 00311B
+          description: Device ID of the switch.
+        deviceType:
+          type: number
+          example: 10
+          description: 'Switch type: 9 = RF 10, 10 = RF 96, 11 = BF 74, 12 = RF I/O, 13 = RF HB, 14 = RF RW, 17 = RF GW, 18 = RF 96 SDS, 19 = RF 96 LDS, 25 = MAK, 26 = MAKD, 33 = RX 4S, 34 = RX 4S 48V, 35 = RF I/O VCC-EXT, 36 = RF 96 VCC-EXT, 37 = RF_UBR, 38 = OEM ACTOR, 41 = RF DESENS, 42 = OEM SENSOR'
+        groupId:
+          type: number
+          example: 1
+          description: Id of the group the switch belongs to.
+        description:
+          type: string
+          nullable: true
+          example: SWRW-H02-R01-001
+          description: Description text (e.g. position) of the switch provided by the user.
+        parameterOne:
+          type: string
+          nullable: true
+          example: 1.131.36
+          description: Optional first parameter (e.g. article number) provided by the user.
+        parameterTwo:
+          type: string
+          nullable: true
+          example: cable ties
+          description: Optional second parameter (e.g. article name) provided by the user.
+        rx4sState1:
+          type: number
+          example: 1
+          description: State of relay 1 in relay receiver upon activation (0/1).
+        rx4sState2:
+          type: number
+          example: 0
+          description: State of relay 2 in relay receiver upon activation (0/1).
+        rx4sState3:
+          type: number
+          example: 1
+          description: State of relay 3 in relay receiver upon activation (0/1).
+        rx4sState4:
+          type: number
+          example: 0
+          description: State of relay 4 in relay receiver upon activation (0/1).
+        rx4sActuateMode:
+          type: number
+          example: 0
+          description: INSTANT = 0; ECO = 1
+        makdText1:
+          type: string
+          nullable: true
+          example: I am button 1
+          description: Displaytext 1 for MAKD andon display (max. 32 chars).
+        makdText2:
+          type: string
+          nullable: true
+          example: I am button 2
+          description: Displaytext 2 for MAKD andon display (max. 32 chars).
+        makdText3:
+          type: string
+          nullable: true
+          example: I am button 3
+          description: Displaytext 3 for MAKD andon display (max. 32 chars).
+        makdWakeupText:
+          type: string
+          nullable: true
+          example: I am the wakeup text
+          description: Wakeup displaytext for MAKD andon display (max. 32 chars).
+        makdDisplayTime:
+          type: number
+          example: 5
+          description: MAKD text display duration. 0 seconds = Do not switch off display (0 - 65535 sec.).
+        missingWakeup:
+          type: boolean
+          example: false
+          description: Missing Wakeup
+        deviceTypeName:
+          type: string
+          example: MAKD
+          description: Type of the device e.g. MAKD
+        swVersion:
+          type: string
+          example: '2.01'
+          description: Current software version of the actor
+        swVersionTimestamp:
+          type: number
+          nullable: true
+          example: 1640118081
+          description: Timestamp of requested software version of the actor
+        updateState:
+          type: number
+          example: 0
+          description: Current update status of the actor. 0 = NONE, 2 = RUNNING, 3 = UPTODATE
+        broadcastCount:
+          type: number
+          example: 2100
+          description: Total of broadcast counts till power supply
+        activity:
+          type: number
+          example: 450
+          description: Total of recognized mechanical actuation counts till power supply
+        telegramSend:
+          type: number
+          example: 2100
+          description: Total of telegrams send till power supply (including repetition counts)
+        switchEventData:
+          type: number
+          nullable: true
+          example: 1
+          description: Last actor switch state
+        switchEventDataTimestamp:
+          type: number
+          nullable: true
+          example: 1640118081
+          description: Timestamp of last Actor switch state
+        switchEventFlag:
+          type: number
+          nullable: true
+          example: 64
+          description: Flag of the last switch event
+      required:
+      - deviceId
+      - deviceType
+      - groupId
+  securitySchemes:
+    bearer:
+      type: apiKey
+      in: header
+      name: JWTAuthorization

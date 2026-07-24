@@ -1,0 +1,243 @@
+openapi: 3.0.0
+info:
+  title: Sensor Bridge API Version 2 Access Point API
+  description: <h3>steute sWave.NET Sensor Bridge API v2</h3><ul><li>Get status information of access points and switches.</li><li>Configure groups, device parameters and notifications.</li></ul>
+  version: 2.4.1 [d4919ee69]
+  contact: {}
+servers:
+- url: http://
+- url: https://
+tags:
+- name: Access Point
+paths:
+  /api/v2/access-points/delete/{deviceId}:
+    delete:
+      operationId: AccessPointController_delete
+      summary: Deletes the access point with the provided device id. It has to be offline!
+      parameters:
+      - name: deviceId
+        required: true
+        in: path
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful operation
+        '403':
+          description: No valid access token provided in JWTAuthorization header or access point is still online.
+        '404':
+          description: No access point with this deviceId.
+      tags:
+      - Access Point
+      security:
+      - bearer: []
+  /api/v2/access-points/deleteAll:
+    delete:
+      operationId: AccessPointController_deleteAll
+      summary: Deletes all offline access points. Accesspoints, which are online, will not be deleted
+      parameters: []
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/AccessPointDto'
+        '403':
+          description: No valid access token provided in JWTAuthorization header.
+      tags:
+      - Access Point
+      security:
+      - bearer: []
+  /api/v2/access-points:
+    get:
+      operationId: AccessPointController_listAccessPoints
+      summary: Returns a list of access points
+      description: Get a list of all access points attached to the sensor bridge, including status. Without the configuration informations.
+      parameters: []
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/AccessPointDto'
+        '403':
+          description: No valid access token provided in JWTAuthorization header.
+      tags:
+      - Access Point
+      security:
+      - bearer: []
+  /api/v2/access-points/warnings/{deviceId}:
+    get:
+      operationId: AccessPointController_warnings
+      summary: Get warning messages of one access point
+      description: Get a list of warning messages received from a particular access point.
+      parameters:
+      - name: deviceId
+        required: true
+        in: path
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/AccessPointWarningDto'
+        '400':
+          description: deviceId has to be of length 6
+        '403':
+          description: No valid access token provided in JWTAuthorization header.
+        '404':
+          description: No access point with this deviceId.
+      tags:
+      - Access Point
+      security:
+      - bearer: []
+  /api/v2/access-points/deleteWarnings/{deviceId}:
+    delete:
+      operationId: AccessPointController_deleteWarnings
+      summary: Delete all warning messages of one access point
+      description: Delete all warning messages from a particular access point.
+      parameters:
+      - name: deviceId
+        required: true
+        in: path
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/AccessPointWarningDto'
+        '400':
+          description: deviceId has to be of length 6
+        '403':
+          description: No valid access token provided in JWTAuthorization header.
+        '404':
+          description: No access point with this deviceId.
+      tags:
+      - Access Point
+      security:
+      - bearer: []
+  /api/v2/access-points/deleteAllWarnings:
+    delete:
+      operationId: AccessPointController_deleteAllWarnings
+      summary: Delete all warning messages of all access points
+      description: Deletes all warning messages of all access points.
+      parameters: []
+      responses:
+        '200':
+          description: successful operation
+        '400':
+          description: deviceId has to be of length 6
+        '403':
+          description: No valid access token provided in JWTAuthorization header.
+      tags:
+      - Access Point
+      security:
+      - bearer: []
+components:
+  schemas:
+    AccessPointDto:
+      type: object
+      properties:
+        ip:
+          type: string
+          example: 192.168.3.32
+          description: The IP-address of the access point.
+        deviceId:
+          type: string
+          example: 00311B
+          description: Unique identifier of the access point. (Device ID)
+        status:
+          type: number
+          description: 'Access point status info: 1 = OK, 2 = warning, 3 = offline'
+          enum:
+          - 1
+          - 2
+          - 3
+        customerId:
+          type: string
+          example: AccessPoint1
+          description: Access Point ID, assigned by the customer.
+        comment:
+          type: string
+          nullable: true
+          example: Mounted in hall 1, lower floor
+          description: Comment provided by the user, stored in Sensor Bridge only.
+        softwareVersion:
+          type: string
+          nullable: true
+          example: 02.04-DC
+          description: Access point software version.
+        broadcastId:
+          type: number
+          example: 17
+          description: Radio broadcast timing id. Must be different on each access point.
+        rfType:
+          type: number
+          example: 1
+          description: 'Frequency band: 1 = SW868, 2 = SW915, 3 = RU868, 4 = JP922, 5 = SW917'
+        canEncrypt:
+          type: boolean
+          example: true
+          description: Encryyption capable device
+        timestamp:
+          type: number
+          example: 1640991600
+          description: Timestamp, written when AP goes online/offline
+        apFirmwareVersion:
+          type: string
+          nullable: true
+          example: '07010203'
+          description: Access point firmware version
+      required:
+      - ip
+      - deviceId
+      - status
+      - customerId
+      - broadcastId
+      - rfType
+      - canEncrypt
+      - timestamp
+    AccessPointWarningDto:
+      type: object
+      properties:
+        id:
+          type: number
+          description: Warning message id / counter.
+        timestamp:
+          type: number
+          example: 1537166284
+          description: Time the warning was received (unix timestamp).
+        text:
+          type: string
+          example: 'Primary Server error: Couldnt connect to server (...)'
+          description: Warning message text.
+        accessPointDeviceId:
+          type: string
+          example: 00311B
+          description: Device ID of the access point.
+      required:
+      - id
+      - timestamp
+      - text
+      - accessPointDeviceId
+  securitySchemes:
+    bearer:
+      type: apiKey
+      in: header
+      name: JWTAuthorization

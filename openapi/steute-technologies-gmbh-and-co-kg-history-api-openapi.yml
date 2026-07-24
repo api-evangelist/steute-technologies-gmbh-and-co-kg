@@ -1,0 +1,156 @@
+openapi: 3.0.0
+info:
+  title: Sensor Bridge API Version 2 Access Point History API
+  description: <h3>steute sWave.NET Sensor Bridge API v2</h3><ul><li>Get status information of access points and switches.</li><li>Configure groups, device parameters and notifications.</li></ul>
+  version: 2.4.1 [d4919ee69]
+  contact: {}
+servers:
+- url: http://
+- url: https://
+tags:
+- name: History
+paths:
+  /api/v2/history/deleteAll:
+    delete:
+      operationId: HistoryController_deleteAll
+      summary: Delete all logs.
+      description: Delete all logs from the database.
+      parameters: []
+      responses:
+        '200':
+          description: successful operation
+      tags:
+      - History
+      security:
+      - bearer: []
+  /api/v2/history/delete/{deviceId}:
+    delete:
+      operationId: HistoryController_deleteAllFromDevice
+      summary: Deletes all logs with specific device id.
+      description: Deletes all logs that have been send by the device with the provided id.
+      parameters:
+      - name: deviceId
+        required: true
+        in: path
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful operation
+      tags:
+      - History
+      security:
+      - bearer: []
+  /api/v2/history/{deviceId}:
+    get:
+      operationId: HistoryController_list
+      summary: Request switch event logs.
+      description: Get a list of the last 100 events received from a particular switch.<br>Parameter deviceId has to be 6 chars, hexadecimal.
+      parameters:
+      - name: deviceId
+        required: true
+        in: path
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful operation<br>Returns a list of the last (up to) 100 events for this switch.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HistoryDto'
+        '400':
+          description: deviceId has to be of length 6
+        '403':
+          description: invalid credentials
+        '404':
+          description: There is no switch with this deviceId.
+      tags:
+      - History
+      security:
+      - bearer: []
+components:
+  schemas:
+    SwitchEventDto:
+      type: object
+      properties:
+        id:
+          type: number
+          example: 42
+          description: Internal id of the switch event.
+        timestamp:
+          type: number
+          example: 1537173484
+          description: Time the event was received. (unix timestamp)
+        accessPointDeviceId:
+          type: string
+          example: 0072BD
+          description: Device ID of the AP from which the event was received.
+        ip:
+          type: string
+          example: 192.168.3.32
+          description: IP address of the AP from which the event was received.
+        deviceId:
+          type: string
+          example: 00311B
+          description: Device ID of the switch the event was emitted from.
+        deviceType:
+          type: number
+          example: 10
+          description: Type of the switch that emitted the event. 9(0x09)=RF10, 10(0x0A)=RF96, 11(0x0B)=BF74, 12(0x0C)=RFI/O, 13(0x0D)=RFHB, 14(0x0E)=RFRW, 33(0x21)=RX4S, 26(0x1A)=MAKD
+        battery:
+          type: number
+          example: 3250
+          description: Battery voltage in mV.
+        data:
+          type: number
+          example: 1
+          description: Data sent by the switch. (Each bit represents an actuator.)
+        flags:
+          type: number
+          example: 0
+          description: 'Flag sent by the switch: 0 = switch event, 64 = broadcast, 128 = wakeup, 192 = broadcast & wakeup'
+        count:
+          type: number
+          example: 150
+          description: Internal event count of the switch. (0-255)
+        scCount:
+          type: number
+          example: 150
+          description: Internal event count of the switch. (0-255)
+        wakeUp:
+          type: string
+          example: A5
+          description: 'Wakeup time configured for this switch. 8 byte hexadecimal. First nibble: hours, Second nibble: minutes. Example: "A5" = Wakes up every 10(0xA) hours and 5(0x5) minutes.'
+        rssi:
+          type: number
+          example: 50
+          description: Received signal strength of the switch event.
+      required:
+      - id
+      - timestamp
+      - accessPointDeviceId
+      - ip
+      - deviceId
+      - deviceType
+      - battery
+      - data
+      - flags
+      - count
+      - scCount
+      - wakeUp
+      - rssi
+    HistoryDto:
+      type: object
+      properties:
+        lastNEvents:
+          type: array
+          items:
+            $ref: '#/components/schemas/SwitchEventDto'
+      required:
+      - lastNEvents
+  securitySchemes:
+    bearer:
+      type: apiKey
+      in: header
+      name: JWTAuthorization

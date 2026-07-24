@@ -1,0 +1,92 @@
+openapi: 3.0.0
+info:
+  title: Sensor Bridge API Version 2 Access Point System Status API
+  description: <h3>steute sWave.NET Sensor Bridge API v2</h3><ul><li>Get status information of access points and switches.</li><li>Configure groups, device parameters and notifications.</li></ul>
+  version: 2.4.1 [d4919ee69]
+  contact: {}
+servers:
+- url: http://
+- url: https://
+tags:
+- name: System Status
+paths:
+  /api/v2/system-status:
+    get:
+      operationId: SystemStatusController_listSystemStatus
+      summary: Get the system status information.
+      description: Get information about the current sensor bridge software version, unix system timestamp, average workload, uptime and memory usage )
+      parameters: []
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SystemStatusDto'
+        '403':
+          description: invalid credentials
+      tags:
+      - System Status
+      security:
+      - bearer: []
+components:
+  schemas:
+    SystemStatusDto:
+      type: object
+      properties:
+        softwareVersion:
+          type: string
+          example: 1.0.3
+          description: Current version of the sensor bridge software
+        systemTimestamp:
+          type: number
+          example: '1559571110'
+          description: Unix timestamp for the system time
+        loadAverage1:
+          type: number
+          example: '11'
+          description: Load average for the last minute
+        loadAverage5:
+          type: number
+          example: '11'
+          description: Load average for the last five minutes
+        loadAverage15:
+          type: number
+          example: '11'
+          description: Load average for the last fifteen minutes
+        freeMemory:
+          type: number
+          example: '5201952768'
+          description: Free system memory in bytes
+        totalMemory:
+          type: number
+          example: '16989540352'
+          description: Total system memory in bytes
+        uptime:
+          type: number
+          example: '96114'
+          description: System uptime in seconds
+        softwarePartNumber:
+          type: string
+          example: '0'
+          description: Software part number
+        softwareVariant:
+          type: string
+          example: 'Software module: Sensor Bridge'
+          description: Software variant
+      required:
+      - softwareVersion
+      - systemTimestamp
+      - loadAverage1
+      - loadAverage5
+      - loadAverage15
+      - freeMemory
+      - totalMemory
+      - uptime
+      - softwarePartNumber
+      - softwareVariant
+  securitySchemes:
+    bearer:
+      type: apiKey
+      in: header
+      name: JWTAuthorization

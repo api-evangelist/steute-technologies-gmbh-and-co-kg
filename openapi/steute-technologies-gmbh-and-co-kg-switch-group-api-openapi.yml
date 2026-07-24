@@ -1,0 +1,377 @@
+openapi: 3.0.0
+info:
+  title: Sensor Bridge API Version 2 Access Point Switch Group API
+  description: <h3>steute sWave.NET Sensor Bridge API v2</h3><ul><li>Get status information of access points and switches.</li><li>Configure groups, device parameters and notifications.</li></ul>
+  version: 2.4.1 [d4919ee69]
+  contact: {}
+servers:
+- url: http://
+- url: https://
+tags:
+- name: Switch Group
+paths:
+  /api/v2/switch-groups:
+    get:
+      operationId: SwitchGroupController_listSwitchGroups
+      summary: Get list of configuration groups.
+      description: Get a list of all configuration groups including their parameters.
+      parameters: []
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SwitchGroupDto'
+        '403':
+          description: invalid credentials
+      tags:
+      - Switch Group
+      security:
+      - bearer: []
+    post:
+      operationId: SwitchGroupController_create
+      summary: Create a new configuration group.
+      description: Creates a new configuration group with default parameters. Only the group title has to be given.<br>(Use the PUT action for configuration.)
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SwitchGroupCreateDto'
+      responses:
+        '201':
+          description: Switch group successfully created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SwitchGroupDto'
+        '400':
+          description: Invalid data
+        '403':
+          description: invalid credentials
+        '422':
+          description: A group with this name already exists
+      tags:
+      - Switch Group
+      security:
+      - bearer: []
+  /api/v2/switch-groups/{id}:
+    put:
+      operationId: SwitchGroupController_update
+      summary: Update configuration group parameters.
+      description: Update configuration group settings.
+      parameters:
+      - name: id
+        required: true
+        in: path
+        schema:
+          type: number
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SwitchGroupUpdateDto'
+      responses:
+        '201':
+          description: 'Switch Group successfully updated '
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SwitchGroupDto'
+        '403':
+          description: invalid credentials
+        '404':
+          description: 'There is no switch group with the given id '
+        '422':
+          description: 'SwitchGroup could not be updated with the given data. '
+      tags:
+      - Switch Group
+      security:
+      - bearer: []
+    delete:
+      operationId: SwitchGroupController_deleteGroup
+      summary: Delete configuration group.
+      description: There may be switches, assigned to this group. To prevent them from being unassigned after the group was deleted, an alternative group id has to be provided.<br>  All switches will be re-assigned to this alternative group.
+      parameters:
+      - name: id
+        required: true
+        in: path
+        schema:
+          type: number
+      - name: idOfNewGroup
+        required: true
+        in: query
+        schema:
+          type: number
+      responses:
+        '200':
+          description: successful operation
+        '400':
+          description: Wrong parameter. E.g. one of the group ids does not match.<br>Error message will be returned.
+        '403':
+          description: invalid credentials
+      tags:
+      - Switch Group
+      security:
+      - bearer: []
+  /api/v2/switch-groups/deleteAll:
+    delete:
+      operationId: SwitchGroupController_deleteAllGroups
+      summary: Deletes all configuration groups.
+      description: All switches will be re-assigned to the default group.
+      parameters: []
+      responses:
+        '200':
+          description: successful operation
+        '400':
+          description: Something went wrong, delete could not be performed
+        '403':
+          description: invalid credentials
+      tags:
+      - Switch Group
+      security:
+      - bearer: []
+components:
+  schemas:
+    SwitchGroupDto:
+      type: object
+      properties:
+        id:
+          type: number
+          example: 1
+          description: Group id. (assigned by system upon creation)
+        name:
+          type: string
+          example: Sensors in rack B5
+          description: Name of the configuration group. (required, max. 64 chars)
+        description:
+          type: string
+          nullable: true
+          example: Tiling sensor configuration for rack B5 (chassis mounting)
+          description: Description for the group provided by th user. (max. 256 chars)
+        wakeupHours:
+          type: number
+          example: 0
+          description: Set cyclic wakeup time to n hours (0-15).
+        wakeupMin:
+          type: number
+          example: 10
+          description: Set cyclic wakeup time to n minutes (0-15).
+        cycletimeFactor125ms:
+          type: number
+          example: 23
+          description: Min. time between transmitting two switch events. n times 125 ms (0 - 255)
+        debouncetimeFactor125ms:
+          type: number
+          example: 24
+          description: Min. time switch state must have changed before radio transmission. n times 125 ms (0 - 255)
+        useCycletimeRF96:
+          type: boolean
+          example: true
+          description: Determines if RF 96 and RF IO types use cycletime (true) oder debouncetime (false).
+        rwAngle:
+          type: number
+          example: 3
+          description: Roller conveyor angle for RF RW tilting sensor. (-27 to 90 degrees)
+        rwLedDisabled:
+          type: boolean
+          example: false
+          description: If set to true, LED in RF RW will be disabled.
+        isManaged:
+          type: boolean
+          example: true
+          description: Only if set to true, parameters for members of this group will be provided to access points.
+        isStandard:
+          type: boolean
+          example: true
+          description: If set to true, each new detected switch will be assigned to this group (Will only apply to one group).
+        isInvisible:
+          type: boolean
+          example: false
+          description: If set to true, unmanaged groups are hidden in 'sensors & actors' overview
+        sdsThresholdDist:
+          type: number
+          maximum: 50
+          minimum: 5
+          default: 15
+          description: 'RF 96 SDS: Threshold for switching on/off in cm.'
+          example: 15
+        sdsHysteresis:
+          type: number
+          maximum: 20
+          minimum: 2
+          default: 4
+          description: 'RF 96 SDS: Switching hysteresis in cm.'
+          example: 4
+        sdsDebounce:
+          type: number
+          minimum: 1
+          maximum: 31
+          default: 5
+          description: 'RF 96 SDS: Timing interval of measurement (in seconds). Values under 4 lead to high battery consumption.'
+          example: 5
+        ldsThresholdDist:
+          type: number
+          minimum: 10
+          maximum: 1000
+          default: 100
+          description: 'RF 96 LDS: Threshold for switching on/off in cm.'
+          example: 100
+        ldsHysteresis:
+          type: number
+          minimum: 1
+          maximum: 25
+          default: 10
+          description: 'RF 96 LDS: Switching hysteresis in cm.'
+          example: 10
+        ldsDebounce:
+          type: number
+          minimum: 2
+          maximum: 31
+          default: 15
+          description: 'RF 96 LDS: Timing interval of measurement (in seconds). Values under 4 lead to high battery consumption.'
+          example: 15
+        actuationNumber:
+          type: number
+          minimum: 1
+          maximum: 10
+          default: 2
+          description: 'RF DSENS: Define the count of act to send a telegramm to the Sensor Bridge.'
+          example: 2
+        actuationTimeout:
+          type: number
+          minimum: 0
+          maximum: 255
+          default: 10
+          description: 'RF DSENS: Time span in seconds until the next actuation must take place, otherwise the internal actuation counter is reset.'
+          example: 10
+      required:
+      - id
+      - name
+      - wakeupHours
+      - wakeupMin
+      - cycletimeFactor125ms
+      - debouncetimeFactor125ms
+      - useCycletimeRF96
+      - rwAngle
+      - rwLedDisabled
+      - isManaged
+      - isStandard
+      - isInvisible
+      - sdsThresholdDist
+      - sdsHysteresis
+      - sdsDebounce
+      - ldsThresholdDist
+      - ldsHysteresis
+      - ldsDebounce
+      - actuationNumber
+      - actuationTimeout
+    SwitchGroupUpdateDto:
+      type: object
+      properties:
+        name:
+          type: string
+          example: Sensors in rack B5
+          description: Name of the configuration group. (required, max. 64 chars)
+        description:
+          type: string
+          nullable: true
+          example: Tiling sensor configuration for rack B5 (chassis mounting)
+          description: Description for the group provided by th user. (max. 256 chars)
+        wakeupHours:
+          type: number
+          example: 0
+          description: Set cyclic wakeup time to n hours (0 - 15).
+        wakeupMin:
+          type: number
+          example: 10
+          description: Set cyclic wakeup time to n minutes (0 - 15).
+        cycletimeFactor125ms:
+          type: number
+          example: 24
+          description: Min. time between transmitting two switch events. n times 125 ms (0 - 255)
+        debouncetimeFactor125ms:
+          type: number
+          example: 24
+          description: Min. time switch state must have changed before radio transmission. n times 125 ms (0 - 255)
+        useCycletimeRF96:
+          type: boolean
+          example: true
+          description: If true, use cycleTime.
+        rwAngle:
+          type: number
+          example: 3
+          description: 'Roller conveyor angle for RF RW tilting sensor. (-27 to 90 degrees). '
+        rwLedDisabled:
+          type: boolean
+          example: false
+          description: If set to true, LED in RF RW will be disabled.
+        isManaged:
+          type: boolean
+          example: true
+          description: Only if set to true, parameters for members of this group will be provided to access points.
+    SwitchGroupCreateDto:
+      type: object
+      properties:
+        name:
+          type: string
+          example: Sensors in rack B5
+          description: Name of the configuration group. (required, max. 64 chars)
+        description:
+          type: string
+          default: null
+          nullable: true
+          example: Tiling sensor configuration for rack B5 (chassis mounting)
+          description: Description for the group provided by th user. (max. 256 chars)
+        wakeupHours:
+          type: number
+          example: 0
+          default: 0
+          description: Set cyclic wakeup time to n hours (0 - 15).
+        wakeupMin:
+          type: number
+          example: 10
+          default: 0
+          description: Set cyclic wakeup time to n minutes (0 - 15).
+        cycletimeFactor125ms:
+          type: number
+          example: 24
+          default: 8
+          description: Min. time between transmitting two switch events. n times 125 ms (0 - 255)
+        debouncetimeFactor125ms:
+          type: number
+          example: 24
+          default: 8
+          description: Min. time switch state must have changed before radio transmission. n times 125 ms (0 - 255)
+        useCycletimeRF96:
+          type: boolean
+          example: true
+          default: false
+          description: If true, use cycleTime.
+        rwAngle:
+          type: number
+          example: 3
+          default: 127
+          description: Roller conveyor angle for RF RW tilting sensor. (-27 to 90 degrees)
+        rwLedDisabled:
+          type: boolean
+          example: false
+          default: false
+          description: If set to true, LED in RF RW will be disabled.
+        isManaged:
+          type: boolean
+          example: true
+          default: true
+          description: Only if set to true, parameters for members of this group will be provided to access points.
+      required:
+      - name
+  securitySchemes:
+    bearer:
+      type: apiKey
+      in: header
+      name: JWTAuthorization

@@ -1,0 +1,341 @@
+openapi: 3.0.0
+info:
+  title: Sensor Bridge API Version 2 Access Point Notification Config API
+  description: <h3>steute sWave.NET Sensor Bridge API v2</h3><ul><li>Get status information of access points and switches.</li><li>Configure groups, device parameters and notifications.</li></ul>
+  version: 2.4.1 [d4919ee69]
+  contact: {}
+servers:
+- url: http://
+- url: https://
+tags:
+- name: Notification Config
+paths:
+  /api/v2/notification-configs:
+    get:
+      operationId: NotificationConfigController_listNotificationConfig
+      summary: Get list of notifications.
+      description: Get a list of all notifications configured in the Sensor Bridge. Includes all configured options.
+      parameters: []
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/NotificationConfigDto'
+        '403':
+          description: invalid credentials
+      tags:
+      - Notification Config
+      security:
+      - bearer: []
+    post:
+      operationId: NotificationConfigController_create
+      summary: Create a new notification.
+      description: Creates a new notification. Name and URL have to be given.<br>Detailed configuration may be done via PUT action.<br>urlString must be valid and must not include "http(s)://"<br>Notification will be enabled by default.
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NotificationConfigCreateDto'
+      responses:
+        '201':
+          description: Successfully created<br>Returns new notification object including the "id".
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotificationConfigDto'
+        '400':
+          description: Invalid data (e.g. invalid URL)
+        '403':
+          description: Invalid credentials
+        '422':
+          description: A notification with this name already exists
+      tags:
+      - Notification Config
+      security:
+      - bearer: []
+  /api/v2/notification-configs/{id}:
+    put:
+      operationId: NotificationConfigController_update
+      summary: Update notification parameters.
+      description: For detailed configuration of notifications.
+      parameters:
+      - name: id
+        required: true
+        in: path
+        schema:
+          type: number
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NotificationConfigUpdateDto'
+      responses:
+        '200':
+          description: successfully updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotificationConfigDto'
+        '400':
+          description: Bad Request<br>Maybe because of wrong parameter or parameter value.<br>Error message will be returned.
+        '403':
+          description: invalid credentials
+        '404':
+          description: Not Found
+      tags:
+      - Notification Config
+      security:
+      - bearer: []
+    delete:
+      operationId: NotificationConfigController_del
+      summary: Delete notification.
+      parameters:
+      - name: id
+        required: true
+        in: path
+        schema:
+          type: number
+      responses:
+        '200':
+          description: successfully deleted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IdDto'
+        '400':
+          description: Bad Request<br>Maybe because the id is not found in database.<br>Error message will be returned.
+        '403':
+          description: invalid credentials
+      tags:
+      - Notification Config
+      security:
+      - bearer: []
+  /api/v2/notification-configs/deleteAll:
+    delete:
+      operationId: NotificationConfigController_deleteAll
+      summary: Delete all notification.
+      parameters: []
+      responses:
+        '200':
+          description: successfully deleted all notifications.
+        '403':
+          description: invalid credentials
+      tags:
+      - Notification Config
+      security:
+      - bearer: []
+components:
+  schemas:
+    IdDto:
+      type: object
+      properties:
+        id:
+          type: number
+          example: 815
+          description: id of the notification
+      required:
+      - id
+    NotificationConfigCreateDto:
+      type: object
+      properties:
+        name:
+          type: string
+          example: Notify my application
+          description: Name of the notification as provided by the user. (max. 64 chars)
+        urlString:
+          type: string
+          example: 192.168.3.10/myApi
+          description: Target URL to which the notification will be send. (without "http(s)://", max. 1024 chars)
+        description:
+          type: string
+          default: null
+          nullable: true
+          example: Sends switch event data to my application.
+          description: Optional description provided by the user. (max. 256 chars)
+        isEnabled:
+          type: boolean
+          example: true
+          default: true
+          description: If set, switch events and missing wakeups will trigger this notification.
+        isEnabledNotManaged:
+          type: boolean
+          example: false
+          default: false
+          description: If set, switch events and missing wakeups will trigger this notification, even if the group of the switch is not managed.
+        noWakeups:
+          type: boolean
+          example: false
+          default: false
+          description: If set, wakeup messages will no longer trigger this notification
+        notificationSendState:
+          type: string
+          description: Determines on which state, on/off, the notification will be sent "STATE_ALL" = on/off, "STATE_OFF" = off , STATE_ON = on
+          enum:
+          - STATE_ALL
+          - STATE_OFF
+          - STATE_ON
+        useTls:
+          type: boolean
+          example: false
+          default: false
+          description: 'Protocol used: false = HTTP,  true = HTTPS (without certificate validation)'
+        responseTimeout:
+          type: number
+          example: 10
+          default: 10
+          description: Time to wait for a server response. (1 - 300 seconds)
+        selectedGroups:
+          example:
+          - 1
+          - 3
+          - 4
+          - 5
+          description: A list of corresponding switchGroupIDs
+          default: null
+          nullable: true
+          type: array
+          items:
+            type: number
+      required:
+      - name
+      - urlString
+    NotificationConfigUpdateDto:
+      type: object
+      properties:
+        name:
+          type: string
+          example: Notify my application
+          description: Name of the notification as provided by the user. (max. 64 chars)
+        urlString:
+          type: string
+          example: 192.168.3.10/myApi
+          description: Target URL to which the notification will be send. (without "http(s)://", max. 1024 chars)
+        description:
+          type: string
+          nullable: true
+          example: Sends switch event data to my application.
+          description: Optional description provided by the user. (max. 256 chars)
+        isEnabled:
+          type: boolean
+          example: true
+          description: If set, switch events and missing wakeups will trigger this notification.
+        isEnabledNotManaged:
+          type: boolean
+          example: false
+          description: If set, switch events and missing wakeups will trigger this notification, even if the group of the switch is not managed.
+        noWakeups:
+          type: boolean
+          example: false
+          description: If set, wakeup messages will no longer trigger this notification
+        notificationSendState:
+          type: string
+          description: Determines on which state, on/off, the notification will be sent "STATE_ALL" = on/off, "STATE_OFF" = off , STATE_ON = on
+          enum:
+          - STATE_ALL
+          - STATE_OFF
+          - STATE_ON
+        useTls:
+          type: boolean
+          example: false
+          description: 'Protocol used: false = HTTP,  true = HTTPS (without certificate validation)'
+        responseTimeout:
+          type: number
+          example: 10
+          description: Time to wait for a server response. (1 - 300 seconds)
+        selectedGroups:
+          example:
+          - 1
+          - 3
+          - 4
+          - 5
+          description: A list of corresponding switchGroupIDs
+          nullable: true
+          type: array
+          items:
+            type: number
+    NotificationConfigDto:
+      type: object
+      properties:
+        id:
+          type: number
+          example: 1
+          description: Unique notification id.
+        name:
+          type: string
+          example: Notify my application
+          description: Name of the notification as provided by the user. (max. 64 chars)
+        description:
+          type: string
+          nullable: true
+          example: Sends switch event data to my application.
+          description: Optional description provided by the user. (max. 256 chars)
+        isEnabled:
+          type: boolean
+          example: true
+          description: If set, switch events and missing wakeups will trigger this notification.
+        isEnabledNotManaged:
+          type: boolean
+          example: true
+          description: If set, switch events and missing wakeups will trigger this notification, even if the group of the switch is not managed.
+        noWakeups:
+          type: boolean
+          example: false
+          description: If set, wakeup messages will no longer trigger this notification
+        notificationSendState:
+          type: string
+          description: Determines on which state, on/off, the notification will be sent "STATE_ALL" = on/off, "STATE_OFF" = off , STATE_ON = on
+          enum:
+          - STATE_ALL
+          - STATE_OFF
+          - STATE_ON
+        authenticationMethod:
+          type: string
+          description: The configured authentication method for this notification "NO_AUTH" or "BASIC_AUTH"
+          enum:
+          - NO_AUTH
+          - BASIC_AUTH
+        urlString:
+          type: string
+          example: 192.168.3.10/myApi
+          description: Target URL to which the notification will be send. (without "http(s)://", max. 1024 chars)
+        useTls:
+          type: boolean
+          example: true
+          description: 'Protocol used: false = HTTP, true = HTTPS (without certificate validation)'
+        responseTimeout:
+          type: number
+          example: 10
+          description: Time to wait for a server response. (1 - 300 seconds)
+        selectedGroups:
+          example:
+          - 3
+          - 4
+          - 5
+          description: A list of corresponding switchGroupIDs
+          nullable: true
+          type: array
+          items:
+            type: number
+      required:
+      - id
+      - name
+      - isEnabled
+      - isEnabledNotManaged
+      - noWakeups
+      - notificationSendState
+      - authenticationMethod
+      - urlString
+      - useTls
+      - responseTimeout
+  securitySchemes:
+    bearer:
+      type: apiKey
+      in: header
+      name: JWTAuthorization
