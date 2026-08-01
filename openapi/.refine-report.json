@@ -1,0 +1,26 @@
+{
+  "provider": "steute-technologies-gmbh-and-co-kg",
+  "sources": [
+    "steute-technologies-gmbh-and-co-kg-access-point-api-openapi.yml",
+    "steute-technologies-gmbh-and-co-kg-auth-api-openapi.yml",
+    "steute-technologies-gmbh-and-co-kg-history-api-openapi.yml",
+    "steute-technologies-gmbh-and-co-kg-notification-config-api-openapi.yml",
+    "steute-technologies-gmbh-and-co-kg-switch-api-openapi.yml",
+    "steute-technologies-gmbh-and-co-kg-switch-group-api-openapi.yml",
+    "steute-technologies-gmbh-and-co-kg-system-status-api-openapi.yml"
+  ],
+  "outputs": [
+    "steute-technologies-gmbh-and-co-kg-access-point-api-openapi.yml",
+    "steute-technologies-gmbh-and-co-kg-auth-api-openapi.yml",
+    "steute-technologies-gmbh-and-co-kg-history-api-openapi.yml",
+    "steute-technologies-gmbh-and-co-kg-notification-config-api-openapi.yml",
+    "steute-technologies-gmbh-and-co-kg-switch-api-openapi.yml",
+    "steute-technologies-gmbh-and-co-kg-switch-group-api-openapi.yml",
+    "steute-technologies-gmbh-and-co-kg-system-status-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

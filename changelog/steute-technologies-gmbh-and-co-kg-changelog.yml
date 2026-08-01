@@ -1,0 +1,27 @@
+generated: '2026-07-21'
+method: searched
+source: https://docs.nexy.net/docs/sensor-bridge/updates-and-changelog/
+scheme: semver
+current_version: 2.6.1
+entries:
+- version: 2.6.1
+  date: '2025-05-27'
+  breaking: false
+  highlights:
+  - Fixed incorrect status information in the Switches & Actors list after update.
+- version: 2.6.0
+  date: '2025-04-14'
+  breaking: true
+  highlights:
+  - Encryption status visibility for Access Points.
+  - Description character limits extended to 512.
+  - Reset timer functionality for relay actors.
+  - Default wake-up interval changed to 15 minutes for newly created groups.
+  - Versions >= 2.6.0 are not available for redundant systems based on three Revolution Pi gateways.
+- version: 2.5.0
+  date: '2025-02-06'
+  breaking: true
+  highlights:
+  - REST API v1 removed (deprecated since 2022).
+  - Corrected battery calculation for RF BF 74 sensors.
+  - Container heartbeat monitoring.

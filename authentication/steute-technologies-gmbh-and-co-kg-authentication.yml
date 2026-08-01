@@ -1,0 +1,36 @@
+generated: '2026-07-21'
+method: searched
+source: openapi/steute-technologies-gmbh-and-co-kg-sensor-bridge-openapi-original.json
+docs: https://docs.nexy.net/docs/sensor-bridge/rest-api/
+summary:
+  types:
+  - apiKey
+  api_key_in:
+  - header
+  oauth2_flows: []
+notes: >-
+  The nexy Sensor Bridge API v2 uses JWT authentication carried in a custom
+  JWTAuthorization header (declared as an apiKey-in-header scheme named "bearer"
+  in the OpenAPI). Clients POST username/password to /api/v2/auth/login
+  (AuthController_login) to obtain an accessToken (valid 30 minutes) and a
+  refreshToken; GET /api/v2/auth/refresh (AuthController_refresh) renews them.
+  The API ships with a documented factory-default API user (username "api",
+  password "steute_api") which administrators change in the Sensor Bridge web
+  UI User Settings menu. The separate HTTP(S) notification (webhook) interface
+  supports HTTP Basic Authentication toward the customer's receiving endpoint.
+schemes:
+- name: bearer
+  type: apiKey
+  in: header
+  parameter: JWTAuthorization
+  bearerFormat: JWT
+  token_ttl_seconds: 1800
+  obtain_via: 'POST /api/v2/auth/login (AuthController_login)'
+  refresh_via: 'GET /api/v2/auth/refresh (AuthController_refresh)'
+  sources:
+  - openapi/steute-technologies-gmbh-and-co-kg-sensor-bridge-openapi-original.json
+- name: notification-basic-auth
+  type: http
+  scheme: basic
+  applies_to: outbound HTTP(S) notifications from Sensor Bridge to customer endpoints
+  source: https://docs.nexy.net/docs/api-and-protocols/https-notifications/

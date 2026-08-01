@@ -1,0 +1,30 @@
+generated: '2026-07-21'
+method: searched
+source: https://docs.nexy.net/docs/sensor-bridge/rest-api/
+versioning:
+  scheme: uri-path
+  current: v2
+  api_version: 2.4.1
+  docs: https://docs.nexy.net/docs/sensor-bridge/rest-api/
+  detail: >-
+    Sensor Bridge REST API is versioned in the URL path (/api/v2). The docs
+    site itself is versioned by Sensor Bridge release train (1.x.x,
+    2.0.0-2.3.x, 2.4.0-2.6.x current).
+deprecation:
+  practiced: true
+  policy_url: https://docs.nexy.net/docs/sensor-bridge/rest-api/
+  sunset_header: false
+  detail: >-
+    REST API v1 was marked deprecated in 2022 while remaining available for
+    backward compatibility, then removed in Sensor Bridge 2.5.0 (06.02.2025).
+    Migration guides with sample API calls and OpenAPI definition diffs are
+    published for breaking parameter changes (2.0.2 -> 2.2.0, 2.1.0 -> 2.2.0).
+    No Sunset/Deprecation HTTP headers (RFC 8594) are documented.
+sla: null
+status_page: null
+changelog: https://docs.nexy.net/docs/sensor-bridge/updates-and-changelog/
+deprecated_operations: []
+note: >-
+  No public status page or SLA is published; the Sensor Bridge is an on-premise
+  product, with container heartbeat monitoring added in 2.5.0 for local
+  system health.

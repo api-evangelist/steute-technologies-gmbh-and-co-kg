@@ -1,0 +1,2300 @@
+{
+    "openapi": "3.0.0",
+    "paths": {
+      "/api/v2/access-points/delete/{deviceId}": {
+        "delete": {
+          "operationId": "AccessPointController_delete",
+          "summary": "Deletes the access point with the provided device id. It has to be offline!",
+          "parameters": [
+            {
+              "name": "deviceId",
+              "required": true,
+              "in": "path",
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "successful operation"
+            },
+            "403": {
+              "description": "No valid access token provided in JWTAuthorization header or access point is still online."
+            },
+            "404": {
+              "description": "No access point with this deviceId."
+            }
+          },
+          "tags": [
+            "Access Point"
+          ],
+          "security": [
+            {
+              "bearer": []
+            }
+          ]
+        }
+      },
+      "/api/v2/access-points/deleteAll": {
+        "delete": {
+          "operationId": "AccessPointController_deleteAll",
+          "summary": "Deletes all offline access points. Accesspoints, which are online, will not be deleted",
+          "parameters": [],
+          "responses": {
+            "200": {
+              "description": "successful operation",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/AccessPointDto"
+                    }
+                  }
+                }
+              }
+            },
+            "403": {
+              "description": "No valid access token provided in JWTAuthorization header."
+            }
+          },
+          "tags": [
+            "Access Point"
+          ],
+          "security": [
+            {
+              "bearer": []
+            }
+          ]
+        }
+      },
+      "/api/v2/access-points": {
+        "get": {
+          "operationId": "AccessPointController_listAccessPoints",
+          "summary": "Returns a list of access points",
+          "description": "Get a list of all access points attached to the sensor bridge, including status. Without the configuration informations.",
+          "parameters": [],
+          "responses": {
+            "200": {
+              "description": "successful operation",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/AccessPointDto"
+                    }
+                  }
+                }
+              }
+            },
+            "403": {
+              "description": "No valid access token provided in JWTAuthorization header."
+            }
+          },
+          "tags": [
+            "Access Point"
+          ],
+          "security": [
+            {
+              "bearer": []
+            }
+          ]
+        }
+      },
+      "/api/v2/access-points/warnings/{deviceId}": {
+        "get": {
+          "operationId": "AccessPointController_warnings",
+          "summary": "Get warning messages of one access point",
+          "description": "Get a list of warning messages received from a particular access point.",
+          "parameters": [
+            {
+              "name": "deviceId",
+              "required": true,
+              "in": "path",
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "successful operation",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/AccessPointWarningDto"
+                    }
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "deviceId has to be of length 6"
+            },
+            "403": {
+              "description": "No valid access token provided in JWTAuthorization header."
+            },
+            "404": {
+              "description": "No access point with this deviceId."
+            }
+          },
+          "tags": [
+            "Access Point"
+          ],
+          "security": [
+            {
+              "bearer": []
+            }
+          ]
+        }
+      },
+      "/api/v2/access-points/deleteWarnings/{deviceId}": {
+        "delete": {
+          "operationId": "AccessPointController_deleteWarnings",
+          "summary": "Delete all warning messages of one access point",
+          "description": "Delete all warning messages from a particular access point.",
+          "parameters": [
+            {
+              "name": "deviceId",
+              "required": true,
+              "in": "path",
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "successful operation",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/AccessPointWarningDto"
+                    }
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "deviceId has to be of length 6"
+            },
+            "403": {
+              "description": "No valid access token provided in JWTAuthorization header."
+            },
+            "404": {
+              "description": "No access point with this deviceId."
+            }
+          },
+          "tags": [
+            "Access Point"
+          ],
+          "security": [
+            {
+              "bearer": []
+            }
+          ]
+        }
+      },
+      "/api/v2/access-points/deleteAllWarnings": {
+        "delete": {
+          "operationId": "AccessPointController_deleteAllWarnings",
+          "summary": "Delete all warning messages of all access points",
+          "description": "Deletes all warning messages of all access points.",
+          "parameters": [],
+          "responses": {
+            "200": {
+              "description": "successful operation"
+            },
+            "400": {
+              "description": "deviceId has to be of length 6"
+            },
+            "403": {
+              "description": "No valid access token provided in JWTAuthorization header."
+            }
+          },
+          "tags": [
+            "Access Point"
+          ],
+          "security": [
+            {
+              "bearer": []
+            }
+          ]
+        }
+      },
+      "/api/v2/history/deleteAll": {
+        "delete": {
+          "operationId": "HistoryController_deleteAll",
+          "summary": "Delete all logs.",
+          "description": "Delete all logs from the database.",
+          "parameters": [],
+          "responses": {
+            "200": {
+              "description": "successful operation"
+            }
+          },
+          "tags": [
+            "History"
+          ],
+          "security": [
+            {
+              "bearer": []
+            }
+          ]
+        }
+      },
+      "/api/v2/history/delete/{deviceId}": {
+        "delete": {
+          "operationId": "HistoryController_deleteAllFromDevice",
+          "summary": "Deletes all logs with specific device id.",
+          "description": "Deletes all logs that have been send by the device with the provided id.",
+          "parameters": [
+            {
+              "name": "deviceId",
+              "required": true,
+              "in": "path",
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "successful operation"
+            }
+          },
+          "tags": [
+            "History"
+          ],
+          "security": [
+            {
+              "bearer": []
+            }
+          ]
+        }
+      },
+      "/api/v2/history/{deviceId}": {
+        "get": {
+          "operationId": "HistoryController_list",
+          "summary": "Request switch event logs.",
+          "description": "Get a list of the last 100 events received from a particular switch.\u003Cbr\u003EParameter deviceId has to be 6 chars, hexadecimal.",
+          "parameters": [
+            {
+              "name": "deviceId",
+              "required": true,
+              "in": "path",
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "successful operation\u003Cbr\u003EReturns a list of the last (up to) 100 events for this switch.",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/HistoryDto"
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "deviceId has to be of length 6"
+            },
+            "403": {
+              "description": "invalid credentials"
+            },
+            "404": {
+              "description": "There is no switch with this deviceId."
+            }
+          },
+          "tags": [
+            "History"
+          ],
+          "security": [
+            {
+              "bearer": []
+            }
+          ]
+        }
+      },
+      "/api/v2/switch-groups": {
+        "get": {
+          "operationId": "SwitchGroupController_listSwitchGroups",
+          "summary": "Get list of configuration groups.",
+          "description": "Get a list of all configuration groups including their parameters.",
+          "parameters": [],
+          "responses": {
+            "200": {
+              "description": "successful operation",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/SwitchGroupDto"
+                    }
+                  }
+                }
+              }
+            },
+            "403": {
+              "description": "invalid credentials"
+            }
+          },
+          "tags": [
+            "Switch Group"
+          ],
+          "security": [
+            {
+              "bearer": []
+            }
+          ]
+        },
+        "post": {
+          "operationId": "SwitchGroupController_create",
+          "summary": "Create a new configuration group.",
+          "description": "Creates a new configuration group with default parameters. Only the group title has to be given.\u003Cbr\u003E(Use the PUT action for configuration.)",
+          "parameters": [],
+          "requestBody": {
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SwitchGroupCreateDto"
+                }
+              }
+            }
+          },
+          "responses": {
+            "201": {
+              "description": "Switch group successfully created",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/SwitchGroupDto"
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Invalid data"
+            },
+            "403": {
+              "description": "invalid credentials"
+            },
+            "422": {
+              "description": "A group with this name already exists"
+            }
+          },
+          "tags": [
+            "Switch Group"
+          ],
+          "security": [
+            {
+              "bearer": []
+            }
+          ]
+        }
+      },
+      "/api/v2/switch-groups/{id}": {
+        "put": {
+          "operationId": "SwitchGroupController_update",
+          "summary": "Update configuration group parameters.",
+          "description": "Update configuration group settings.",
+          "parameters": [
+            {
+              "name": "id",
+              "required": true,
+              "in": "path",
+              "schema": {
+                "type": "number"
+              }
+            }
+          ],
+          "requestBody": {
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SwitchGroupUpdateDto"
+                }
+              }
+            }
+          },
+          "responses": {
+            "201": {
+              "description": "Switch Group successfully updated ",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/SwitchGroupDto"
+                  }
+                }
+              }
+            },
+            "403": {
+              "description": "invalid credentials"
+            },
+            "404": {
+              "description": "There is no switch group with the given id "
+            },
+            "422": {
+              "description": "SwitchGroup could not be updated with the given data. "
+            }
+          },
+          "tags": [
+            "Switch Group"
+          ],
+          "security": [
+            {
+              "bearer": []
+            }
+          ]
+        },
+        "delete": {
+          "operationId": "SwitchGroupController_deleteGroup",
+          "summary": "Delete configuration group.",
+          "description": "There may be switches, assigned to this group. To prevent them from being unassigned after the group was deleted, an alternative group id has to be provided.\u003Cbr\u003E  All switches will be re-assigned to this alternative group.",
+          "parameters": [
+            {
+              "name": "id",
+              "required": true,
+              "in": "path",
+              "schema": {
+                "type": "number"
+              }
+            },
+            {
+              "name": "idOfNewGroup",
+              "required": true,
+              "in": "query",
+              "schema": {
+                "type": "number"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "successful operation"
+            },
+            "400": {
+              "description": "Wrong parameter. E.g. one of the group ids does not match.\u003Cbr\u003EError message will be returned."
+            },
+            "403": {
+              "description": "invalid credentials"
+            }
+          },
+          "tags": [
+            "Switch Group"
+          ],
+          "security": [
+            {
+              "bearer": []
+            }
+          ]
+        }
+      },
+      "/api/v2/switch-groups/deleteAll": {
+        "delete": {
+          "operationId": "SwitchGroupController_deleteAllGroups",
+          "summary": "Deletes all configuration groups.",
+          "description": "All switches will be re-assigned to the default group.",
+          "parameters": [],
+          "responses": {
+            "200": {
+              "description": "successful operation"
+            },
+            "400": {
+              "description": "Something went wrong, delete could not be performed"
+            },
+            "403": {
+              "description": "invalid credentials"
+            }
+          },
+          "tags": [
+            "Switch Group"
+          ],
+          "security": [
+            {
+              "bearer": []
+            }
+          ]
+        }
+      },
+      "/api/v2/notification-configs": {
+        "get": {
+          "operationId": "NotificationConfigController_listNotificationConfig",
+          "summary": "Get list of notifications.",
+          "description": "Get a list of all notifications configured in the Sensor Bridge. Includes all configured options.",
+          "parameters": [],
+          "responses": {
+            "200": {
+              "description": "successful operation",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/NotificationConfigDto"
+                    }
+                  }
+                }
+              }
+            },
+            "403": {
+              "description": "invalid credentials"
+            }
+          },
+          "tags": [
+            "Notification Config"
+          ],
+          "security": [
+            {
+              "bearer": []
+            }
+          ]
+        },
+        "post": {
+          "operationId": "NotificationConfigController_create",
+          "summary": "Create a new notification.",
+          "description": "Creates a new notification. Name and URL have to be given.\u003Cbr\u003EDetailed configuration may be done via PUT action.\u003Cbr\u003EurlString must be valid and must not include \"http(s)://\"\u003Cbr\u003ENotification will be enabled by default.",
+          "parameters": [],
+          "requestBody": {
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NotificationConfigCreateDto"
+                }
+              }
+            }
+          },
+          "responses": {
+            "201": {
+              "description": "Successfully created\u003Cbr\u003EReturns new notification object including the \"id\".",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/NotificationConfigDto"
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Invalid data (e.g. invalid URL)"
+            },
+            "403": {
+              "description": "Invalid credentials"
+            },
+            "422": {
+              "description": "A notification with this name already exists"
+            }
+          },
+          "tags": [
+            "Notification Config"
+          ],
+          "security": [
+            {
+              "bearer": []
+            }
+          ]
+        }
+      },
+      "/api/v2/notification-configs/{id}": {
+        "put": {
+          "operationId": "NotificationConfigController_update",
+          "summary": "Update notification parameters.",
+          "description": "For detailed configuration of notifications.",
+          "parameters": [
+            {
+              "name": "id",
+              "required": true,
+              "in": "path",
+              "schema": {
+                "type": "number"
+              }
+            }
+          ],
+          "requestBody": {
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NotificationConfigUpdateDto"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "successfully updated",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/NotificationConfigDto"
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Bad Request\u003Cbr\u003EMaybe because of wrong parameter or parameter value.\u003Cbr\u003EError message will be returned."
+            },
+            "403": {
+              "description": "invalid credentials"
+            },
+            "404": {
+              "description": "Not Found"
+            }
+          },
+          "tags": [
+            "Notification Config"
+          ],
+          "security": [
+            {
+              "bearer": []
+            }
+          ]
+        },
+        "delete": {
+          "operationId": "NotificationConfigController_del",
+          "summary": "Delete notification.",
+          "parameters": [
+            {
+              "name": "id",
+              "required": true,
+              "in": "path",
+              "schema": {
+                "type": "number"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "successfully deleted",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/IdDto"
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Bad Request\u003Cbr\u003EMaybe because the id is not found in database.\u003Cbr\u003EError message will be returned."
+            },
+            "403": {
+              "description": "invalid credentials"
+            }
+          },
+          "tags": [
+            "Notification Config"
+          ],
+          "security": [
+            {
+              "bearer": []
+            }
+          ]
+        }
+      },
+      "/api/v2/notification-configs/deleteAll": {
+        "delete": {
+          "operationId": "NotificationConfigController_deleteAll",
+          "summary": "Delete all notification.",
+          "parameters": [],
+          "responses": {
+            "200": {
+              "description": "successfully deleted all notifications."
+            },
+            "403": {
+              "description": "invalid credentials"
+            }
+          },
+          "tags": [
+            "Notification Config"
+          ],
+          "security": [
+            {
+              "bearer": []
+            }
+          ]
+        }
+      },
+      "/api/v2/switches": {
+        "get": {
+          "operationId": "SwitchController_listSwitches",
+          "summary": "Get list of switches and their configurations.",
+          "description": "Get a list of all switches from the database. Includes switch configuration data.",
+          "parameters": [],
+          "responses": {
+            "200": {
+              "description": "successful operation",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/SwitchListDto"
+                    }
+                  }
+                }
+              }
+            },
+            "403": {
+              "description": "invalid credentials"
+            }
+          },
+          "tags": [
+            "Switch"
+          ],
+          "security": [
+            {
+              "bearer": []
+            }
+          ]
+        }
+      },
+      "/api/v2/switches/{deviceId}": {
+        "get": {
+          "operationId": "SwitchController_getSwitch",
+          "summary": "Get a switch and its configuration.",
+          "description": "Get a switch from the database. Includes switch configuration data.",
+          "parameters": [
+            {
+              "name": "deviceId",
+              "required": true,
+              "in": "path",
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "successful operation",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/SwitchDto"
+                  }
+                }
+              }
+            },
+            "403": {
+              "description": "invalid credentials"
+            },
+            "404": {
+              "description": "device id not found"
+            }
+          },
+          "tags": [
+            "Switch"
+          ],
+          "security": [
+            {
+              "bearer": []
+            }
+          ]
+        },
+        "delete": {
+          "operationId": "SwitchController_del",
+          "summary": "Delete a switch.",
+          "description": "Delete a switch from the database.\u003Cbr\u003EAfter deletion, the switch may no longer be an active part of the sWave.NET system. (Depends on default group settings.)",
+          "parameters": [
+            {
+              "name": "deviceId",
+              "required": true,
+              "in": "path",
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "successful operation"
+            },
+            "400": {
+              "description": "deviceId has to be of length 6"
+            },
+            "403": {
+              "description": "invalid credentials"
+            },
+            "404": {
+              "description": "No switch with this deviceId."
+            }
+          },
+          "tags": [
+            "Switch"
+          ],
+          "security": [
+            {
+              "bearer": []
+            }
+          ]
+        },
+        "put": {
+          "operationId": "SwitchController_update",
+          "summary": "Update switch configuration.",
+          "description": "Update group assignment and parameters for one switch.",
+          "parameters": [
+            {
+              "name": "deviceId",
+              "required": true,
+              "in": "path",
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "requestBody": {
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SwitchUpdateDto"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "successful operation",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/SwitchDto"
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Invalid Request."
+            },
+            "403": {
+              "description": "invalid credentials"
+            },
+            "404": {
+              "description": "No switch with this deviceId."
+            }
+          },
+          "tags": [
+            "Switch"
+          ],
+          "security": [
+            {
+              "bearer": []
+            }
+          ]
+        }
+      },
+      "/api/v2/switches/deleteAll": {
+        "delete": {
+          "operationId": "SwitchController_deleteAll",
+          "summary": "Delete all switches.",
+          "description": "Delete all switches from the database.\u003Cbr\u003EAfter deletion, the switch may no longer be an active part of the sWave.NET system. (Depends on default group settings.)",
+          "parameters": [],
+          "responses": {
+            "200": {
+              "description": "successful operation"
+            }
+          },
+          "tags": [
+            "Switch"
+          ],
+          "security": [
+            {
+              "bearer": []
+            }
+          ]
+        }
+      },
+      "/api/v2/auth/login": {
+        "post": {
+          "operationId": "AuthController_login",
+          "summary": "API login. Obtain JWT accessToken and refreshToken.",
+          "description": "\u003Cp\u003EThe API uses JSON Web Tokens for authentication. See \u003Ca href=\"https://jwt.io/introduction/\"\u003Ehttps://jwt.io/introduction/\u003C/a\u003E for documentation.\u003C/p\u003E\u003Cp\u003EDefault username / password is api / steute_api .\u003Cbr/\u003E     You may change the password in the web UI user settings menu.\u003C/p\u003E     \u003Ch3\u003EAuthentication within this Swagger UI\u003C/h3\u003E\u003Cp\u003E    \u003Col\u003E\u003Cli\u003EUse the \"Try it out\" feature of auth/login to submit username/password and obtain an accessToken.\u003C/li\u003E    \u003Cli\u003ECopy the entire accessToken string (without qoutation marks)\u003C/li\u003E    \u003Cli\u003EClick on the green \"Autorize\" button in the upper right of this page.\u003C/li\u003E    \u003Cli\u003EInsert the accessToken String into the \"bearer (apiKey)\" Value field. Press \"Authorize\" to save it.\u003C/li\u003E    \u003Cli\u003ENow you are authorized for 30 minutes. Use the \"Try it out\" feature to explore the API.\u003C/li\u003E\u003C/ol\u003E\u003C/p\u003E",
+          "parameters": [],
+          "requestBody": {
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserLoginDto"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "successful operation\u003Cbr\u003EReturns an accessToken, valid for 30 minutes and a refreshToken, valid for 180 minutes.",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/TokenResponseDto"
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "invalid or missing parameter"
+            },
+            "403": {
+              "description": "invalid credentials"
+            }
+          },
+          "tags": [
+            "Auth"
+          ]
+        }
+      },
+      "/api/v2/auth/refresh": {
+        "get": {
+          "operationId": "AuthController_refresh",
+          "summary": "Refresh login. Get updated JWT accessToken and refreshToken.",
+          "parameters": [],
+          "responses": {
+            "200": {
+              "description": "successful operation\u003Cbr\u003EReturns an accessToken, valid for 30 minutes and a refreshToken, valid for 180 minutes.",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/TokenResponseDto"
+                    }
+                  }
+                }
+              }
+            },
+            "403": {
+              "description": "no valid token provided"
+            }
+          },
+          "tags": [
+            "Auth"
+          ],
+          "security": [
+            {
+              "bearer": []
+            }
+          ]
+        }
+      },
+      "/api/v2/system-status": {
+        "get": {
+          "operationId": "SystemStatusController_listSystemStatus",
+          "summary": "Get the system status information.",
+          "description": "Get information about the current sensor bridge software version, unix system timestamp, average workload, uptime and memory usage )",
+          "parameters": [],
+          "responses": {
+            "200": {
+              "description": "successful operation",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/SystemStatusDto"
+                  }
+                }
+              }
+            },
+            "403": {
+              "description": "invalid credentials"
+            }
+          },
+          "tags": [
+            "System Status"
+          ],
+          "security": [
+            {
+              "bearer": []
+            }
+          ]
+        }
+      }
+    },
+    "info": {
+      "title": "Sensor Bridge API Version 2",
+      "description": "\u003Ch3\u003Esteute sWave.NET Sensor Bridge API v2\u003C/h3\u003E\u003Cul\u003E\u003Cli\u003EGet status information of access points and switches.\u003C/li\u003E\u003Cli\u003EConfigure groups, device parameters and notifications.\u003C/li\u003E\u003C/ul\u003E",
+      "version": "2.4.1 [d4919ee69]",
+      "contact": {
+  
+      }
+    },
+    "tags": [],
+    "servers": [
+      {
+        "url": "http://"
+      },
+      {
+        "url": "https://"
+      }
+    ],
+    "components": {
+      "securitySchemes": {
+        "bearer": {
+          "type": "apiKey",
+          "in": "header",
+          "name": "JWTAuthorization"
+        }
+      },
+      "schemas": {
+        "SwitchGroupDto": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "number",
+              "example": 1,
+              "description": "Group id. (assigned by system upon creation)"
+            },
+            "name": {
+              "type": "string",
+              "example": "Sensors in rack B5",
+              "description": "Name of the configuration group. (required, max. 64 chars)"
+            },
+            "description": {
+              "type": "string",
+              "nullable": true,
+              "example": "Tiling sensor configuration for rack B5 (chassis mounting)",
+              "description": "Description for the group provided by th user. (max. 256 chars)"
+            },
+            "wakeupHours": {
+              "type": "number",
+              "example": 0,
+              "description": "Set cyclic wakeup time to n hours (0-15)."
+            },
+            "wakeupMin": {
+              "type": "number",
+              "example": 10,
+              "description": "Set cyclic wakeup time to n minutes (0-15)."
+            },
+            "cycletimeFactor125ms": {
+              "type": "number",
+              "example": 23,
+              "description": "Min. time between transmitting two switch events. n times 125 ms (0 - 255)"
+            },
+            "debouncetimeFactor125ms": {
+              "type": "number",
+              "example": 24,
+              "description": "Min. time switch state must have changed before radio transmission. n times 125 ms (0 - 255)"
+            },
+            "useCycletimeRF96": {
+              "type": "boolean",
+              "example": true,
+              "description": "Determines if RF 96 and RF IO types use cycletime (true) oder debouncetime (false)."
+            },
+            "rwAngle": {
+              "type": "number",
+              "example": 3,
+              "description": "Roller conveyor angle for RF RW tilting sensor. (-27 to 90 degrees)"
+            },
+            "rwLedDisabled": {
+              "type": "boolean",
+              "example": false,
+              "description": "If set to true, LED in RF RW will be disabled."
+            },
+            "isManaged": {
+              "type": "boolean",
+              "example": true,
+              "description": "Only if set to true, parameters for members of this group will be provided to access points."
+            },
+            "isStandard": {
+              "type": "boolean",
+              "example": true,
+              "description": "If set to true, each new detected switch will be assigned to this group (Will only apply to one group)."
+            },
+            "isInvisible": {
+              "type": "boolean",
+              "example": false,
+              "description": "If set to true, unmanaged groups are hidden in 'sensors & actors' overview"
+            },
+            "sdsThresholdDist": {
+              "type": "number",
+              "maximum": 50,
+              "minimum": 5,
+              "default": 15,
+              "description": "RF 96 SDS: Threshold for switching on/off in cm.",
+              "example": 15
+            },
+            "sdsHysteresis": {
+              "type": "number",
+              "maximum": 20,
+              "minimum": 2,
+              "default": 4,
+              "description": "RF 96 SDS: Switching hysteresis in cm.",
+              "example": 4
+            },
+            "sdsDebounce": {
+              "type": "number",
+              "minimum": 1,
+              "maximum": 31,
+              "default": 5,
+              "description": "RF 96 SDS: Timing interval of measurement (in seconds). Values under 4 lead to high battery consumption.",
+              "example": 5
+            },
+            "ldsThresholdDist": {
+              "type": "number",
+              "minimum": 10,
+              "maximum": 1000,
+              "default": 100,
+              "description": "RF 96 LDS: Threshold for switching on/off in cm.",
+              "example": 100
+            },
+            "ldsHysteresis": {
+              "type": "number",
+              "minimum": 1,
+              "maximum": 25,
+              "default": 10,
+              "description": "RF 96 LDS: Switching hysteresis in cm.",
+              "example": 10
+            },
+            "ldsDebounce": {
+              "type": "number",
+              "minimum": 2,
+              "maximum": 31,
+              "default": 15,
+              "description": "RF 96 LDS: Timing interval of measurement (in seconds). Values under 4 lead to high battery consumption.",
+              "example": 15
+            },
+            "actuationNumber": {
+              "type": "number",
+              "minimum": 1,
+              "maximum": 10,
+              "default": 2,
+              "description": "RF DSENS: Define the count of act to send a telegramm to the Sensor Bridge.",
+              "example": 2
+            },
+            "actuationTimeout": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 255,
+              "default": 10,
+              "description": "RF DSENS: Time span in seconds until the next actuation must take place, otherwise the internal actuation counter is reset.",
+              "example": 10
+            }
+          },
+          "required": [
+            "id",
+            "name",
+            "wakeupHours",
+            "wakeupMin",
+            "cycletimeFactor125ms",
+            "debouncetimeFactor125ms",
+            "useCycletimeRF96",
+            "rwAngle",
+            "rwLedDisabled",
+            "isManaged",
+            "isStandard",
+            "isInvisible",
+            "sdsThresholdDist",
+            "sdsHysteresis",
+            "sdsDebounce",
+            "ldsThresholdDist",
+            "ldsHysteresis",
+            "ldsDebounce",
+            "actuationNumber",
+            "actuationTimeout"
+          ]
+        },
+        "NotificationConfigCreateDto": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string",
+              "example": "Notify my application",
+              "description": "Name of the notification as provided by the user. (max. 64 chars)"
+            },
+            "urlString": {
+              "type": "string",
+              "example": "192.168.3.10/myApi",
+              "description": "Target URL to which the notification will be send. (without \"http(s)://\", max. 1024 chars)"
+            },
+            "description": {
+              "type": "string",
+              "default": null,
+              "nullable": true,
+              "example": "Sends switch event data to my application.",
+              "description": "Optional description provided by the user. (max. 256 chars)"
+            },
+            "isEnabled": {
+              "type": "boolean",
+              "example": true,
+              "default": true,
+              "description": "If set, switch events and missing wakeups will trigger this notification."
+            },
+            "isEnabledNotManaged": {
+              "type": "boolean",
+              "example": false,
+              "default": false,
+              "description": "If set, switch events and missing wakeups will trigger this notification, even if the group of the switch is not managed."
+            },
+            "noWakeups": {
+              "type": "boolean",
+              "example": false,
+              "default": false,
+              "description": "If set, wakeup messages will no longer trigger this notification"
+            },
+            "notificationSendState": {
+              "type": "string",
+              "description": "Determines on which state, on/off, the notification will be sent \"STATE_ALL\" = on/off, \"STATE_OFF\" = off , STATE_ON = on",
+              "enum": [
+                "STATE_ALL",
+                "STATE_OFF",
+                "STATE_ON"
+              ]
+            },
+            "useTls": {
+              "type": "boolean",
+              "example": false,
+              "default": false,
+              "description": "Protocol used: false = HTTP,  true = HTTPS (without certificate validation)"
+            },
+            "responseTimeout": {
+              "type": "number",
+              "example": 10,
+              "default": 10,
+              "description": "Time to wait for a server response. (1 - 300 seconds)"
+            },
+            "selectedGroups": {
+              "example": [1, 3, 4, 5],
+              "description": "A list of corresponding switchGroupIDs",
+              "default": null,
+              "nullable": true,
+              "type": "array",
+              "items": {
+                "type": "number"
+              }
+            }
+          },
+          "required": [
+            "name",
+            "urlString"
+          ]
+        },
+        "NotificationConfigDto": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "number",
+              "example": 1,
+              "description": "Unique notification id."
+            },
+            "name": {
+              "type": "string",
+              "example": "Notify my application",
+              "description": "Name of the notification as provided by the user. (max. 64 chars)"
+            },
+            "description": {
+              "type": "string",
+              "nullable": true,
+              "example": "Sends switch event data to my application.",
+              "description": "Optional description provided by the user. (max. 256 chars)"
+            },
+            "isEnabled": {
+              "type": "boolean",
+              "example": true,
+              "description": "If set, switch events and missing wakeups will trigger this notification."
+            },
+            "isEnabledNotManaged": {
+              "type": "boolean",
+              "example": true,
+              "description": "If set, switch events and missing wakeups will trigger this notification, even if the group of the switch is not managed."
+            },
+            "noWakeups": {
+              "type": "boolean",
+              "example": false,
+              "description": "If set, wakeup messages will no longer trigger this notification"
+            },
+            "notificationSendState": {
+              "type": "string",
+              "description": "Determines on which state, on/off, the notification will be sent \"STATE_ALL\" = on/off, \"STATE_OFF\" = off , STATE_ON = on",
+              "enum": [
+                "STATE_ALL",
+                "STATE_OFF",
+                "STATE_ON"
+              ]
+            },
+            "authenticationMethod": {
+              "type": "string",
+              "description": "The configured authentication method for this notification \"NO_AUTH\" or \"BASIC_AUTH\"",
+              "enum": [
+                "NO_AUTH",
+                "BASIC_AUTH"
+              ]
+            },
+            "urlString": {
+              "type": "string",
+              "example": "192.168.3.10/myApi",
+              "description": "Target URL to which the notification will be send. (without \"http(s)://\", max. 1024 chars)"
+            },
+            "useTls": {
+              "type": "boolean",
+              "example": true,
+              "description": "Protocol used: false = HTTP, true = HTTPS (without certificate validation)"
+            },
+            "responseTimeout": {
+              "type": "number",
+              "example": 10,
+              "description": "Time to wait for a server response. (1 - 300 seconds)"
+            },
+            "selectedGroups": {
+              "example": [3, 4, 5],
+              "description": "A list of corresponding switchGroupIDs",
+              "nullable": true,
+              "type": "array",
+              "items": {
+                "type": "number"
+              }
+            }
+          },
+          "required": [
+            "id",
+            "name",
+            "isEnabled",
+            "isEnabledNotManaged",
+            "noWakeups",
+            "notificationSendState",
+            "authenticationMethod",
+            "urlString",
+            "useTls",
+            "responseTimeout"
+          ]
+        },
+        "AccessPointDto": {
+          "type": "object",
+          "properties": {
+            "ip": {
+              "type": "string",
+              "example": "192.168.3.32",
+              "description": "The IP-address of the access point."
+            },
+            "deviceId": {
+              "type": "string",
+              "example": "00311B",
+              "description": "Unique identifier of the access point. (Device ID)"
+            },
+            "status": {
+              "type": "number",
+              "description": "Access point status info: 1 = OK, 2 = warning, 3 = offline",
+              "enum": [1, 2, 3]
+            },
+            "customerId": {
+              "type": "string",
+              "example": "AccessPoint1",
+              "description": "Access Point ID, assigned by the customer."
+            },
+            "comment": {
+              "type": "string",
+              "nullable": true,
+              "example": "Mounted in hall 1, lower floor",
+              "description": "Comment provided by the user, stored in Sensor Bridge only."
+            },
+            "softwareVersion": {
+              "type": "string",
+              "nullable": true,
+              "example": "02.04-DC",
+              "description": "Access point software version."
+            },
+            "broadcastId": {
+              "type": "number",
+              "example": 17,
+              "description": "Radio broadcast timing id. Must be different on each access point."
+            },
+            "rfType": {
+              "type": "number",
+              "example": 1,
+              "description": "Frequency band: 1 = SW868, 2 = SW915, 3 = RU868, 4 = JP922, 5 = SW917"
+            },
+            "canEncrypt": {
+              "type": "boolean",
+              "example": true,
+              "description": "Encryyption capable device"
+            },
+            "timestamp": {
+              "type": "number",
+              "example": 1640991600,
+              "description": "Timestamp, written when AP goes online/offline"
+            },
+            "apFirmwareVersion": {
+              "type": "string",
+              "nullable": true,
+              "example": "07010203",
+              "description": "Access point firmware version"
+            }
+          },
+          "required": [
+            "ip",
+            "deviceId",
+            "status",
+            "customerId",
+            "broadcastId",
+            "rfType",
+            "canEncrypt",
+            "timestamp"
+          ]
+        },
+        "AccessPointWarningDto": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "number",
+              "description": "Warning message id / counter."
+            },
+            "timestamp": {
+              "type": "number",
+              "example": 1537166284,
+              "description": "Time the warning was received (unix timestamp)."
+            },
+            "text": {
+              "type": "string",
+              "example": "Primary Server error: Couldnt connect to server (...)",
+              "description": "Warning message text."
+            },
+            "accessPointDeviceId": {
+              "type": "string",
+              "example": "00311B",
+              "description": "Device ID of the access point."
+            }
+          },
+          "required": [
+            "id",
+            "timestamp",
+            "text",
+            "accessPointDeviceId"
+          ]
+        },
+        "SwitchEventDto": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "number",
+              "example": 42,
+              "description": "Internal id of the switch event."
+            },
+            "timestamp": {
+              "type": "number",
+              "example": 1537173484,
+              "description": "Time the event was received. (unix timestamp)"
+            },
+            "accessPointDeviceId": {
+              "type": "string",
+              "example": "0072BD",
+              "description": "Device ID of the AP from which the event was received."
+            },
+            "ip": {
+              "type": "string",
+              "example": "192.168.3.32",
+              "description": "IP address of the AP from which the event was received."
+            },
+            "deviceId": {
+              "type": "string",
+              "example": "00311B",
+              "description": "Device ID of the switch the event was emitted from."
+            },
+            "deviceType": {
+              "type": "number",
+              "example": 10,
+              "description": "Type of the switch that emitted the event. 9(0x09)=RF10, 10(0x0A)=RF96, 11(0x0B)=BF74, 12(0x0C)=RFI/O, 13(0x0D)=RFHB, 14(0x0E)=RFRW, 33(0x21)=RX4S, 26(0x1A)=MAKD"
+            },
+            "battery": {
+              "type": "number",
+              "example": 3250,
+              "description": "Battery voltage in mV."
+            },
+            "data": {
+              "type": "number",
+              "example": 1,
+              "description": "Data sent by the switch. (Each bit represents an actuator.)"
+            },
+            "flags": {
+              "type": "number",
+              "example": 0,
+              "description": "Flag sent by the switch: 0 = switch event, 64 = broadcast, 128 = wakeup, 192 = broadcast & wakeup"
+            },
+            "count": {
+              "type": "number",
+              "example": 150,
+              "description": "Internal event count of the switch. (0-255)"
+            },
+            "scCount": {
+              "type": "number",
+              "example": 150,
+              "description": "Internal event count of the switch. (0-255)"
+            },
+            "wakeUp": {
+              "type": "string",
+              "example": "A5",
+              "description": "Wakeup time configured for this switch. 8 byte hexadecimal. First nibble: hours, Second nibble: minutes. Example: \"A5\" = Wakes up every 10(0xA) hours and 5(0x5) minutes."
+            },
+            "rssi": {
+              "type": "number",
+              "example": 50,
+              "description": "Received signal strength of the switch event."
+            }
+          },
+          "required": [
+            "id",
+            "timestamp",
+            "accessPointDeviceId",
+            "ip",
+            "deviceId",
+            "deviceType",
+            "battery",
+            "data",
+            "flags",
+            "count",
+            "scCount",
+            "wakeUp",
+            "rssi"
+          ]
+        },
+        "HistoryDto": {
+          "type": "object",
+          "properties": {
+            "lastNEvents": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/SwitchEventDto"
+              }
+            }
+          },
+          "required": [
+            "lastNEvents"
+          ]
+        },
+        "SwitchGroupCreateDto": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string",
+              "example": "Sensors in rack B5",
+              "description": "Name of the configuration group. (required, max. 64 chars)"
+            },
+            "description": {
+              "type": "string",
+              "default": null,
+              "nullable": true,
+              "example": "Tiling sensor configuration for rack B5 (chassis mounting)",
+              "description": "Description for the group provided by th user. (max. 256 chars)"
+            },
+            "wakeupHours": {
+              "type": "number",
+              "example": 0,
+              "default": 0,
+              "description": "Set cyclic wakeup time to n hours (0 - 15)."
+            },
+            "wakeupMin": {
+              "type": "number",
+              "example": 10,
+              "default": 0,
+              "description": "Set cyclic wakeup time to n minutes (0 - 15)."
+            },
+            "cycletimeFactor125ms": {
+              "type": "number",
+              "example": 24,
+              "default": 8,
+              "description": "Min. time between transmitting two switch events. n times 125 ms (0 - 255)"
+            },
+            "debouncetimeFactor125ms": {
+              "type": "number",
+              "example": 24,
+              "default": 8,
+              "description": "Min. time switch state must have changed before radio transmission. n times 125 ms (0 - 255)"
+            },
+            "useCycletimeRF96": {
+              "type": "boolean",
+              "example": true,
+              "default": false,
+              "description": "If true, use cycleTime."
+            },
+            "rwAngle": {
+              "type": "number",
+              "example": 3,
+              "default": 127,
+              "description": "Roller conveyor angle for RF RW tilting sensor. (-27 to 90 degrees)"
+            },
+            "rwLedDisabled": {
+              "type": "boolean",
+              "example": false,
+              "default": false,
+              "description": "If set to true, LED in RF RW will be disabled."
+            },
+            "isManaged": {
+              "type": "boolean",
+              "example": true,
+              "default": true,
+              "description": "Only if set to true, parameters for members of this group will be provided to access points."
+            }
+          },
+          "required": [
+            "name"
+          ]
+        },
+        "SwitchGroupUpdateDto": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string",
+              "example": "Sensors in rack B5",
+              "description": "Name of the configuration group. (required, max. 64 chars)"
+            },
+            "description": {
+              "type": "string",
+              "nullable": true,
+              "example": "Tiling sensor configuration for rack B5 (chassis mounting)",
+              "description": "Description for the group provided by th user. (max. 256 chars)"
+            },
+            "wakeupHours": {
+              "type": "number",
+              "example": 0,
+              "description": "Set cyclic wakeup time to n hours (0 - 15)."
+            },
+            "wakeupMin": {
+              "type": "number",
+              "example": 10,
+              "description": "Set cyclic wakeup time to n minutes (0 - 15)."
+            },
+            "cycletimeFactor125ms": {
+              "type": "number",
+              "example": 24,
+              "description": "Min. time between transmitting two switch events. n times 125 ms (0 - 255)"
+            },
+            "debouncetimeFactor125ms": {
+              "type": "number",
+              "example": 24,
+              "description": "Min. time switch state must have changed before radio transmission. n times 125 ms (0 - 255)"
+            },
+            "useCycletimeRF96": {
+              "type": "boolean",
+              "example": true,
+              "description": "If true, use cycleTime."
+            },
+            "rwAngle": {
+              "type": "number",
+              "example": 3,
+              "description": "Roller conveyor angle for RF RW tilting sensor. (-27 to 90 degrees). "
+            },
+            "rwLedDisabled": {
+              "type": "boolean",
+              "example": false,
+              "description": "If set to true, LED in RF RW will be disabled."
+            },
+            "isManaged": {
+              "type": "boolean",
+              "example": true,
+              "description": "Only if set to true, parameters for members of this group will be provided to access points."
+            }
+          }
+        },
+        "NotificationConfigUpdateDto": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string",
+              "example": "Notify my application",
+              "description": "Name of the notification as provided by the user. (max. 64 chars)"
+            },
+            "urlString": {
+              "type": "string",
+              "example": "192.168.3.10/myApi",
+              "description": "Target URL to which the notification will be send. (without \"http(s)://\", max. 1024 chars)"
+            },
+            "description": {
+              "type": "string",
+              "nullable": true,
+              "example": "Sends switch event data to my application.",
+              "description": "Optional description provided by the user. (max. 256 chars)"
+            },
+            "isEnabled": {
+              "type": "boolean",
+              "example": true,
+              "description": "If set, switch events and missing wakeups will trigger this notification."
+            },
+            "isEnabledNotManaged": {
+              "type": "boolean",
+              "example": false,
+              "description": "If set, switch events and missing wakeups will trigger this notification, even if the group of the switch is not managed."
+            },
+            "noWakeups": {
+              "type": "boolean",
+              "example": false,
+              "description": "If set, wakeup messages will no longer trigger this notification"
+            },
+            "notificationSendState": {
+              "type": "string",
+              "description": "Determines on which state, on/off, the notification will be sent \"STATE_ALL\" = on/off, \"STATE_OFF\" = off , STATE_ON = on",
+              "enum": [
+                "STATE_ALL",
+                "STATE_OFF",
+                "STATE_ON"
+              ]
+            },
+            "useTls": {
+              "type": "boolean",
+              "example": false,
+              "description": "Protocol used: false = HTTP,  true = HTTPS (without certificate validation)"
+            },
+            "responseTimeout": {
+              "type": "number",
+              "example": 10,
+              "description": "Time to wait for a server response. (1 - 300 seconds)"
+            },
+            "selectedGroups": {
+              "example": [1, 3, 4, 5],
+              "description": "A list of corresponding switchGroupIDs",
+              "nullable": true,
+              "type": "array",
+              "items": {
+                "type": "number"
+              }
+            }
+          }
+        },
+        "IdDto": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "number",
+              "example": 815,
+              "description": "id of the notification"
+            }
+          },
+          "required": [
+            "id"
+          ]
+        },
+        "SwitchListDto": {
+          "type": "object",
+          "properties": {
+            "deviceId": {
+              "type": "string",
+              "example": "00311B",
+              "description": "Device ID of the switch."
+            },
+            "deviceType": {
+              "type": "number",
+              "example": 10,
+              "description": "Switch type: 9 = RF 10, 10 = RF 96, 11 = BF 74, 12 = RF I/O, 13 = RF HB, 14 = RF RW, 17 = RF GW, 18 = RF 96 SDS, 19 = RF 96 LDS, 25 = MAK, 26 = MAKD, 33 = RX 4S, 34 = RX 4S 48V, 35 = RF I/O VCC-EXT, 36 = RF 96 VCC-EXT, 37 = RF_UBR, 38 = OEM ACTOR, 41 = RF DESENS, 42 = OEM SENSOR"
+            },
+            "groupId": {
+              "type": "number",
+              "example": 1,
+              "description": "Id of the group the switch belongs to."
+            },
+            "description": {
+              "type": "string",
+              "nullable": true,
+              "example": "SWRW-H02-R01-001",
+              "description": "Description text (e.g. position) of the switch provided by the user."
+            },
+            "parameterOne": {
+              "type": "string",
+              "nullable": true,
+              "example": "1.131.36",
+              "description": "Optional first parameter (e.g. article number) provided by the user."
+            },
+            "parameterTwo": {
+              "type": "string",
+              "nullable": true,
+              "example": "cable ties",
+              "description": "Optional second parameter (e.g. article name) provided by the user."
+            },
+            "rx4sState1": {
+              "type": "number",
+              "example": 1,
+              "description": "State of relay 1 in relay receiver upon activation (0/1)."
+            },
+            "rx4sState2": {
+              "type": "number",
+              "example": 0,
+              "description": "State of relay 2 in relay receiver upon activation (0/1)."
+            },
+            "rx4sState3": {
+              "type": "number",
+              "example": 1,
+              "description": "State of relay 3 in relay receiver upon activation (0/1)."
+            },
+            "rx4sState4": {
+              "type": "number",
+              "example": 0,
+              "description": "State of relay 4 in relay receiver upon activation (0/1)."
+            },
+            "rx4sActuateMode": {
+              "type": "number",
+              "example": 0,
+              "description": "INSTANT = 0; ECO = 1"
+            },
+            "makdText1": {
+              "type": "string",
+              "nullable": true,
+              "example": "I am button 1",
+              "description": "Displaytext 1 for MAKD andon display (max. 32 chars)."
+            },
+            "makdText2": {
+              "type": "string",
+              "nullable": true,
+              "example": "I am button 2",
+              "description": "Displaytext 2 for MAKD andon display (max. 32 chars)."
+            },
+            "makdText3": {
+              "type": "string",
+              "nullable": true,
+              "example": "I am button 3",
+              "description": "Displaytext 3 for MAKD andon display (max. 32 chars)."
+            },
+            "makdWakeupText": {
+              "type": "string",
+              "nullable": true,
+              "example": "I am the wakeup text",
+              "description": "Wakeup displaytext for MAKD andon display (max. 32 chars)."
+            },
+            "makdDisplayTime": {
+              "type": "number",
+              "example": 5,
+              "description": "MAKD text display duration. 0 seconds = Do not switch off display (0 - 65535 sec.)."
+            },
+            "missingWakeup": {
+              "type": "boolean",
+              "example": false,
+              "description": "Missing Wakeup"
+            },
+            "deviceTypeName": {
+              "type": "string",
+              "example": "MAKD",
+              "description": "Type of the device e.g. MAKD"
+            },
+            "swVersion": {
+              "type": "string",
+              "example": "2.01",
+              "description": "Current software version of the actor"
+            },
+            "swVersionTimestamp": {
+              "type": "number",
+              "nullable": true,
+              "example": 1640118081,
+              "description": "Timestamp of requested software version of the actor"
+            },
+            "updateState": {
+              "type": "number",
+              "example": 0,
+              "description": "Current update status of the actor. 0 = NONE, 2 = RUNNING, 3 = UPTODATE"
+            },
+            "broadcastCount": {
+              "type": "number",
+              "example": 2100,
+              "description": "Total of broadcast counts till power supply"
+            },
+            "activity": {
+              "type": "number",
+              "example": 450,
+              "description": "Total of recognized mechanical actuation counts till power supply"
+            },
+            "telegramSend": {
+              "type": "number",
+              "example": 2100,
+              "description": "Total of telegrams send till power supply (including repetition counts)"
+            },
+            "switchEventData": {
+              "type": "number",
+              "nullable": true,
+              "example": 1,
+              "description": "Last actor switch state"
+            },
+            "switchEventDataTimestamp": {
+              "type": "number",
+              "nullable": true,
+              "example": 1640118081,
+              "description": "Timestamp of last Actor switch state"
+            },
+            "switchEventFlag": {
+              "type": "number",
+              "nullable": true,
+              "example": 64,
+              "description": "Flag of the last switch event"
+            }
+          },
+          "required": [
+            "deviceId",
+            "deviceType",
+            "groupId"
+          ]
+        },
+        "SwitchDto": {
+          "type": "object",
+          "properties": {
+            "deviceId": {
+              "type": "string",
+              "example": "00311B",
+              "description": "Device ID of the switch."
+            },
+            "deviceType": {
+              "type": "number",
+              "example": 10,
+              "description": "Switch type: 9 = RF 10, 10 = RF 96, 11 = BF 74, 12 = RF I/O, 13 = RF HB, 14 = RF RW, 17 = RF GW, 18 = RF 96 SDS, 19 = RF 96 LDS, 25 = MAK, 26 = MAKD, 33 = RX 4S, 34 = RX 4S 48V, 35 = RF I/O VCC-EXT, 36 = RF 96 VCC-EXT, 37 = RF_UBR, 38 = OEM ACTOR, 41 = RF DESENS, 42 = OEM SENSOR"
+            },
+            "groupId": {
+              "type": "number",
+              "example": 1,
+              "description": "Id of the group the switch belongs to."
+            },
+            "description": {
+              "type": "string",
+              "nullable": true,
+              "example": "SWRW-H02-R01-001",
+              "description": "Description text (e.g. position) of the switch provided by the user."
+            },
+            "parameterOne": {
+              "type": "string",
+              "nullable": true,
+              "example": "1.131.36",
+              "description": "Optional first parameter (e.g. article number) provided by the user."
+            },
+            "parameterTwo": {
+              "type": "string",
+              "nullable": true,
+              "example": "cable ties",
+              "description": "Optional second parameter (e.g. article name) provided by the user."
+            },
+            "rx4sState1": {
+              "type": "number",
+              "example": 1,
+              "description": "State of relay 1 in relay receiver upon activation (0/1)."
+            },
+            "rx4sState2": {
+              "type": "number",
+              "example": 0,
+              "description": "State of relay 2 in relay receiver upon activation (0/1)."
+            },
+            "rx4sState3": {
+              "type": "number",
+              "example": 1,
+              "description": "State of relay 3 in relay receiver upon activation (0/1)."
+            },
+            "rx4sState4": {
+              "type": "number",
+              "example": 0,
+              "description": "State of relay 4 in relay receiver upon activation (0/1)."
+            },
+            "rx4sActuateMode": {
+              "type": "number",
+              "example": 0,
+              "description": "INSTANT = 0; ECO = 1"
+            },
+            "makdText1": {
+              "type": "string",
+              "nullable": true,
+              "example": "I am button 1",
+              "description": "Displaytext 1 for MAKD andon display (max. 32 chars)."
+            },
+            "makdText2": {
+              "type": "string",
+              "nullable": true,
+              "example": "I am button 2",
+              "description": "Displaytext 2 for MAKD andon display (max. 32 chars)."
+            },
+            "makdText3": {
+              "type": "string",
+              "nullable": true,
+              "example": "I am button 3",
+              "description": "Displaytext 3 for MAKD andon display (max. 32 chars)."
+            },
+            "makdWakeupText": {
+              "type": "string",
+              "nullable": true,
+              "example": "I am the wakeup text",
+              "description": "Wakeup displaytext for MAKD andon display (max. 32 chars)."
+            },
+            "makdDisplayTime": {
+              "type": "number",
+              "example": 5,
+              "description": "MAKD text display duration. 0 seconds = Do not switch off display (0 - 65535 sec.)."
+            },
+            "ip": {
+              "type": "string",
+              "example": "192.168.5.6",
+              "description": "Accesspoint ip"
+            },
+            "rssi": {
+              "type": "number",
+              "example": 50,
+              "description": "RSSI value of switch"
+            },
+            "battVoltage": {
+              "type": "number",
+              "example": 1600,
+              "description": "Battery value of switch (in volt)"
+            },
+            "battState": {
+              "type": "number",
+              "example": 75,
+              "description": "Battery voltage of switch (in percent)"
+            },
+            "missingWakeup": {
+              "type": "boolean",
+              "example": false,
+              "description": "Missing Wakeup"
+            },
+            "deviceTypeName": {
+              "type": "string",
+              "example": "MAKD",
+              "description": "Type of the device e.g. MAKD"
+            },
+            "swVersion": {
+              "type": "string",
+              "example": "2.01",
+              "description": "Current software version of the actor"
+            },
+            "swVersionTimestamp": {
+              "type": "number",
+              "nullable": true,
+              "example": 1640118081,
+              "description": "Timestamp of requested software version of the actor"
+            },
+            "updateState": {
+              "type": "number",
+              "example": 0,
+              "description": "Current update status of the actor. 0 = NONE, 1 = ALLOWED, 2 = RUNNING, 3 = UPTODATE"
+            },
+            "broadcastCount": {
+              "type": "number",
+              "example": 2100,
+              "description": "Total of broadcast counts till power supply"
+            },
+            "activity": {
+              "type": "number",
+              "example": 450,
+              "description": "Total of recognized mechanical actuation counts till power supply"
+            },
+            "telegramSend": {
+              "type": "number",
+              "example": 2100,
+              "description": "Total of telegrams send till power supply (including repetition counts)"
+            },
+            "switchEventData": {
+              "type": "number",
+              "nullable": true,
+              "example": 1,
+              "description": "Last actor switch state"
+            },
+            "switchEventDataTimestamp": {
+              "type": "number",
+              "nullable": true,
+              "example": 1640118081,
+              "description": "Timestamp of last Actor switch state"
+            },
+            "switchEventFlag": {
+              "type": "number",
+              "nullable": true,
+              "example": 64,
+              "description": "Flag of the last switch event"
+            },
+            "switchChangeCount": {
+              "type": "number",
+              "example": 0,
+              "description": "Total change of switch status - important for encryption"
+            }
+          },
+          "required": [
+            "deviceId",
+            "deviceType",
+            "groupId"
+          ]
+        },
+        "SwitchUpdateDto": {
+          "type": "object",
+          "properties": {
+            "groupId": {
+              "type": "number",
+              "example": 1,
+              "description": "Id of the group the switch belongs to.",
+              "nullable": true
+            },
+            "description": {
+              "type": "string",
+              "nullable": true,
+              "example": "SWRW-H02-R01-001",
+              "description": "Description text (e.g. position) of the switch provided by the user."
+            },
+            "parameterOne": {
+              "type": "string",
+              "nullable": true,
+              "example": "1.131.36",
+              "description": "Optional first parameter (e.g. article number) provided by the user."
+            },
+            "parameterTwo": {
+              "type": "string",
+              "nullable": true,
+              "example": "cable ties",
+              "description": "Optional second parameter (e.g. article name) provided by the user."
+            },
+            "rx4sState1": {
+              "type": "number",
+              "example": 1,
+              "description": "State of relay 1 in relay receiver upon activation (0/1)."
+            },
+            "rx4sState2": {
+              "type": "number",
+              "example": 0,
+              "description": "State of relay 2 in relay receiver upon activation (0/1)."
+            },
+            "rx4sState3": {
+              "type": "number",
+              "example": 1,
+              "description": "State of relay 3 in relay receiver upon activation (0/1)."
+            },
+            "rx4sState4": {
+              "type": "number",
+              "example": 0,
+              "description": "State of relay 4 in relay receiver upon activation (0/1)."
+            },
+            "rx4sActuateMode": {
+              "type": "number",
+              "example": 0,
+              "description": "INSTANT = 0; ECO = 1"
+            },
+            "makdText1": {
+              "type": "string",
+              "nullable": true,
+              "example": "I am button 1",
+              "description": "Displaytext 1 for MAKD andon display (max. 32 chars)."
+            },
+            "makdText2": {
+              "type": "string",
+              "nullable": true,
+              "example": "I am button 2",
+              "description": "Displaytext 2 for MAKD andon display (max. 32 chars)."
+            },
+            "makdText3": {
+              "type": "string",
+              "nullable": true,
+              "example": "I am button 3",
+              "description": "Displaytext 3 for MAKD andon display (max. 32 chars)."
+            },
+            "makdWakeupText": {
+              "type": "string",
+              "nullable": true,
+              "example": "I am the wakeup text",
+              "description": "Wakeup displaytext for MAKD andon display (max. 32 chars)."
+            },
+            "makdDisplayTime": {
+              "type": "number",
+              "example": 5,
+              "description": "MAKD text display duration. 0 seconds = Do not switch off display (0 - 65535 sec.)."
+            }
+          }
+        },
+        "UserLoginDto": {
+          "type": "object",
+          "properties": {
+            "username": {
+              "type": "string",
+              "example": "api",
+              "description": "API user name."
+            },
+            "password": {
+              "type": "string",
+              "example": "steute_api",
+              "description": "API password (May be changed via Sensor Bridge web UI in User Settings menu."
+            }
+          },
+          "required": [
+            "username",
+            "password"
+          ]
+        },
+        "TokenResponseDto": {
+          "type": "object",
+          "properties": {
+            "accessToken": {
+              "type": "string",
+              "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.cThIIoDvwdueQB468K5xDc5633seEFoqwxjF_xSJyQQ",
+              "description": "JWT (see https://jwt.io) generated to authorize API access. Valid for 30 minutes."
+            },
+            "refreshToken": {
+              "type": "string",
+              "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkphbmUgRG9lcyIsImlhdCI6MTUxNjIzOTkyMn0.jHx2wrj4V5VQBjEmA-ktBTj4psi2lBnPj-_EAznl9LU",
+              "description": "JWT (see https://jwt.io) generated to authorize API access. Same as accessToken, but valid for 180 minutes."
+            }
+          },
+          "required": [
+            "accessToken",
+            "refreshToken"
+          ]
+        },
+        "SystemStatusDto": {
+          "type": "object",
+          "properties": {
+            "softwareVersion": {
+              "type": "string",
+              "example": "1.0.3",
+              "description": "Current version of the sensor bridge software"
+            },
+            "systemTimestamp": {
+              "type": "number",
+              "example": "1559571110",
+              "description": "Unix timestamp for the system time"
+            },
+            "loadAverage1": {
+              "type": "number",
+              "example": "11",
+              "description": "Load average for the last minute"
+            },
+            "loadAverage5": {
+              "type": "number",
+              "example": "11",
+              "description": "Load average for the last five minutes"
+            },
+            "loadAverage15": {
+              "type": "number",
+              "example": "11",
+              "description": "Load average for the last fifteen minutes"
+            },
+            "freeMemory": {
+              "type": "number",
+              "example": "5201952768",
+              "description": "Free system memory in bytes"
+            },
+            "totalMemory": {
+              "type": "number",
+              "example": "16989540352",
+              "description": "Total system memory in bytes"
+            },
+            "uptime": {
+              "type": "number",
+              "example": "96114",
+              "description": "System uptime in seconds"
+            },
+            "softwarePartNumber": {
+              "type": "string",
+              "example": "0",
+              "description": "Software part number"
+            },
+            "softwareVariant": {
+              "type": "string",
+              "example": "Software module: Sensor Bridge",
+              "description": "Software variant"
+            }
+          },
+          "required": [
+            "softwareVersion",
+            "systemTimestamp",
+            "loadAverage1",
+            "loadAverage5",
+            "loadAverage15",
+            "freeMemory",
+            "totalMemory",
+            "uptime",
+            "softwarePartNumber",
+            "softwareVariant"
+          ]
+        }
+      }
+    }
+  }

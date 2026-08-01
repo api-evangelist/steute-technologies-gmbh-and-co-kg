@@ -1,0 +1,34 @@
+generated: '2026-07-21'
+method: searched
+note: >-
+  No /.well-known/ discovery surface found on any steute host. www.steute.com,
+  www.nexy.net, www.steute-leantec.com and docs.nexy.net all return 403 for
+  well-known paths (WAF block page) and 404 for /llms.txt. The Sensor Bridge API
+  is an on-premise device API and publishes no hosted discovery documents.
+hosts:
+- host: https://www.steute.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 403
+  - path: /.well-known/openid-configuration
+    status: 403
+  - path: /.well-known/api-catalog
+    status: 403
+  - path: /.well-known/ai-plugin.json
+    status: 403
+  - path: /llms.txt
+    status: 404
+- host: https://www.nexy.net
+  documents:
+  - path: /.well-known/security.txt
+    status: 403
+- host: https://www.steute-leantec.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 403
+- host: https://docs.nexy.net
+  documents:
+  - path: /.well-known/security.txt
+    status: 403
+  - path: /llms.txt
+    status: 404

@@ -1,0 +1,39 @@
+# API Evangelist enhancements for the steute nexy Sensor Bridge API v2.
+# generated: 2026-07-21 | method: generated
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for steute nexy Sensor Bridge API v2
+  version: 1.0.0
+extends: openapi/steute-technologies-gmbh-and-co-kg-sensor-bridge-openapi-original.json
+actions:
+- target: $.info
+  update:
+    x-apievangelist:
+      provider: steute-technologies-gmbh-and-co-kg
+      harvested: '2026-07-21'
+      source: https://docs.nexy.net/docs/sensor-bridge/rest-api/
+      notes: >-
+        On-premise device API served from the customer's Sensor Bridge
+        (Revolution Pi) gateway; default device address 192.168.3.32.
+        Swagger UI at /api-demo-v2/, spec download at /api-demo-v2-json.
+- target: $.info
+  update:
+    contact:
+      name: steute Technologies GmbH & Co. KG
+      url: https://www.steute.com/
+      email: info@steute.com
+- target: $.externalDocs
+  update:
+    description: sWave.NET system documentation
+    url: https://docs.nexy.net/
+- target: $.paths['/api/v2/auth/login'].post
+  update:
+    x-apievangelist-note: >-
+      Returns a JWT accessToken valid for 30 minutes plus a refreshToken; send
+      the accessToken in the JWTAuthorization header on all other operations.
+- target: $.paths['/api/v2/notification-configs'].post
+  update:
+    x-apievangelist-note: >-
+      Configures outbound HTTP(S) POST webhooks (switchEvent /
+      missingSwitchWakeupWarning). See
+      https://docs.nexy.net/docs/api-and-protocols/https-notifications/

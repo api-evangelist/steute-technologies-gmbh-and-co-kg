@@ -1,0 +1,15 @@
+generated: '2026-07-21'
+method: generated
+skills:
+- file: steute-technologies-gmbh-and-co-kg-monitor-switch-fleet.md
+  name: Monitor a nexy wireless switch fleet
+  api: openapi/steute-technologies-gmbh-and-co-kg-sensor-bridge-openapi-original.json
+  operations: [AuthController_login, AuthController_refresh, SwitchController_listSwitches, SwitchController_getSwitch, AccessPointController_listAccessPoints, AccessPointController_warnings, HistoryController_list, SystemStatusController_listSystemStatus]
+- file: steute-technologies-gmbh-and-co-kg-configure-webhooks.md
+  name: Configure push notifications (webhooks) from the Sensor Bridge
+  api: openapi/steute-technologies-gmbh-and-co-kg-sensor-bridge-openapi-original.json
+  operations: [AuthController_login, NotificationConfigController_listNotificationConfig, NotificationConfigController_create, NotificationConfigController_update, NotificationConfigController_del]
+- file: steute-technologies-gmbh-and-co-kg-manage-switch-groups.md
+  name: Manage nexy switch configuration groups
+  api: openapi/steute-technologies-gmbh-and-co-kg-sensor-bridge-openapi-original.json
+  operations: [AuthController_login, SwitchGroupController_listSwitchGroups, SwitchGroupController_create, SwitchGroupController_update, SwitchGroupController_deleteGroup, SwitchController_update]

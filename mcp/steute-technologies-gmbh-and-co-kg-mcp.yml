@@ -1,0 +1,63 @@
+generated: '2026-07-21'
+method: derived
+status: candidate
+source: openapi/steute-technologies-gmbh-and-co-kg-sensor-bridge-openapi-original.json
+note: >-
+  steute publishes no official MCP server. Candidate tool list derived from the
+  nexy Sensor Bridge API v2 OpenAPI operations; a real server would run
+  alongside the on-premise Sensor Bridge gateway on the local network.
+server:
+  name: steute-nexy-sensor-bridge
+  transport: http
+tools:
+- name: login
+  description: API login. Obtain JWT accessToken and refreshToken.
+  source_operation: openapi/steute-technologies-gmbh-and-co-kg-sensor-bridge-openapi-original.json#AuthController_login
+- name: refresh_token
+  description: Refresh login. Get updated JWT accessToken and refreshToken.
+  source_operation: openapi/steute-technologies-gmbh-and-co-kg-sensor-bridge-openapi-original.json#AuthController_refresh
+- name: list_switches
+  description: Get list of switches and their configurations.
+  source_operation: openapi/steute-technologies-gmbh-and-co-kg-sensor-bridge-openapi-original.json#SwitchController_listSwitches
+- name: get_switch
+  description: Get a switch and its configuration.
+  source_operation: openapi/steute-technologies-gmbh-and-co-kg-sensor-bridge-openapi-original.json#SwitchController_getSwitch
+- name: update_switch
+  description: Update switch configuration.
+  source_operation: openapi/steute-technologies-gmbh-and-co-kg-sensor-bridge-openapi-original.json#SwitchController_update
+- name: delete_switch
+  description: Delete a switch.
+  source_operation: openapi/steute-technologies-gmbh-and-co-kg-sensor-bridge-openapi-original.json#SwitchController_del
+- name: list_switch_groups
+  description: Get list of configuration groups.
+  source_operation: openapi/steute-technologies-gmbh-and-co-kg-sensor-bridge-openapi-original.json#SwitchGroupController_listSwitchGroups
+- name: create_switch_group
+  description: Create a new configuration group.
+  source_operation: openapi/steute-technologies-gmbh-and-co-kg-sensor-bridge-openapi-original.json#SwitchGroupController_create
+- name: update_switch_group
+  description: Update configuration group parameters.
+  source_operation: openapi/steute-technologies-gmbh-and-co-kg-sensor-bridge-openapi-original.json#SwitchGroupController_update
+- name: delete_switch_group
+  description: Delete configuration group.
+  source_operation: openapi/steute-technologies-gmbh-and-co-kg-sensor-bridge-openapi-original.json#SwitchGroupController_deleteGroup
+- name: list_access_points
+  description: Returns a list of access points.
+  source_operation: openapi/steute-technologies-gmbh-and-co-kg-sensor-bridge-openapi-original.json#AccessPointController_listAccessPoints
+- name: get_access_point_warnings
+  description: Get warning messages of one access point.
+  source_operation: openapi/steute-technologies-gmbh-and-co-kg-sensor-bridge-openapi-original.json#AccessPointController_warnings
+- name: get_switch_history
+  description: Request switch event logs for a device.
+  source_operation: openapi/steute-technologies-gmbh-and-co-kg-sensor-bridge-openapi-original.json#HistoryController_list
+- name: list_notification_configs
+  description: Get list of HTTP(S) notification configurations.
+  source_operation: openapi/steute-technologies-gmbh-and-co-kg-sensor-bridge-openapi-original.json#NotificationConfigController_listNotificationConfig
+- name: create_notification_config
+  description: Create a new HTTP(S) notification configuration.
+  source_operation: openapi/steute-technologies-gmbh-and-co-kg-sensor-bridge-openapi-original.json#NotificationConfigController_create
+- name: update_notification_config
+  description: Update notification parameters.
+  source_operation: openapi/steute-technologies-gmbh-and-co-kg-sensor-bridge-openapi-original.json#NotificationConfigController_update
+- name: get_system_status
+  description: Get the system status information.
+  source_operation: openapi/steute-technologies-gmbh-and-co-kg-sensor-bridge-openapi-original.json#SystemStatusController_listSystemStatus

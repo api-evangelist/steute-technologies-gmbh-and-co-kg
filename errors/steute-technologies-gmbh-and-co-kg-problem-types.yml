@@ -1,0 +1,35 @@
+generated: '2026-07-21'
+method: derived
+source: openapi/steute-technologies-gmbh-and-co-kg-sensor-bridge-openapi-original.json
+format: plain-http
+note: >-
+  The Sensor Bridge API v2 does not use RFC 9457 application/problem+json.
+  Errors are plain HTTP status codes with short descriptions; 403 is used both
+  for invalid credentials on login and for missing/expired JWT on all other
+  operations.
+problems:
+- status: 400
+  title: Bad Request
+  example_operations:
+  - openapi/steute-technologies-gmbh-and-co-kg-sensor-bridge-openapi-original.json#AuthController_login
+  - openapi/steute-technologies-gmbh-and-co-kg-sensor-bridge-openapi-original.json#SwitchController_update
+  - openapi/steute-technologies-gmbh-and-co-kg-sensor-bridge-openapi-original.json#NotificationConfigController_create
+  - openapi/steute-technologies-gmbh-and-co-kg-sensor-bridge-openapi-original.json#HistoryController_list
+- status: 403
+  title: Forbidden (invalid credentials or missing/expired JWT)
+  example_operations:
+  - openapi/steute-technologies-gmbh-and-co-kg-sensor-bridge-openapi-original.json#AuthController_login
+  - openapi/steute-technologies-gmbh-and-co-kg-sensor-bridge-openapi-original.json#SwitchController_listSwitches
+  - openapi/steute-technologies-gmbh-and-co-kg-sensor-bridge-openapi-original.json#AccessPointController_listAccessPoints
+- status: 404
+  title: Not Found (unknown deviceId or resource id)
+  example_operations:
+  - openapi/steute-technologies-gmbh-and-co-kg-sensor-bridge-openapi-original.json#SwitchController_getSwitch
+  - openapi/steute-technologies-gmbh-and-co-kg-sensor-bridge-openapi-original.json#AccessPointController_warnings
+  - openapi/steute-technologies-gmbh-and-co-kg-sensor-bridge-openapi-original.json#SwitchGroupController_update
+- status: 422
+  title: Unprocessable Entity (validation failure on create/update)
+  example_operations:
+  - openapi/steute-technologies-gmbh-and-co-kg-sensor-bridge-openapi-original.json#SwitchGroupController_create
+  - openapi/steute-technologies-gmbh-and-co-kg-sensor-bridge-openapi-original.json#SwitchGroupController_update
+  - openapi/steute-technologies-gmbh-and-co-kg-sensor-bridge-openapi-original.json#NotificationConfigController_create

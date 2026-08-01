@@ -1,0 +1,52 @@
+generated: '2026-07-21'
+method: searched
+source: openapi/steute-technologies-gmbh-and-co-kg-sensor-bridge-openapi-original.json
+docs: https://docs.nexy.net/docs/sensor-bridge/rest-api/
+authentication:
+  style: jwt-in-custom-header
+  detail: >-
+    POST /api/v2/auth/login with username/password returns a JWT accessToken
+    (30-minute TTL) and refreshToken; subsequent requests carry the JWT in the
+    JWTAuthorization header. See authentication/steute-technologies-gmbh-and-co-kg-authentication.yml.
+idempotency:
+  supported: false
+  detail: >-
+    No idempotency-key header or mechanism is documented. Most write operations
+    are PUT updates or DELETEs keyed by deviceId/id, which are naturally
+    idempotent, but there is no client idempotency contract for POST creates.
+pagination:
+  supported: false
+  detail: >-
+    List endpoints (switches, switch-groups, access-points, notification-configs,
+    history) return complete arrays; no pagination parameters are declared in the
+    OpenAPI or documented.
+versioning:
+  scheme: uri-path
+  current: v2
+  detail: >-
+    Version pinned in the URL path (/api/v2). REST API v1 (/api/v1) was
+    deprecated in 2022 and removed in Sensor Bridge 2.5.0 (06.02.2025). See
+    lifecycle/steute-technologies-gmbh-and-co-kg-lifecycle.yml.
+error_envelope:
+  media_type: none
+  shape: plain HTTP status codes with short descriptions; no structured error body documented
+  detail: See errors/steute-technologies-gmbh-and-co-kg-problem-types.yml.
+rate_limiting:
+  documented: false
+  detail: No rate-limit headers or quotas are documented; the API is served by an on-premise gateway device.
+eventing:
+  style: http-post-notifications
+  detail: >-
+    Push integration is done via configurable HTTP(S) POST notifications
+    (switchEvent / missingSwitchWakeupWarning JSON messages) rather than
+    client polling; supports HTTP Basic auth, per-group filtering and
+    configurable timeouts. See asyncapi/steute-technologies-gmbh-and-co-kg-webhooks-asyncapi.yml.
+other_protocols:
+  - Modbus TCP (built-in, for PLC/SPS integration)
+  - OPC UA (optional module)
+  - SAP integration (optional module)
+cross_links:
+  authentication: authentication/steute-technologies-gmbh-and-co-kg-authentication.yml
+  errors: errors/steute-technologies-gmbh-and-co-kg-problem-types.yml
+  lifecycle: lifecycle/steute-technologies-gmbh-and-co-kg-lifecycle.yml
+  changelog: changelog/steute-technologies-gmbh-and-co-kg-changelog.yml

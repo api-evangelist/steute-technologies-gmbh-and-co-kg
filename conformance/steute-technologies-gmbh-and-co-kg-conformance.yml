@@ -1,0 +1,39 @@
+generated: '2026-07-21'
+method: derived
+source: openapi/steute-technologies-gmbh-and-co-kg-sensor-bridge-openapi-original.json
+standards:
+- id: openapi-3.0
+  conforms: true
+  evidence: Published Sensor Bridge API v2 definition is OpenAPI 3.0.0 (docs.nexy.net REST API page).
+- id: modbus-tcp
+  conforms: true
+  evidence: >-
+    Sensor Bridge exposes Modbus TCP for PLC (SPS) integration
+    (https://www.steute-leantec.com/en-us/system/software/sensor-bridge-software).
+- id: opc-ua
+  conforms: true
+  evidence: OPC UA available via optional Sensor Bridge modules (steute-leantec.com Sensor Bridge software page).
+- id: oauth2
+  conforms: false
+  evidence: No oauth2 security scheme; JWT via custom JWTAuthorization header obtained from /api/v2/auth/login.
+- id: oidc
+  conforms: false
+  evidence: No openIdConnect scheme; no /.well-known/openid-configuration on steute hosts (403).
+- id: rfc9457-problem-details
+  conforms: false
+  evidence: Error responses are plain HTTP status codes; no application/problem+json media type in the spec.
+- id: rfc8594-sunset-header
+  conforms: false
+  evidence: No Sunset/Deprecation headers documented; version retirement communicated via changelog.
+- id: pagination
+  conforms: false
+  evidence: List operations return full arrays with no pagination parameters.
+- id: idempotency
+  conforms: false
+  evidence: No idempotency-key mechanism documented.
+- id: aes-128-radio-encryption
+  conforms: true
+  evidence: >-
+    sWave.NET radio telegrams are AES-128 encrypted with replay-attack
+    protection via negotiated telegram counters
+    (https://docs.nexy.net/docs/getting-started/encryption-and-security/).

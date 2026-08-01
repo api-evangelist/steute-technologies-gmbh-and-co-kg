@@ -1,0 +1,51 @@
+generated: '2026-07-21'
+method: derived
+source: openapi/steute-technologies-gmbh-and-co-kg-sensor-bridge-openapi-original.json
+entities:
+- name: Switch
+  schema: SwitchDto
+  id_field: deviceId
+  detail: Wireless sWave.NET switch/sensor/actor registered at the Sensor Bridge (hex device ID, 6 chars).
+- name: SwitchGroup
+  schema: SwitchGroupDto
+  id_field: id
+  detail: Configuration group carrying wake-up interval, cycle/debounce times and sensor thresholds.
+- name: AccessPoint
+  schema: AccessPointDto
+  id_field: deviceId
+  detail: sWave.NET access point receiving radio telegrams and forwarding them to the Sensor Bridge.
+- name: AccessPointWarning
+  schema: AccessPointWarningDto
+  detail: Warning message attached to an access point.
+- name: SwitchEvent
+  schema: SwitchEventDto
+  id_field: id
+  detail: Historical switch event log entry (state, flags, battery, RSSI, timestamps).
+- name: NotificationConfig
+  schema: NotificationConfigDto
+  id_field: id
+  detail: Outbound HTTP(S) notification endpoint configuration (target URL, basic auth, group filter, timeout).
+- name: SystemStatus
+  schema: SystemStatusDto
+  detail: Singleton system health snapshot of the Sensor Bridge device.
+relationships:
+- from: Switch
+  to: SwitchGroup
+  type: belongs_to
+  via: groupId
+- from: SwitchEvent
+  to: Switch
+  type: belongs_to
+  via: deviceId
+- from: SwitchEvent
+  to: AccessPoint
+  type: belongs_to
+  via: accessPointDeviceId
+- from: AccessPoint
+  to: AccessPointWarning
+  type: has_many
+  via: deviceId
+- from: NotificationConfig
+  to: SwitchGroup
+  type: has_many
+  via: group restriction (notifications can be limited to selected groups)

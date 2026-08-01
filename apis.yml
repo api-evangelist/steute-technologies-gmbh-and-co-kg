@@ -1,23 +1,219 @@
 aid: steute-technologies-gmbh-and-co-kg
 name: steute Technologies GmbH & Co. KG
-description: steute Technologies GmbH & Co. KG is a company surfaced as a portfolio company of battery-ventures
-  and added to the API Evangelist network as a stub for enrichment. This profile is a lead awaiting the
-  enrichment pipeline.
+description: >-
+  steute Technologies GmbH & Co. KG is a German industrial technology company headquartered in
+  Löhne that develops switchgear, sensors and controls under the tagline "Applied Intelligence",
+  organized into three divisions: Meditec (certified user interfaces such as foot and hand
+  controls for medical devices), Controltec (safe industrial automation with switches, sensors
+  and wireless solutions) and Leantec (digital shop floor solutions). Its Leantec "nexy" IIoT
+  wireless network, built on the sWave.NET radio protocol, connects hundreds of wireless switches
+  and sensors to shop-floor IT through a Sensor Bridge gateway that exposes a JWT-secured REST
+  API (OpenAPI 3.0), HTTP(S) push notifications, Modbus TCP and optional OPC UA and SAP modules
+  for eKanban, AGV, Andon and material-flow integration. steute was surfaced as a portfolio
+  company of Battery Ventures.
 url: https://raw.githubusercontent.com/api-evangelist/steute-technologies-gmbh-and-co-kg/refs/heads/main/apis.yml
 x-type: company
 x-source: vc-portfolio
 x-backed-by:
 - battery-ventures
-x-tier: stub
-x-tier-reason: portfolio-lead
+x-tier: profiled
+x-tier-reason: has-public-api
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-21'
+image: https://www.steute.com/_assets/0fec2969a2bae73d42576ee80ea2af42/Icons/icon.png
 tags:
 - Company
-apis: []
+- Industrial
+- Manufacturing
+- IIoT
+- Wireless
+- Sensors
+- Switches
+- Intralogistics
+- Automation
+- Medical Devices
+apis:
+- aid: steute-technologies-gmbh-and-co-kg:steute-technologies-gmbh-and-co-kg-access-point-api
+  name: steute Technologies GmbH & Co. KG Access Point API
+  description: >-
+    The Access Point API from steute Technologies GmbH & Co. KG — 6 operation(s) for access point.
+  humanURL: https://docs.nexy.net/docs/sensor-bridge/rest-api/
+  baseURL: http://192.168.3.32/api/v2
+  tags:
+  - Access Point
+  properties:
+  - type: OpenAPI
+    url: openapi/steute-technologies-gmbh-and-co-kg-access-point-api-openapi.yml
+  - type: APIReference
+    url: https://docs.nexy.net/docs/sensor-bridge/rest-api/
+  - type: Webhooks
+    url: https://docs.nexy.net/docs/api-and-protocols/https-notifications/
+  - type: AsyncAPI
+    url: asyncapi/steute-technologies-gmbh-and-co-kg-webhooks-asyncapi.yml
+- aid: steute-technologies-gmbh-and-co-kg:steute-technologies-gmbh-and-co-kg-auth-api
+  name: steute Technologies GmbH & Co. KG Auth API
+  description: The Auth API from steute Technologies GmbH & Co. KG — 2 operation(s) for auth.
+  humanURL: https://docs.nexy.net/docs/sensor-bridge/rest-api/
+  baseURL: http://192.168.3.32/api/v2
+  tags:
+  - Auth
+  properties:
+  - type: OpenAPI
+    url: openapi/steute-technologies-gmbh-and-co-kg-auth-api-openapi.yml
+  - type: APIReference
+    url: https://docs.nexy.net/docs/sensor-bridge/rest-api/
+  - type: Webhooks
+    url: https://docs.nexy.net/docs/api-and-protocols/https-notifications/
+  - type: AsyncAPI
+    url: asyncapi/steute-technologies-gmbh-and-co-kg-webhooks-asyncapi.yml
+- aid: steute-technologies-gmbh-and-co-kg:steute-technologies-gmbh-and-co-kg-history-api
+  name: steute Technologies GmbH & Co. KG History API
+  description: The History API from steute Technologies GmbH & Co. KG — 3 operation(s) for history.
+  humanURL: https://docs.nexy.net/docs/sensor-bridge/rest-api/
+  baseURL: http://192.168.3.32/api/v2
+  tags:
+  - History
+  properties:
+  - type: OpenAPI
+    url: openapi/steute-technologies-gmbh-and-co-kg-history-api-openapi.yml
+  - type: APIReference
+    url: https://docs.nexy.net/docs/sensor-bridge/rest-api/
+  - type: Webhooks
+    url: https://docs.nexy.net/docs/api-and-protocols/https-notifications/
+  - type: AsyncAPI
+    url: asyncapi/steute-technologies-gmbh-and-co-kg-webhooks-asyncapi.yml
+- aid: >-
+    steute-technologies-gmbh-and-co-kg:steute-technologies-gmbh-and-co-kg-notification-config-api
+  name: steute Technologies GmbH & Co. KG Notification Config API
+  description: >-
+    The Notification Config API from steute Technologies GmbH & Co. KG — 3 operation(s) for notification
+    config.
+  humanURL: https://docs.nexy.net/docs/sensor-bridge/rest-api/
+  baseURL: http://192.168.3.32/api/v2
+  tags:
+  - Notification Config
+  properties:
+  - type: OpenAPI
+    url: openapi/steute-technologies-gmbh-and-co-kg-notification-config-api-openapi.yml
+  - type: APIReference
+    url: https://docs.nexy.net/docs/sensor-bridge/rest-api/
+  - type: Webhooks
+    url: https://docs.nexy.net/docs/api-and-protocols/https-notifications/
+  - type: AsyncAPI
+    url: asyncapi/steute-technologies-gmbh-and-co-kg-webhooks-asyncapi.yml
+- aid: steute-technologies-gmbh-and-co-kg:steute-technologies-gmbh-and-co-kg-switch-api
+  name: steute Technologies GmbH & Co. KG Switch API
+  description: The Switch API from steute Technologies GmbH & Co. KG — 3 operation(s) for switch.
+  humanURL: https://docs.nexy.net/docs/sensor-bridge/rest-api/
+  baseURL: http://192.168.3.32/api/v2
+  tags:
+  - Switch
+  properties:
+  - type: OpenAPI
+    url: openapi/steute-technologies-gmbh-and-co-kg-switch-api-openapi.yml
+  - type: APIReference
+    url: https://docs.nexy.net/docs/sensor-bridge/rest-api/
+  - type: Webhooks
+    url: https://docs.nexy.net/docs/api-and-protocols/https-notifications/
+  - type: AsyncAPI
+    url: asyncapi/steute-technologies-gmbh-and-co-kg-webhooks-asyncapi.yml
+- aid: steute-technologies-gmbh-and-co-kg:steute-technologies-gmbh-and-co-kg-switch-group-api
+  name: steute Technologies GmbH & Co. KG Switch Group API
+  description: >-
+    The Switch Group API from steute Technologies GmbH & Co. KG — 3 operation(s) for switch group.
+  humanURL: https://docs.nexy.net/docs/sensor-bridge/rest-api/
+  baseURL: http://192.168.3.32/api/v2
+  tags:
+  - Switch Group
+  properties:
+  - type: OpenAPI
+    url: openapi/steute-technologies-gmbh-and-co-kg-switch-group-api-openapi.yml
+  - type: APIReference
+    url: https://docs.nexy.net/docs/sensor-bridge/rest-api/
+  - type: Webhooks
+    url: https://docs.nexy.net/docs/api-and-protocols/https-notifications/
+  - type: AsyncAPI
+    url: asyncapi/steute-technologies-gmbh-and-co-kg-webhooks-asyncapi.yml
+- aid: steute-technologies-gmbh-and-co-kg:steute-technologies-gmbh-and-co-kg-system-status-api
+  name: steute Technologies GmbH & Co. KG System Status API
+  description: >-
+    The System Status API from steute Technologies GmbH & Co. KG — 1 operation(s) for system status.
+  humanURL: https://docs.nexy.net/docs/sensor-bridge/rest-api/
+  baseURL: http://192.168.3.32/api/v2
+  tags:
+  - System Status
+  properties:
+  - type: OpenAPI
+    url: openapi/steute-technologies-gmbh-and-co-kg-system-status-api-openapi.yml
+  - type: APIReference
+    url: https://docs.nexy.net/docs/sensor-bridge/rest-api/
+  - type: Webhooks
+    url: https://docs.nexy.net/docs/api-and-protocols/https-notifications/
+  - type: AsyncAPI
+    url: asyncapi/steute-technologies-gmbh-and-co-kg-webhooks-asyncapi.yml
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
+x-enrichment:
+  date: '2026-07-21'
+  status: enriched
+  artifacts_added: 18
+  pass: local-v1
+common:
+- type: DomainSecurity
+  url: security/steute-technologies-gmbh-and-co-kg-domain-security.yml
+- type: AgenticAccess
+  url: agentic-access/steute-technologies-gmbh-and-co-kg-agentic-access.yml
+- type: Website
+  url: https://www.steute.com/
+- type: Documentation
+  url: https://docs.nexy.net/
+- type: APIReference
+  url: https://docs.nexy.net/docs/sensor-bridge/rest-api/
+- type: GettingStarted
+  url: https://docs.nexy.net/docs/getting-started/basic-system-setup
+- type: Authentication
+  url: authentication/steute-technologies-gmbh-and-co-kg-authentication.yml
+- type: Conventions
+  url: conventions/steute-technologies-gmbh-and-co-kg-conventions.yml
+- type: ErrorCatalog
+  url: errors/steute-technologies-gmbh-and-co-kg-problem-types.yml
+- type: Lifecycle
+  url: lifecycle/steute-technologies-gmbh-and-co-kg-lifecycle.yml
+- type: Deprecation
+  url: https://docs.nexy.net/docs/sensor-bridge/rest-api/
+- type: ChangeLog
+  url: changelog/steute-technologies-gmbh-and-co-kg-changelog.yml
+- type: Conformance
+  url: conformance/steute-technologies-gmbh-and-co-kg-conformance.yml
+- type: MCPServer
+  url: mcp/steute-technologies-gmbh-and-co-kg-mcp.yml
+- type: LLMsTxt
+  url: llms/steute-technologies-gmbh-and-co-kg-llms.txt
+- type: DataModel
+  url: data-model/steute-technologies-gmbh-and-co-kg-data-model.yml
+- type: AgentSkill
+  url: skills/_index.yml
+- type: Support
+  url: https://www.steute.com/en/contact
+- type: Blog
+  url: https://www.steute.com/en/news-media/press-releases
+- type: PrivacyPolicy
+  url: https://www.steute.com/en/data-privacy
+- type: Imprint
+  url: https://www.steute.com/en/imprint

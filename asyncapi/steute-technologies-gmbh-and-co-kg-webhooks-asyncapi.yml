@@ -1,0 +1,155 @@
+# Derived by API Evangelist from the provider's HTTP(S) notification docs
+# (https://docs.nexy.net/docs/api-and-protocols/https-notifications/) on 2026-07-21.
+# steute publishes no AsyncAPI; payload fields below are captured verbatim from the docs.
+asyncapi: 2.6.0
+info:
+  title: steute nexy Sensor Bridge HTTP(S) Notifications
+  version: 2.4.0-2.6.x
+  description: >-
+    The Sensor Bridge sends JSON data via HTTP POST to configured target URLs
+    whenever a switch is actuated, a switch or actor sends a wake-up message,
+    or expected wake-up messages are not received (wake-up monitoring).
+    Multiple notification endpoints can be configured, optionally restricted
+    to managed groups, with HTTP Basic Authentication and configurable
+    timeouts. Missing wake-up warnings repeat at wakeup-time * 2 intervals
+    until the device transmits again.
+  contact:
+    name: steute Technologies GmbH & Co. KG
+    url: https://www.steute.com/
+    email: info@steute.com
+externalDocs:
+  description: HTTP(S) Notifications documentation
+  url: https://docs.nexy.net/docs/api-and-protocols/https-notifications/
+servers:
+  customer-endpoint:
+    url: 'http://{host}'
+    protocol: http
+    description: >-
+      Customer-configured receiving endpoint on the local network. The Sensor
+      Bridge POSTs with Content-Type application/json;charset=utf-8; HTTP or
+      HTTPS selectable, custom port via address suffix (e.g. 192.168.3.10:3000).
+    variables:
+      host:
+        default: 192.168.3.10
+defaultContentType: application/json
+channels:
+  switchEvent:
+    description: >-
+      Sent when a switch changes state (actuation) or a wake-up event is
+      triggered by the switch's internal timer. Use flags to differentiate:
+      0 = switch event, 64 = broadcast, 128 = wakeup (196 = broadcast
+      triggered by wake-up).
+    subscribe:
+      operationId: onSwitchEvent
+      message:
+        $ref: '#/components/messages/SwitchEvent'
+  missingSwitchWakeupWarning:
+    description: >-
+      Sent when wake-up messages configured via group wake-up intervals fail
+      to appear more than twice; repeated at wakeup-time * 2 intervals until
+      the switch transmits again.
+    subscribe:
+      operationId: onMissingSwitchWakeupWarning
+      message:
+        $ref: '#/components/messages/MissingSwitchWakeupWarning'
+components:
+  messages:
+    SwitchEvent:
+      name: switchEvent
+      title: Switch event
+      payload:
+        $ref: '#/components/schemas/NotificationBody'
+      examples:
+      - payload:
+          messages:
+          - messageType: switchEvent
+            accessPointDeviceId: '001717'
+            deviceId: '00503A'
+            deviceType: 14
+            state: 1
+            flags: 0
+            battState: 30
+            battVoltage: 2380
+            rssi: 88
+            counter: 17
+            groupId: 2
+            description: H01.B13.263
+            param1: 1.825.323
+            param2: null
+            timestamp: 1262301918900
+    MissingSwitchWakeupWarning:
+      name: missingSwitchWakeupWarning
+      title: Missing wake-up warning
+      payload:
+        $ref: '#/components/schemas/NotificationBody'
+      examples:
+      - payload:
+          messages:
+          - messageType: missingSwitchWakeupWarning
+            warningText: No wake-up or data within expected interval
+            deviceId: '00503A'
+            deviceType: 14
+            groupId: 2
+            description: H01.B13.263
+            param1: 1.825.323
+            param2: null
+            timestamp: 1262304268155
+  schemas:
+    NotificationBody:
+      type: object
+      properties:
+        messages:
+          type: array
+          items:
+            $ref: '#/components/schemas/NotificationMessage'
+    NotificationMessage:
+      type: object
+      properties:
+        messageType:
+          type: string
+          enum: [switchEvent, missingSwitchWakeupWarning]
+        accessPointDeviceId:
+          type: string
+          description: Device ID of receiving Access Point, hexadecimal, 6 chars.
+        deviceId:
+          type: string
+          description: Unique switch device ID, hexadecimal, 6 chars.
+        deviceType:
+          type: integer
+          description: Device type ID, 0-255.
+        state:
+          type: integer
+          description: Switch state, 0-255, encoded bitwise.
+        flags:
+          type: integer
+          description: 0 = switch event, 64 = broadcast, 128 = wakeup.
+        battState:
+          type: integer
+          description: Battery state in percent, 0-100.
+        battVoltage:
+          type: integer
+          description: Battery voltage in mV, 0-4000.
+        rssi:
+          type: integer
+          description: RSSI value, 0-100.
+        counter:
+          type: integer
+          description: Radio telegram counter, 0-255.
+        groupId:
+          type: integer
+          description: ID of assigned group.
+        description:
+          type: string
+          description: Custom description text, max. 64 chars.
+        param1:
+          type: string
+          description: Custom parameter 1 text, max. 32 chars.
+        param2:
+          type: string
+          description: Custom parameter 2 text, max. 32 chars.
+        warningText:
+          type: string
+          description: e.g. 'No wakeup or data within expected interval'.
+        timestamp:
+          type: integer
+          description: Unix timestamp, milliseconds since epoch.
