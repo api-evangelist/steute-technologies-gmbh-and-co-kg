@@ -175,6 +175,8 @@ x-enrichment:
   artifacts_added: 18
   pass: local-v1
 common:
+- type: Overlay
+  url: overlays/steute-technologies-gmbh-and-co-kg-sensor-bridge-overlay.yaml
 - type: DomainSecurity
   url: security/steute-technologies-gmbh-and-co-kg-domain-security.yml
 - type: AgenticAccess
