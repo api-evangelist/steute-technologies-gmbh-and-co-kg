@@ -2,10 +2,9 @@ generated: '2026-07-21'
 method: derived
 status: candidate
 source: openapi/steute-technologies-gmbh-and-co-kg-sensor-bridge-openapi-original.json
-note: >-
-  steute publishes no official MCP server. Candidate tool list derived from the
-  nexy Sensor Bridge API v2 OpenAPI operations; a real server would run
-  alongside the on-premise Sensor Bridge gateway on the local network.
+note: steute publishes no official MCP server. Candidate tool list derived from the nexy Sensor Bridge
+  API v2 OpenAPI operations; a real server would run alongside the on-premise Sensor Bridge gateway on
+  the local network.
 server:
   name: steute-nexy-sensor-bridge
   transport: http
@@ -61,3 +60,9 @@ tools:
 - name: get_system_status
   description: Get the system status information.
   source_operation: openapi/steute-technologies-gmbh-and-co-kg-sensor-bridge-openapi-original.json#SystemStatusController_listSystemStatus
+deployment:
+  mode: none
+  verified: derived
+  tools: 17
+  checked: '2026-08-12'
+  source: catalog MCP census

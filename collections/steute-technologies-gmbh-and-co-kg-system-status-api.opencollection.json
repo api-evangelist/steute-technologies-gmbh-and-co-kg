@@ -1,0 +1,35 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Sensor Bridge API Version 2 Access Point System Status API",
+    "version": "2.4.1 [d4919ee69]"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "System Status",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get the system status information.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://api/v2/system-status",
+            "auth": {
+              "type": "apikey",
+              "key": "JWTAuthorization",
+              "value": "{{JWTAuthorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Get information about the current sensor bridge software version, unix system timestamp, average workload, uptime and memory usage )"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

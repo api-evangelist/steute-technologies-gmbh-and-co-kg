@@ -1,0 +1,128 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Sensor Bridge API Version 2 Access Point Switch API",
+    "version": "2.4.1 [d4919ee69]"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Switch",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get list of switches and their configurations.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://api/v2/switches",
+            "auth": {
+              "type": "apikey",
+              "key": "JWTAuthorization",
+              "value": "{{JWTAuthorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Get a list of all switches from the database. Includes switch configuration data."
+        },
+        {
+          "info": {
+            "name": "Get a switch and its configuration.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://api/v2/switches/:deviceId",
+            "params": [
+              {
+                "name": "deviceId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "JWTAuthorization",
+              "value": "{{JWTAuthorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Get a switch from the database. Includes switch configuration data."
+        },
+        {
+          "info": {
+            "name": "Update switch configuration.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "http://api/v2/switches/:deviceId",
+            "params": [
+              {
+                "name": "deviceId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "JWTAuthorization",
+              "value": "{{JWTAuthorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Update group assignment and parameters for one switch."
+        },
+        {
+          "info": {
+            "name": "Delete a switch.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "http://api/v2/switches/:deviceId",
+            "params": [
+              {
+                "name": "deviceId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "JWTAuthorization",
+              "value": "{{JWTAuthorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Delete a switch from the database.<br>After deletion, the switch may no longer be an active part of the sWave.NET system. (Depends on default group settings.)"
+        },
+        {
+          "info": {
+            "name": "Delete all switches.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "http://api/v2/switches/deleteAll",
+            "auth": {
+              "type": "apikey",
+              "key": "JWTAuthorization",
+              "value": "{{JWTAuthorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Delete all switches from the database.<br>After deletion, the switch may no longer be an active part of the sWave.NET system. (Depends on default group settings.)"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

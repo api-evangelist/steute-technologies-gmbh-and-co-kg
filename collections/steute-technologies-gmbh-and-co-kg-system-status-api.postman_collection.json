@@ -1,0 +1,171 @@
+{
+  "item": [
+    {
+      "id": "7b79eda6-fcb3-492a-85da-65c24c4289b5",
+      "name": "System Status",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "5ba0af93-dae9-4a17-aa7e-fc79b19b8232",
+          "name": "Get the system status information.",
+          "request": {
+            "name": "Get the system status information.",
+            "description": {
+              "content": "Get information about the current sensor bridge software version, unix system timestamp, average workload, uptime and memory usage )",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "system-status"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "JWTAuthorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "f1294514-5dcc-4940-99c8-a767c3d41569",
+              "name": "successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "system-status"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "JWTAuthorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"softwareVersion\": \"1.0.3\",\n  \"systemTimestamp\": 7682.380534144058,\n  \"loadAverage1\": 8650.403004762205,\n  \"loadAverage5\": 5294.50257233877,\n  \"loadAverage15\": 3246.927696911361,\n  \"freeMemory\": 145.07541293310555,\n  \"totalMemory\": 4575.923456949988,\n  \"uptime\": 5608.793010389775,\n  \"softwarePartNumber\": \"0\",\n  \"softwareVariant\": \"Software module: Sensor Bridge\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3d871e40-b9eb-46e0-a830-52e72a640e04",
+              "name": "invalid credentials",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "system-status"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "JWTAuthorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "http://",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "1c6a0c0f-3860-4f14-86d3-d1e3d7d487c9",
+    "name": "Sensor Bridge API Version 2 Access Point System Status API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "<h3>steute sWave.NET Sensor Bridge API v2</h3><ul><li>Get status information of access points and switches.</li><li>Configure groups, device parameters and notifications.</li></ul>",
+      "type": "text/plain"
+    }
+  }
+}

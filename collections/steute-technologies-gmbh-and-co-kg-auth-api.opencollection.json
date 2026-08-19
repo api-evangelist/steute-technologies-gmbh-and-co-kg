@@ -1,0 +1,50 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Sensor Bridge API Version 2 Access Point Auth API",
+    "version": "2.4.1 [d4919ee69]"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Auth",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "API login. Obtain JWT accessToken and refreshToken.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://api/v2/auth/login",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "<p>The API uses JSON Web Tokens for authentication. See <a href=\"https://jwt.io/introduction/\">https://jwt.io/introduction/</a> for documentation.</p><p>Default username / password is api / steute_api .<br/>     You may change the password in the web UI user settings menu.</p>     <h3>Authentication within this Swagger UI</h3><p>    <ol><li>Use the \"Try it out\" feature of auth/login to submit username/password and obtain an accessToken.</li>    <li>Copy the entire accessToken string (without qou"
+        },
+        {
+          "info": {
+            "name": "Refresh login. Get updated JWT accessToken and refreshToken.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://api/v2/auth/refresh",
+            "auth": {
+              "type": "apikey",
+              "key": "JWTAuthorization",
+              "value": "{{JWTAuthorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Refresh login. Get updated JWT accessToken and refreshToken."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,1090 @@
+{
+  "item": [
+    {
+      "id": "83b62627-574b-46d6-8760-b570d947651a",
+      "name": "Notification Config",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "0a59d160-6a71-4b38-aa5c-468afe018d44",
+          "name": "Get list of notifications.",
+          "request": {
+            "name": "Get list of notifications.",
+            "description": {
+              "content": "Get a list of all notifications configured in the Sensor Bridge. Includes all configured options.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "notification-configs"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "JWTAuthorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "5931cea4-4f80-429c-8feb-2777f104b20e",
+              "name": "successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "notification-configs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "JWTAuthorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": 1,\n    \"name\": \"Notify my application\",\n    \"isEnabled\": true,\n    \"isEnabledNotManaged\": true,\n    \"noWakeups\": false,\n    \"notificationSendState\": \"STATE_ALL\",\n    \"authenticationMethod\": \"NO_AUTH\",\n    \"urlString\": \"192.168.3.10/myApi\",\n    \"useTls\": true,\n    \"responseTimeout\": 10,\n    \"description\": \"Sends switch event data to my application.\",\n    \"selectedGroups\": [\n      3,\n      4,\n      5\n    ]\n  },\n  {\n    \"id\": 1,\n    \"name\": \"Notify my application\",\n    \"isEnabled\": true,\n    \"isEnabledNotManaged\": true,\n    \"noWakeups\": false,\n    \"notificationSendState\": \"STATE_OFF\",\n    \"authenticationMethod\": \"BASIC_AUTH\",\n    \"urlString\": \"192.168.3.10/myApi\",\n    \"useTls\": true,\n    \"responseTimeout\": 10,\n    \"description\": \"Sends switch event data to my application.\",\n    \"selectedGroups\": [\n      3,\n      4,\n      5\n    ]\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "57ae0c60-9a30-4fd3-9a6c-80f0f58be596",
+              "name": "invalid credentials",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "notification-configs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "JWTAuthorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7d485526-9fee-480a-838f-500c7410da0c",
+          "name": "Create a new notification.",
+          "request": {
+            "name": "Create a new notification.",
+            "description": {
+              "content": "Creates a new notification. Name and URL have to be given.<br>Detailed configuration may be done via PUT action.<br>urlString must be valid and must not include \"http(s)://\"<br>Notification will be enabled by default.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "notification-configs"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "JWTAuthorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"urlString\": \"<string>\",\n  \"description\": null,\n  \"isEnabled\": true,\n  \"isEnabledNotManaged\": false,\n  \"noWakeups\": false,\n  \"notificationSendState\": \"<string>\",\n  \"useTls\": false,\n  \"responseTimeout\": 10,\n  \"selectedGroups\": null\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "2e0dcc13-73aa-402c-a9a9-e685bd4f501e",
+              "name": "Successfully created<br>Returns new notification object including the \"id\".",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "notification-configs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "JWTAuthorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Notify my application\",\n  \"urlString\": \"192.168.3.10/myApi\",\n  \"description\": \"Sends switch event data to my application.\",\n  \"isEnabled\": true,\n  \"isEnabledNotManaged\": false,\n  \"noWakeups\": false,\n  \"notificationSendState\": \"<string>\",\n  \"useTls\": false,\n  \"responseTimeout\": 10,\n  \"selectedGroups\": [\n    1,\n    3,\n    4,\n    5\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 1,\n  \"name\": \"Notify my application\",\n  \"isEnabled\": true,\n  \"isEnabledNotManaged\": true,\n  \"noWakeups\": false,\n  \"notificationSendState\": \"STATE_OFF\",\n  \"authenticationMethod\": \"BASIC_AUTH\",\n  \"urlString\": \"192.168.3.10/myApi\",\n  \"useTls\": true,\n  \"responseTimeout\": 10,\n  \"description\": \"Sends switch event data to my application.\",\n  \"selectedGroups\": [\n    3,\n    4,\n    5\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f4b1b89f-65e7-4d20-9afe-e42a792ab79d",
+              "name": "Invalid data (e.g. invalid URL)",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "notification-configs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "JWTAuthorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Notify my application\",\n  \"urlString\": \"192.168.3.10/myApi\",\n  \"description\": \"Sends switch event data to my application.\",\n  \"isEnabled\": true,\n  \"isEnabledNotManaged\": false,\n  \"noWakeups\": false,\n  \"notificationSendState\": \"<string>\",\n  \"useTls\": false,\n  \"responseTimeout\": 10,\n  \"selectedGroups\": [\n    1,\n    3,\n    4,\n    5\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "2facc664-5f72-4f2a-96c0-c36121b84b2d",
+              "name": "Invalid credentials",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "notification-configs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "JWTAuthorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Notify my application\",\n  \"urlString\": \"192.168.3.10/myApi\",\n  \"description\": \"Sends switch event data to my application.\",\n  \"isEnabled\": true,\n  \"isEnabledNotManaged\": false,\n  \"noWakeups\": false,\n  \"notificationSendState\": \"<string>\",\n  \"useTls\": false,\n  \"responseTimeout\": 10,\n  \"selectedGroups\": [\n    1,\n    3,\n    4,\n    5\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "78520c9c-c2b6-42ce-b9fd-3936b0051881",
+              "name": "A notification with this name already exists",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "notification-configs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "JWTAuthorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Notify my application\",\n  \"urlString\": \"192.168.3.10/myApi\",\n  \"description\": \"Sends switch event data to my application.\",\n  \"isEnabled\": true,\n  \"isEnabledNotManaged\": false,\n  \"noWakeups\": false,\n  \"notificationSendState\": \"<string>\",\n  \"useTls\": false,\n  \"responseTimeout\": 10,\n  \"selectedGroups\": [\n    1,\n    3,\n    4,\n    5\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c7a0b154-2767-4364-827b-1a1dc6643213",
+          "name": "Update notification parameters.",
+          "request": {
+            "name": "Update notification parameters.",
+            "description": {
+              "content": "For detailed configuration of notifications.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "notification-configs",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<number>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "JWTAuthorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"urlString\": \"<string>\",\n  \"description\": \"<string>\",\n  \"isEnabled\": \"<boolean>\",\n  \"isEnabledNotManaged\": \"<boolean>\",\n  \"noWakeups\": \"<boolean>\",\n  \"notificationSendState\": \"<string>\",\n  \"useTls\": \"<boolean>\",\n  \"responseTimeout\": \"<number>\",\n  \"selectedGroups\": [\n    \"<number>\",\n    \"<number>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "ee64557e-90fa-4df9-930e-51425ca99e1a",
+              "name": "successfully updated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "notification-configs",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<number>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "JWTAuthorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Notify my application\",\n  \"urlString\": \"192.168.3.10/myApi\",\n  \"description\": \"Sends switch event data to my application.\",\n  \"isEnabled\": true,\n  \"isEnabledNotManaged\": false,\n  \"noWakeups\": false,\n  \"notificationSendState\": \"<string>\",\n  \"useTls\": false,\n  \"responseTimeout\": 10,\n  \"selectedGroups\": [\n    1,\n    3,\n    4,\n    5\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 1,\n  \"name\": \"Notify my application\",\n  \"isEnabled\": true,\n  \"isEnabledNotManaged\": true,\n  \"noWakeups\": false,\n  \"notificationSendState\": \"STATE_OFF\",\n  \"authenticationMethod\": \"BASIC_AUTH\",\n  \"urlString\": \"192.168.3.10/myApi\",\n  \"useTls\": true,\n  \"responseTimeout\": 10,\n  \"description\": \"Sends switch event data to my application.\",\n  \"selectedGroups\": [\n    3,\n    4,\n    5\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "975934d0-87ea-4862-b949-cf33e83b39cd",
+              "name": "Bad Request<br>Maybe because of wrong parameter or parameter value.<br>Error message will be returned.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "notification-configs",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<number>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "JWTAuthorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Notify my application\",\n  \"urlString\": \"192.168.3.10/myApi\",\n  \"description\": \"Sends switch event data to my application.\",\n  \"isEnabled\": true,\n  \"isEnabledNotManaged\": false,\n  \"noWakeups\": false,\n  \"notificationSendState\": \"<string>\",\n  \"useTls\": false,\n  \"responseTimeout\": 10,\n  \"selectedGroups\": [\n    1,\n    3,\n    4,\n    5\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "4932aa6b-1228-43a5-8db1-e1c376edc95c",
+              "name": "invalid credentials",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "notification-configs",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<number>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "JWTAuthorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Notify my application\",\n  \"urlString\": \"192.168.3.10/myApi\",\n  \"description\": \"Sends switch event data to my application.\",\n  \"isEnabled\": true,\n  \"isEnabledNotManaged\": false,\n  \"noWakeups\": false,\n  \"notificationSendState\": \"<string>\",\n  \"useTls\": false,\n  \"responseTimeout\": 10,\n  \"selectedGroups\": [\n    1,\n    3,\n    4,\n    5\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "33dc35ef-b9f0-4448-92ea-0e8adb29bca7",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "notification-configs",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<number>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "JWTAuthorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Notify my application\",\n  \"urlString\": \"192.168.3.10/myApi\",\n  \"description\": \"Sends switch event data to my application.\",\n  \"isEnabled\": true,\n  \"isEnabledNotManaged\": false,\n  \"noWakeups\": false,\n  \"notificationSendState\": \"<string>\",\n  \"useTls\": false,\n  \"responseTimeout\": 10,\n  \"selectedGroups\": [\n    1,\n    3,\n    4,\n    5\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "53e3ac20-99e4-44cd-9677-9676ab29445b",
+          "name": "Delete notification.",
+          "request": {
+            "name": "Delete notification.",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "notification-configs",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<number>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "JWTAuthorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "bb1f2fea-77b0-48d2-a156-13ef7dc96ec4",
+              "name": "successfully deleted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "notification-configs",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<number>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "JWTAuthorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 815\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c17eacbe-d096-4e32-a955-56e2076683bf",
+              "name": "Bad Request<br>Maybe because the id is not found in database.<br>Error message will be returned.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "notification-configs",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<number>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "JWTAuthorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "b7d50a7b-c3c7-41be-91b2-bf6f3e1475ed",
+              "name": "invalid credentials",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "notification-configs",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<number>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "JWTAuthorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "64c1350b-baf0-4162-be6c-73e6a657a641",
+          "name": "Delete all notification.",
+          "request": {
+            "name": "Delete all notification.",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "notification-configs",
+                "deleteAll"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "DELETE",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "JWTAuthorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "de664d93-7d11-465d-905d-a7c359653224",
+              "name": "successfully deleted all notifications.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "notification-configs",
+                    "deleteAll"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "JWTAuthorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "36352dd0-87da-4acc-a740-3131cabea49f",
+              "name": "invalid credentials",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "notification-configs",
+                    "deleteAll"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "JWTAuthorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "http://",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "26f03bc7-03b0-4adb-8531-3067d1fb14c2",
+    "name": "Sensor Bridge API Version 2 Access Point Notification Config API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "<h3>steute sWave.NET Sensor Bridge API v2</h3><ul><li>Get status information of access points and switches.</li><li>Configure groups, device parameters and notifications.</li></ul>",
+      "type": "text/plain"
+    }
+  }
+}

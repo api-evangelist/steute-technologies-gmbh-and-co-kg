@@ -1,0 +1,1150 @@
+{
+  "item": [
+    {
+      "id": "529e6c2e-b33c-477e-aa70-9e62366993cb",
+      "name": "Switch Group",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "2a3bd7bc-5852-439b-96f0-2bc0ab482d2d",
+          "name": "Get list of configuration groups.",
+          "request": {
+            "name": "Get list of configuration groups.",
+            "description": {
+              "content": "Get a list of all configuration groups including their parameters.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "switch-groups"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "JWTAuthorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "b3d75419-8f88-4ae0-a7f3-5b8a50d216f8",
+              "name": "successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "switch-groups"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "JWTAuthorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": 1,\n    \"name\": \"Sensors in rack B5\",\n    \"wakeupHours\": 0,\n    \"wakeupMin\": 10,\n    \"cycletimeFactor125ms\": 23,\n    \"debouncetimeFactor125ms\": 24,\n    \"useCycletimeRF96\": true,\n    \"rwAngle\": 3,\n    \"rwLedDisabled\": false,\n    \"isManaged\": true,\n    \"isStandard\": true,\n    \"isInvisible\": false,\n    \"sdsThresholdDist\": 15,\n    \"sdsHysteresis\": 4,\n    \"sdsDebounce\": 5,\n    \"ldsThresholdDist\": 100,\n    \"ldsHysteresis\": 10,\n    \"ldsDebounce\": 15,\n    \"actuationNumber\": 2,\n    \"actuationTimeout\": 10,\n    \"description\": \"Tiling sensor configuration for rack B5 (chassis mounting)\"\n  },\n  {\n    \"id\": 1,\n    \"name\": \"Sensors in rack B5\",\n    \"wakeupHours\": 0,\n    \"wakeupMin\": 10,\n    \"cycletimeFactor125ms\": 23,\n    \"debouncetimeFactor125ms\": 24,\n    \"useCycletimeRF96\": true,\n    \"rwAngle\": 3,\n    \"rwLedDisabled\": false,\n    \"isManaged\": true,\n    \"isStandard\": true,\n    \"isInvisible\": false,\n    \"sdsThresholdDist\": 15,\n    \"sdsHysteresis\": 4,\n    \"sdsDebounce\": 5,\n    \"ldsThresholdDist\": 100,\n    \"ldsHysteresis\": 10,\n    \"ldsDebounce\": 15,\n    \"actuationNumber\": 2,\n    \"actuationTimeout\": 10,\n    \"description\": \"Tiling sensor configuration for rack B5 (chassis mounting)\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e8d009d0-17f5-4966-8b1c-b6c6fc1b630c",
+              "name": "invalid credentials",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "switch-groups"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "JWTAuthorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "69bb6723-5fbc-4c00-b706-b36421198d61",
+          "name": "Create a new configuration group.",
+          "request": {
+            "name": "Create a new configuration group.",
+            "description": {
+              "content": "Creates a new configuration group with default parameters. Only the group title has to be given.<br>(Use the PUT action for configuration.)",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "switch-groups"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "JWTAuthorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"description\": null,\n  \"wakeupHours\": 0,\n  \"wakeupMin\": 0,\n  \"cycletimeFactor125ms\": 8,\n  \"debouncetimeFactor125ms\": 8,\n  \"useCycletimeRF96\": false,\n  \"rwAngle\": 127,\n  \"rwLedDisabled\": false,\n  \"isManaged\": true\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "26f534dc-665f-418a-ac6b-d35c7821f3c7",
+              "name": "Switch group successfully created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "switch-groups"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "JWTAuthorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Sensors in rack B5\",\n  \"description\": \"Tiling sensor configuration for rack B5 (chassis mounting)\",\n  \"wakeupHours\": 0,\n  \"wakeupMin\": 10,\n  \"cycletimeFactor125ms\": 24,\n  \"debouncetimeFactor125ms\": 24,\n  \"useCycletimeRF96\": true,\n  \"rwAngle\": 3,\n  \"rwLedDisabled\": false,\n  \"isManaged\": true\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 1,\n  \"name\": \"Sensors in rack B5\",\n  \"wakeupHours\": 0,\n  \"wakeupMin\": 10,\n  \"cycletimeFactor125ms\": 23,\n  \"debouncetimeFactor125ms\": 24,\n  \"useCycletimeRF96\": true,\n  \"rwAngle\": 3,\n  \"rwLedDisabled\": false,\n  \"isManaged\": true,\n  \"isStandard\": true,\n  \"isInvisible\": false,\n  \"sdsThresholdDist\": 15,\n  \"sdsHysteresis\": 4,\n  \"sdsDebounce\": 5,\n  \"ldsThresholdDist\": 100,\n  \"ldsHysteresis\": 10,\n  \"ldsDebounce\": 15,\n  \"actuationNumber\": 2,\n  \"actuationTimeout\": 10,\n  \"description\": \"Tiling sensor configuration for rack B5 (chassis mounting)\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "24aa9ecc-f555-401b-8335-c28a0f244812",
+              "name": "Invalid data",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "switch-groups"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "JWTAuthorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Sensors in rack B5\",\n  \"description\": \"Tiling sensor configuration for rack B5 (chassis mounting)\",\n  \"wakeupHours\": 0,\n  \"wakeupMin\": 10,\n  \"cycletimeFactor125ms\": 24,\n  \"debouncetimeFactor125ms\": 24,\n  \"useCycletimeRF96\": true,\n  \"rwAngle\": 3,\n  \"rwLedDisabled\": false,\n  \"isManaged\": true\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "4a9e247e-bc98-45eb-9f91-773f5fdd2f52",
+              "name": "invalid credentials",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "switch-groups"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "JWTAuthorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Sensors in rack B5\",\n  \"description\": \"Tiling sensor configuration for rack B5 (chassis mounting)\",\n  \"wakeupHours\": 0,\n  \"wakeupMin\": 10,\n  \"cycletimeFactor125ms\": 24,\n  \"debouncetimeFactor125ms\": 24,\n  \"useCycletimeRF96\": true,\n  \"rwAngle\": 3,\n  \"rwLedDisabled\": false,\n  \"isManaged\": true\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "8513717e-36b8-48bd-b50c-0af1480f3bc3",
+              "name": "A group with this name already exists",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "switch-groups"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "JWTAuthorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Sensors in rack B5\",\n  \"description\": \"Tiling sensor configuration for rack B5 (chassis mounting)\",\n  \"wakeupHours\": 0,\n  \"wakeupMin\": 10,\n  \"cycletimeFactor125ms\": 24,\n  \"debouncetimeFactor125ms\": 24,\n  \"useCycletimeRF96\": true,\n  \"rwAngle\": 3,\n  \"rwLedDisabled\": false,\n  \"isManaged\": true\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2e0f0125-c97d-46ba-8fc1-68055cc76db5",
+          "name": "Update configuration group parameters.",
+          "request": {
+            "name": "Update configuration group parameters.",
+            "description": {
+              "content": "Update configuration group settings.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "switch-groups",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<number>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "JWTAuthorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"wakeupHours\": \"<number>\",\n  \"wakeupMin\": \"<number>\",\n  \"cycletimeFactor125ms\": \"<number>\",\n  \"debouncetimeFactor125ms\": \"<number>\",\n  \"useCycletimeRF96\": \"<boolean>\",\n  \"rwAngle\": \"<number>\",\n  \"rwLedDisabled\": \"<boolean>\",\n  \"isManaged\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "2ee8a6ed-1998-4aea-85a1-1b0dcf7c303a",
+              "name": "Switch Group successfully updated ",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "switch-groups",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<number>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "JWTAuthorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Sensors in rack B5\",\n  \"description\": \"Tiling sensor configuration for rack B5 (chassis mounting)\",\n  \"wakeupHours\": 0,\n  \"wakeupMin\": 10,\n  \"cycletimeFactor125ms\": 24,\n  \"debouncetimeFactor125ms\": 24,\n  \"useCycletimeRF96\": true,\n  \"rwAngle\": 3,\n  \"rwLedDisabled\": false,\n  \"isManaged\": true\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 1,\n  \"name\": \"Sensors in rack B5\",\n  \"wakeupHours\": 0,\n  \"wakeupMin\": 10,\n  \"cycletimeFactor125ms\": 23,\n  \"debouncetimeFactor125ms\": 24,\n  \"useCycletimeRF96\": true,\n  \"rwAngle\": 3,\n  \"rwLedDisabled\": false,\n  \"isManaged\": true,\n  \"isStandard\": true,\n  \"isInvisible\": false,\n  \"sdsThresholdDist\": 15,\n  \"sdsHysteresis\": 4,\n  \"sdsDebounce\": 5,\n  \"ldsThresholdDist\": 100,\n  \"ldsHysteresis\": 10,\n  \"ldsDebounce\": 15,\n  \"actuationNumber\": 2,\n  \"actuationTimeout\": 10,\n  \"description\": \"Tiling sensor configuration for rack B5 (chassis mounting)\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b4470c26-3114-4107-ba97-c6e311f00dc2",
+              "name": "invalid credentials",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "switch-groups",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<number>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "JWTAuthorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Sensors in rack B5\",\n  \"description\": \"Tiling sensor configuration for rack B5 (chassis mounting)\",\n  \"wakeupHours\": 0,\n  \"wakeupMin\": 10,\n  \"cycletimeFactor125ms\": 24,\n  \"debouncetimeFactor125ms\": 24,\n  \"useCycletimeRF96\": true,\n  \"rwAngle\": 3,\n  \"rwLedDisabled\": false,\n  \"isManaged\": true\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "c553bc9e-8bec-48f1-9772-e33aab966979",
+              "name": "There is no switch group with the given id ",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "switch-groups",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<number>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "JWTAuthorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Sensors in rack B5\",\n  \"description\": \"Tiling sensor configuration for rack B5 (chassis mounting)\",\n  \"wakeupHours\": 0,\n  \"wakeupMin\": 10,\n  \"cycletimeFactor125ms\": 24,\n  \"debouncetimeFactor125ms\": 24,\n  \"useCycletimeRF96\": true,\n  \"rwAngle\": 3,\n  \"rwLedDisabled\": false,\n  \"isManaged\": true\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "f157d087-6068-4fa1-8fa7-e241c5029e0a",
+              "name": "SwitchGroup could not be updated with the given data. ",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "switch-groups",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<number>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "JWTAuthorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Sensors in rack B5\",\n  \"description\": \"Tiling sensor configuration for rack B5 (chassis mounting)\",\n  \"wakeupHours\": 0,\n  \"wakeupMin\": 10,\n  \"cycletimeFactor125ms\": 24,\n  \"debouncetimeFactor125ms\": 24,\n  \"useCycletimeRF96\": true,\n  \"rwAngle\": 3,\n  \"rwLedDisabled\": false,\n  \"isManaged\": true\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f3d58c1a-47f8-4572-abc7-f427addc0ce0",
+          "name": "Delete configuration group.",
+          "request": {
+            "name": "Delete configuration group.",
+            "description": {
+              "content": "There may be switches, assigned to this group. To prevent them from being unassigned after the group was deleted, an alternative group id has to be provided.<br>  All switches will be re-assigned to this alternative group.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "switch-groups",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "idOfNewGroup",
+                  "value": "<number>",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<number>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "JWTAuthorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "8b55f918-7109-47d3-a37f-fd35c8e397c6",
+              "name": "successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "switch-groups",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "idOfNewGroup",
+                      "value": "<number>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<number>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "JWTAuthorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "f7df0ab2-001f-4335-8dc2-80fce927c8be",
+              "name": "Wrong parameter. E.g. one of the group ids does not match.<br>Error message will be returned.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "switch-groups",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "idOfNewGroup",
+                      "value": "<number>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<number>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "JWTAuthorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "38cf5919-6da8-4b32-a3bb-355eee1cadba",
+              "name": "invalid credentials",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "switch-groups",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "idOfNewGroup",
+                      "value": "<number>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<number>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "JWTAuthorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "972ea89d-bf98-4563-b3c0-430462e9b505",
+          "name": "Deletes all configuration groups.",
+          "request": {
+            "name": "Deletes all configuration groups.",
+            "description": {
+              "content": "All switches will be re-assigned to the default group.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "switch-groups",
+                "deleteAll"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "DELETE",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "JWTAuthorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "1caa7ebe-297b-408e-a6a1-817ce0434dfe",
+              "name": "successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "switch-groups",
+                    "deleteAll"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "JWTAuthorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "61d539be-c0a2-43f9-af54-2833bd5cd569",
+              "name": "Something went wrong, delete could not be performed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "switch-groups",
+                    "deleteAll"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "JWTAuthorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "c002d6d9-671e-4fe8-8719-3ab476671af2",
+              "name": "invalid credentials",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "switch-groups",
+                    "deleteAll"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "JWTAuthorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "http://",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "4032e360-22e4-4659-87b6-bf81159f6696",
+    "name": "Sensor Bridge API Version 2 Access Point Switch Group API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "<h3>steute sWave.NET Sensor Bridge API v2</h3><ul><li>Get status information of access points and switches.</li><li>Configure groups, device parameters and notifications.</li></ul>",
+      "type": "text/plain"
+    }
+  }
+}

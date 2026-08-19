@@ -1,0 +1,130 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Sensor Bridge API Version 2 Access Point Switch Group API",
+    "version": "2.4.1 [d4919ee69]"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Switch Group",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get list of configuration groups.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://api/v2/switch-groups",
+            "auth": {
+              "type": "apikey",
+              "key": "JWTAuthorization",
+              "value": "{{JWTAuthorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Get a list of all configuration groups including their parameters."
+        },
+        {
+          "info": {
+            "name": "Create a new configuration group.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://api/v2/switch-groups",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "JWTAuthorization",
+              "value": "{{JWTAuthorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Creates a new configuration group with default parameters. Only the group title has to be given.<br>(Use the PUT action for configuration.)"
+        },
+        {
+          "info": {
+            "name": "Update configuration group parameters.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "http://api/v2/switch-groups/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "JWTAuthorization",
+              "value": "{{JWTAuthorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Update configuration group settings."
+        },
+        {
+          "info": {
+            "name": "Delete configuration group.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "http://api/v2/switch-groups/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "idOfNewGroup",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "JWTAuthorization",
+              "value": "{{JWTAuthorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "There may be switches, assigned to this group. To prevent them from being unassigned after the group was deleted, an alternative group id has to be provided.<br>  All switches will be re-assigned to this alternative group."
+        },
+        {
+          "info": {
+            "name": "Deletes all configuration groups.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "http://api/v2/switch-groups/deleteAll",
+            "auth": {
+              "type": "apikey",
+              "key": "JWTAuthorization",
+              "value": "{{JWTAuthorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "All switches will be re-assigned to the default group."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

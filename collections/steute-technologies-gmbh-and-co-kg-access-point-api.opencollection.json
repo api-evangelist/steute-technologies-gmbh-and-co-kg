@@ -1,0 +1,141 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Sensor Bridge API Version 2 Access Point API",
+    "version": "2.4.1 [d4919ee69]"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Access Point",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Deletes the access point with the provided device id. It has to be offline!",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "http://api/v2/access-points/delete/:deviceId",
+            "params": [
+              {
+                "name": "deviceId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "JWTAuthorization",
+              "value": "{{JWTAuthorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Deletes the access point with the provided device id. It has to be offline!"
+        },
+        {
+          "info": {
+            "name": "Deletes all offline access points. Accesspoints, which are online, will not be deleted",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "http://api/v2/access-points/deleteAll",
+            "auth": {
+              "type": "apikey",
+              "key": "JWTAuthorization",
+              "value": "{{JWTAuthorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Deletes all offline access points. Accesspoints, which are online, will not be deleted"
+        },
+        {
+          "info": {
+            "name": "Returns a list of access points",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://api/v2/access-points",
+            "auth": {
+              "type": "apikey",
+              "key": "JWTAuthorization",
+              "value": "{{JWTAuthorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Get a list of all access points attached to the sensor bridge, including status. Without the configuration informations."
+        },
+        {
+          "info": {
+            "name": "Get warning messages of one access point",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://api/v2/access-points/warnings/:deviceId",
+            "params": [
+              {
+                "name": "deviceId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "JWTAuthorization",
+              "value": "{{JWTAuthorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Get a list of warning messages received from a particular access point."
+        },
+        {
+          "info": {
+            "name": "Delete all warning messages of one access point",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "http://api/v2/access-points/deleteWarnings/:deviceId",
+            "params": [
+              {
+                "name": "deviceId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "JWTAuthorization",
+              "value": "{{JWTAuthorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Delete all warning messages from a particular access point."
+        },
+        {
+          "info": {
+            "name": "Delete all warning messages of all access points",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "http://api/v2/access-points/deleteAllWarnings",
+            "auth": {
+              "type": "apikey",
+              "key": "JWTAuthorization",
+              "value": "{{JWTAuthorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Deletes all warning messages of all access points."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

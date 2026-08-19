@@ -1,0 +1,83 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Sensor Bridge API Version 2 Access Point History API",
+    "version": "2.4.1 [d4919ee69]"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "History",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Delete all logs.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "http://api/v2/history/deleteAll",
+            "auth": {
+              "type": "apikey",
+              "key": "JWTAuthorization",
+              "value": "{{JWTAuthorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Delete all logs from the database."
+        },
+        {
+          "info": {
+            "name": "Deletes all logs with specific device id.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "http://api/v2/history/delete/:deviceId",
+            "params": [
+              {
+                "name": "deviceId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "JWTAuthorization",
+              "value": "{{JWTAuthorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Deletes all logs that have been send by the device with the provided id."
+        },
+        {
+          "info": {
+            "name": "Request switch event logs.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://api/v2/history/:deviceId",
+            "params": [
+              {
+                "name": "deviceId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "JWTAuthorization",
+              "value": "{{JWTAuthorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Get a list of the last 100 events received from a particular switch.<br>Parameter deviceId has to be 6 chars, hexadecimal."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

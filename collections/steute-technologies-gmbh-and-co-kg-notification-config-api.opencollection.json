@@ -1,0 +1,125 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Sensor Bridge API Version 2 Access Point Notification Config API",
+    "version": "2.4.1 [d4919ee69]"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Notification Config",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get list of notifications.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://api/v2/notification-configs",
+            "auth": {
+              "type": "apikey",
+              "key": "JWTAuthorization",
+              "value": "{{JWTAuthorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Get a list of all notifications configured in the Sensor Bridge. Includes all configured options."
+        },
+        {
+          "info": {
+            "name": "Create a new notification.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://api/v2/notification-configs",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "JWTAuthorization",
+              "value": "{{JWTAuthorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Creates a new notification. Name and URL have to be given.<br>Detailed configuration may be done via PUT action.<br>urlString must be valid and must not include \"http(s)://\"<br>Notification will be enabled by default."
+        },
+        {
+          "info": {
+            "name": "Update notification parameters.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "http://api/v2/notification-configs/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "JWTAuthorization",
+              "value": "{{JWTAuthorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "For detailed configuration of notifications."
+        },
+        {
+          "info": {
+            "name": "Delete notification.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "http://api/v2/notification-configs/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "JWTAuthorization",
+              "value": "{{JWTAuthorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Delete notification."
+        },
+        {
+          "info": {
+            "name": "Delete all notification.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "http://api/v2/notification-configs/deleteAll",
+            "auth": {
+              "type": "apikey",
+              "key": "JWTAuthorization",
+              "value": "{{JWTAuthorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Delete all notification."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

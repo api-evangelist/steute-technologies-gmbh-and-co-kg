@@ -1,0 +1,1044 @@
+{
+  "item": [
+    {
+      "id": "72776cb2-371d-46d8-9343-effd60c66e7a",
+      "name": "Switch",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "07a08537-ca28-4fb8-8dd1-202a0c6b321d",
+          "name": "Get list of switches and their configurations.",
+          "request": {
+            "name": "Get list of switches and their configurations.",
+            "description": {
+              "content": "Get a list of all switches from the database. Includes switch configuration data.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "switches"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "JWTAuthorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "7f99a37a-4316-42be-9903-744bd92453ed",
+              "name": "successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "switches"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "JWTAuthorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"deviceId\": \"00311B\",\n    \"deviceType\": 10,\n    \"groupId\": 1,\n    \"description\": \"SWRW-H02-R01-001\",\n    \"parameterOne\": \"1.131.36\",\n    \"parameterTwo\": \"cable ties\",\n    \"rx4sState1\": 1,\n    \"rx4sState2\": 0,\n    \"rx4sState3\": 1,\n    \"rx4sState4\": 0,\n    \"rx4sActuateMode\": 0,\n    \"makdText1\": \"I am button 1\",\n    \"makdText2\": \"I am button 2\",\n    \"makdText3\": \"I am button 3\",\n    \"makdWakeupText\": \"I am the wakeup text\",\n    \"makdDisplayTime\": 5,\n    \"missingWakeup\": false,\n    \"deviceTypeName\": \"MAKD\",\n    \"swVersion\": \"2.01\",\n    \"swVersionTimestamp\": 1640118081,\n    \"updateState\": 0,\n    \"broadcastCount\": 2100,\n    \"activity\": 450,\n    \"telegramSend\": 2100,\n    \"switchEventData\": 1,\n    \"switchEventDataTimestamp\": 1640118081,\n    \"switchEventFlag\": 64\n  },\n  {\n    \"deviceId\": \"00311B\",\n    \"deviceType\": 10,\n    \"groupId\": 1,\n    \"description\": \"SWRW-H02-R01-001\",\n    \"parameterOne\": \"1.131.36\",\n    \"parameterTwo\": \"cable ties\",\n    \"rx4sState1\": 1,\n    \"rx4sState2\": 0,\n    \"rx4sState3\": 1,\n    \"rx4sState4\": 0,\n    \"rx4sActuateMode\": 0,\n    \"makdText1\": \"I am button 1\",\n    \"makdText2\": \"I am button 2\",\n    \"makdText3\": \"I am button 3\",\n    \"makdWakeupText\": \"I am the wakeup text\",\n    \"makdDisplayTime\": 5,\n    \"missingWakeup\": false,\n    \"deviceTypeName\": \"MAKD\",\n    \"swVersion\": \"2.01\",\n    \"swVersionTimestamp\": 1640118081,\n    \"updateState\": 0,\n    \"broadcastCount\": 2100,\n    \"activity\": 450,\n    \"telegramSend\": 2100,\n    \"switchEventData\": 1,\n    \"switchEventDataTimestamp\": 1640118081,\n    \"switchEventFlag\": 64\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "726ab8d4-9fae-46d5-8382-7d8226fbdf05",
+              "name": "invalid credentials",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "switches"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "JWTAuthorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b97be205-5615-4d56-a008-5e61f8220470",
+          "name": "Get a switch and its configuration.",
+          "request": {
+            "name": "Get a switch and its configuration.",
+            "description": {
+              "content": "Get a switch from the database. Includes switch configuration data.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "switches",
+                ":deviceId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "deviceId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "JWTAuthorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "75eee752-0980-48fa-98f7-922f6666623b",
+              "name": "successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "switches",
+                    ":deviceId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "deviceId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "JWTAuthorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"deviceId\": \"00311B\",\n  \"deviceType\": 10,\n  \"groupId\": 1,\n  \"description\": \"SWRW-H02-R01-001\",\n  \"parameterOne\": \"1.131.36\",\n  \"parameterTwo\": \"cable ties\",\n  \"rx4sState1\": 1,\n  \"rx4sState2\": 0,\n  \"rx4sState3\": 1,\n  \"rx4sState4\": 0,\n  \"rx4sActuateMode\": 0,\n  \"makdText1\": \"I am button 1\",\n  \"makdText2\": \"I am button 2\",\n  \"makdText3\": \"I am button 3\",\n  \"makdWakeupText\": \"I am the wakeup text\",\n  \"makdDisplayTime\": 5,\n  \"ip\": \"192.168.5.6\",\n  \"rssi\": 50,\n  \"battVoltage\": 1600,\n  \"battState\": 75,\n  \"missingWakeup\": false,\n  \"deviceTypeName\": \"MAKD\",\n  \"swVersion\": \"2.01\",\n  \"swVersionTimestamp\": 1640118081,\n  \"updateState\": 0,\n  \"broadcastCount\": 2100,\n  \"activity\": 450,\n  \"telegramSend\": 2100,\n  \"switchEventData\": 1,\n  \"switchEventDataTimestamp\": 1640118081,\n  \"switchEventFlag\": 64,\n  \"switchChangeCount\": 0\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "096c7134-145d-44bd-8654-3a487a7e23fc",
+              "name": "invalid credentials",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "switches",
+                    ":deviceId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "deviceId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "JWTAuthorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "74eed1b4-b91c-44f2-93a3-46d6471ff0c4",
+              "name": "device id not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "switches",
+                    ":deviceId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "deviceId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "JWTAuthorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "19e72d33-bdbc-45e8-8a5d-49ee9a38974b",
+          "name": "Delete a switch.",
+          "request": {
+            "name": "Delete a switch.",
+            "description": {
+              "content": "Delete a switch from the database.<br>After deletion, the switch may no longer be an active part of the sWave.NET system. (Depends on default group settings.)",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "switches",
+                ":deviceId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "deviceId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "JWTAuthorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "e1b1ff13-ca8d-46a4-a109-96e32ff79428",
+              "name": "successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "switches",
+                    ":deviceId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "deviceId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "JWTAuthorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "426c9acf-db67-49d3-b28d-ef8684a24ea5",
+              "name": "deviceId has to be of length 6",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "switches",
+                    ":deviceId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "deviceId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "JWTAuthorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "b5f300f3-a4ee-459b-8104-6848d1282c4b",
+              "name": "invalid credentials",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "switches",
+                    ":deviceId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "deviceId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "JWTAuthorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "e7e5d340-2d0f-4f57-9651-dc67af1cc91c",
+              "name": "No switch with this deviceId.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "switches",
+                    ":deviceId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "deviceId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "JWTAuthorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3ee16239-ccff-4c9c-a683-585a7de78120",
+          "name": "Update switch configuration.",
+          "request": {
+            "name": "Update switch configuration.",
+            "description": {
+              "content": "Update group assignment and parameters for one switch.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "switches",
+                ":deviceId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "deviceId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "JWTAuthorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"groupId\": \"<number>\",\n  \"description\": \"<string>\",\n  \"parameterOne\": \"<string>\",\n  \"parameterTwo\": \"<string>\",\n  \"rx4sState1\": \"<number>\",\n  \"rx4sState2\": \"<number>\",\n  \"rx4sState3\": \"<number>\",\n  \"rx4sState4\": \"<number>\",\n  \"rx4sActuateMode\": \"<number>\",\n  \"makdText1\": \"<string>\",\n  \"makdText2\": \"<string>\",\n  \"makdText3\": \"<string>\",\n  \"makdWakeupText\": \"<string>\",\n  \"makdDisplayTime\": \"<number>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "21bbc74a-703f-4567-bda2-59fe1059e875",
+              "name": "successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "switches",
+                    ":deviceId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "deviceId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "JWTAuthorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"groupId\": 1,\n  \"description\": \"SWRW-H02-R01-001\",\n  \"parameterOne\": \"1.131.36\",\n  \"parameterTwo\": \"cable ties\",\n  \"rx4sState1\": 1,\n  \"rx4sState2\": 0,\n  \"rx4sState3\": 1,\n  \"rx4sState4\": 0,\n  \"rx4sActuateMode\": 0,\n  \"makdText1\": \"I am button 1\",\n  \"makdText2\": \"I am button 2\",\n  \"makdText3\": \"I am button 3\",\n  \"makdWakeupText\": \"I am the wakeup text\",\n  \"makdDisplayTime\": 5\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"deviceId\": \"00311B\",\n  \"deviceType\": 10,\n  \"groupId\": 1,\n  \"description\": \"SWRW-H02-R01-001\",\n  \"parameterOne\": \"1.131.36\",\n  \"parameterTwo\": \"cable ties\",\n  \"rx4sState1\": 1,\n  \"rx4sState2\": 0,\n  \"rx4sState3\": 1,\n  \"rx4sState4\": 0,\n  \"rx4sActuateMode\": 0,\n  \"makdText1\": \"I am button 1\",\n  \"makdText2\": \"I am button 2\",\n  \"makdText3\": \"I am button 3\",\n  \"makdWakeupText\": \"I am the wakeup text\",\n  \"makdDisplayTime\": 5,\n  \"ip\": \"192.168.5.6\",\n  \"rssi\": 50,\n  \"battVoltage\": 1600,\n  \"battState\": 75,\n  \"missingWakeup\": false,\n  \"deviceTypeName\": \"MAKD\",\n  \"swVersion\": \"2.01\",\n  \"swVersionTimestamp\": 1640118081,\n  \"updateState\": 0,\n  \"broadcastCount\": 2100,\n  \"activity\": 450,\n  \"telegramSend\": 2100,\n  \"switchEventData\": 1,\n  \"switchEventDataTimestamp\": 1640118081,\n  \"switchEventFlag\": 64,\n  \"switchChangeCount\": 0\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bdefe11c-278a-4df2-927a-3856d4b4c3c8",
+              "name": "Invalid Request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "switches",
+                    ":deviceId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "deviceId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "JWTAuthorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"groupId\": 1,\n  \"description\": \"SWRW-H02-R01-001\",\n  \"parameterOne\": \"1.131.36\",\n  \"parameterTwo\": \"cable ties\",\n  \"rx4sState1\": 1,\n  \"rx4sState2\": 0,\n  \"rx4sState3\": 1,\n  \"rx4sState4\": 0,\n  \"rx4sActuateMode\": 0,\n  \"makdText1\": \"I am button 1\",\n  \"makdText2\": \"I am button 2\",\n  \"makdText3\": \"I am button 3\",\n  \"makdWakeupText\": \"I am the wakeup text\",\n  \"makdDisplayTime\": 5\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "2cbd901e-b416-4d09-a117-7fae4252e79a",
+              "name": "invalid credentials",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "switches",
+                    ":deviceId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "deviceId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "JWTAuthorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"groupId\": 1,\n  \"description\": \"SWRW-H02-R01-001\",\n  \"parameterOne\": \"1.131.36\",\n  \"parameterTwo\": \"cable ties\",\n  \"rx4sState1\": 1,\n  \"rx4sState2\": 0,\n  \"rx4sState3\": 1,\n  \"rx4sState4\": 0,\n  \"rx4sActuateMode\": 0,\n  \"makdText1\": \"I am button 1\",\n  \"makdText2\": \"I am button 2\",\n  \"makdText3\": \"I am button 3\",\n  \"makdWakeupText\": \"I am the wakeup text\",\n  \"makdDisplayTime\": 5\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "57502778-6d11-43a6-aa20-97da65946953",
+              "name": "No switch with this deviceId.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "switches",
+                    ":deviceId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "deviceId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "JWTAuthorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"groupId\": 1,\n  \"description\": \"SWRW-H02-R01-001\",\n  \"parameterOne\": \"1.131.36\",\n  \"parameterTwo\": \"cable ties\",\n  \"rx4sState1\": 1,\n  \"rx4sState2\": 0,\n  \"rx4sState3\": 1,\n  \"rx4sState4\": 0,\n  \"rx4sActuateMode\": 0,\n  \"makdText1\": \"I am button 1\",\n  \"makdText2\": \"I am button 2\",\n  \"makdText3\": \"I am button 3\",\n  \"makdWakeupText\": \"I am the wakeup text\",\n  \"makdDisplayTime\": 5\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "747c14c2-e219-4028-a7d4-60f78a2a569b",
+          "name": "Delete all switches.",
+          "request": {
+            "name": "Delete all switches.",
+            "description": {
+              "content": "Delete all switches from the database.<br>After deletion, the switch may no longer be an active part of the sWave.NET system. (Depends on default group settings.)",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "switches",
+                "deleteAll"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "DELETE",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "JWTAuthorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "512990a8-3c78-4070-aabb-1ba083fdd0b4",
+              "name": "successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "switches",
+                    "deleteAll"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "JWTAuthorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "http://",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "2387712a-db35-4af4-9efe-047cf6da14fc",
+    "name": "Sensor Bridge API Version 2 Access Point Switch API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "<h3>steute sWave.NET Sensor Bridge API v2</h3><ul><li>Get status information of access points and switches.</li><li>Configure groups, device parameters and notifications.</li></ul>",
+      "type": "text/plain"
+    }
+  }
+}
