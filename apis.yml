@@ -69,6 +69,8 @@ apis:
   humanURL: https://docs.nexy.net/docs/sensor-bridge/rest-api/
   baseURL: http://192.168.3.32/api/v2
   tags:
+  - Authentication
+  tags_raw:
   - Auth
   properties:
   - type: OpenAPI
