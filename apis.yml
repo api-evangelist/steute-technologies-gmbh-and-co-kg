@@ -188,6 +188,9 @@ x-enrichment:
   artifacts_added: 18
   pass: local-v1
 common:
+- type: CapabilityMap
+  url: capabilities/steute-technologies-gmbh-and-co-kg-capability-edges.yml
+  name: steute Technologies GmbH & Co. KG Business Capability Map
 - type: Overlay
   url: overlays/steute-technologies-gmbh-and-co-kg-sensor-bridge-overlay.yaml
 - type: DomainSecurity

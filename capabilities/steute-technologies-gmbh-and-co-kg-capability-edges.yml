@@ -1,0 +1,26 @@
+slug: steute-technologies-gmbh-and-co-kg
+provider: steute Technologies GmbH & Co. KG
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Manufacturing & Industrial
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 1
+edges:
+- tag: Access Point
+  spec_file: steute-technologies-gmbh-and-co-kg-access-point-api-openapi.yml
+  capability_id: BC-1010.60
+  capability_id_l1: BC-1010
+  capability_name: Manufacturing Data Acquisition Management
+  confidence: 0.7
+  evidence: '''Get status information of access points and switches'' ; GET /api/v2/access-points/warnings/{deviceId}
+    ''Get warning messages of one access point'''
+  reason: 'Industrial wireless sensor/switch network gateway management: inventory and warning status
+    of access points that collect sensor data on the shop floor. Best fits manufacturing data acquisition
+    (OT device management); some ambiguity vs generic IT infrastructure.'
