@@ -1,7 +1,13 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
   title: Sensor Bridge API Version 2 Access Point API
-  description: <h3>steute sWave.NET Sensor Bridge API v2</h3><ul><li>Get status information of access points and switches.</li><li>Configure groups, device parameters and notifications.</li></ul>
+  description: 'steute sWave.NET Sensor Bridge API v2
+
+
+    Get status information of access points and switches.
+
+
+    Configure groups, device parameters and notifications.'
   version: 2.4.1 [d4919ee69]
   contact: {}
 servers:
@@ -34,7 +40,7 @@ paths:
   /api/v2/access-points/deleteAll:
     delete:
       operationId: AccessPointController_deleteAll
-      summary: Deletes all offline access points. Accesspoints, which are online, will not be deleted
+      summary: Deletes all offline access points.
       parameters: []
       responses:
         '200':
@@ -151,68 +157,6 @@ paths:
       - bearer: []
 components:
   schemas:
-    AccessPointDto:
-      type: object
-      properties:
-        ip:
-          type: string
-          example: 192.168.3.32
-          description: The IP-address of the access point.
-        deviceId:
-          type: string
-          example: 00311B
-          description: Unique identifier of the access point. (Device ID)
-        status:
-          type: number
-          description: 'Access point status info: 1 = OK, 2 = warning, 3 = offline'
-          enum:
-          - 1
-          - 2
-          - 3
-        customerId:
-          type: string
-          example: AccessPoint1
-          description: Access Point ID, assigned by the customer.
-        comment:
-          type: string
-          nullable: true
-          example: Mounted in hall 1, lower floor
-          description: Comment provided by the user, stored in Sensor Bridge only.
-        softwareVersion:
-          type: string
-          nullable: true
-          example: 02.04-DC
-          description: Access point software version.
-        broadcastId:
-          type: number
-          example: 17
-          description: Radio broadcast timing id. Must be different on each access point.
-        rfType:
-          type: number
-          example: 1
-          description: 'Frequency band: 1 = SW868, 2 = SW915, 3 = RU868, 4 = JP922, 5 = SW917'
-        canEncrypt:
-          type: boolean
-          example: true
-          description: Encryyption capable device
-        timestamp:
-          type: number
-          example: 1640991600
-          description: Timestamp, written when AP goes online/offline
-        apFirmwareVersion:
-          type: string
-          nullable: true
-          example: '07010203'
-          description: Access point firmware version
-      required:
-      - ip
-      - deviceId
-      - status
-      - customerId
-      - broadcastId
-      - rfType
-      - canEncrypt
-      - timestamp
     AccessPointWarningDto:
       type: object
       properties:
@@ -236,6 +180,71 @@ components:
       - timestamp
       - text
       - accessPointDeviceId
+    AccessPointDto:
+      type: object
+      properties:
+        ip:
+          type: string
+          example: 192.168.3.32
+          description: The IP-address of the access point.
+        deviceId:
+          type: string
+          example: 00311B
+          description: Unique identifier of the access point. (Device ID)
+        status:
+          type: number
+          description: 'Access point status info: 1 = OK, 2 = warning, 3 = offline'
+          enum:
+          - 1
+          - 2
+          - 3
+        customerId:
+          type: string
+          example: AccessPoint1
+          description: Access Point ID, assigned by the customer.
+        comment:
+          type:
+          - string
+          - 'null'
+          example: Mounted in hall 1, lower floor
+          description: Comment provided by the user, stored in Sensor Bridge only.
+        softwareVersion:
+          type:
+          - string
+          - 'null'
+          example: 02.04-DC
+          description: Access point software version.
+        broadcastId:
+          type: number
+          example: 17
+          description: Radio broadcast timing id. Must be different on each access point.
+        rfType:
+          type: number
+          example: 1
+          description: 'Frequency band: 1 = SW868, 2 = SW915, 3 = RU868, 4 = JP922, 5 = SW917'
+        canEncrypt:
+          type: boolean
+          example: true
+          description: Encryyption capable device
+        timestamp:
+          type: number
+          example: 1640991600
+          description: Timestamp, written when AP goes online/offline
+        apFirmwareVersion:
+          type:
+          - string
+          - 'null'
+          example: '07010203'
+          description: Access point firmware version
+      required:
+      - ip
+      - deviceId
+      - status
+      - customerId
+      - broadcastId
+      - rfType
+      - canEncrypt
+      - timestamp
   securitySchemes:
     bearer:
       type: apiKey

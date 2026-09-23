@@ -1,13 +1,7 @@
 {
   "provider": "steute-technologies-gmbh-and-co-kg",
   "sources": [
-    "steute-technologies-gmbh-and-co-kg-access-point-api-openapi.yml",
-    "steute-technologies-gmbh-and-co-kg-auth-api-openapi.yml",
-    "steute-technologies-gmbh-and-co-kg-history-api-openapi.yml",
-    "steute-technologies-gmbh-and-co-kg-notification-config-api-openapi.yml",
-    "steute-technologies-gmbh-and-co-kg-switch-api-openapi.yml",
-    "steute-technologies-gmbh-and-co-kg-switch-group-api-openapi.yml",
-    "steute-technologies-gmbh-and-co-kg-system-status-api-openapi.yml"
+    "_original/steute-technologies-gmbh-and-co-kg-sensor-bridge-openapi-original.json"
   ],
   "outputs": [
     "steute-technologies-gmbh-and-co-kg-access-point-api-openapi.yml",
@@ -21,6 +15,25 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "steute-technologies-gmbh-and-co-kg-sensor-bridge-openapi-original.json: upgraded openapi 3.0.0 -> OpenAPI 3.2.0",
+    "steute-technologies-gmbh-and-co-kg-sensor-bridge-openapi-original.json: declared missing tag: Access Point",
+    "steute-technologies-gmbh-and-co-kg-sensor-bridge-openapi-original.json: declared missing tag: Auth",
+    "steute-technologies-gmbh-and-co-kg-sensor-bridge-openapi-original.json: declared missing tag: History",
+    "steute-technologies-gmbh-and-co-kg-sensor-bridge-openapi-original.json: declared missing tag: Notification Config",
+    "steute-technologies-gmbh-and-co-kg-sensor-bridge-openapi-original.json: declared missing tag: Switch",
+    "steute-technologies-gmbh-and-co-kg-sensor-bridge-openapi-original.json: declared missing tag: Switch Group",
+    "steute-technologies-gmbh-and-co-kg-sensor-bridge-openapi-original.json: declared missing tag: System Status",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "steute-technologies-gmbh-and-co-kg-access-point-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "steute-technologies-gmbh-and-co-kg-auth-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "steute-technologies-gmbh-and-co-kg-history-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "steute-technologies-gmbh-and-co-kg-notification-config-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "steute-technologies-gmbh-and-co-kg-switch-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "steute-technologies-gmbh-and-co-kg-switch-group-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "steute-technologies-gmbh-and-co-kg-system-status-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }
