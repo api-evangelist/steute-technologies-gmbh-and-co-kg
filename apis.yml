@@ -1,5 +1,5 @@
 aid: steute-technologies-gmbh-and-co-kg
-name: steute Technologies GmbH & Co. KG
+name: steute Technologies
 description: >-
   steute Technologies GmbH & Co. KG is a German industrial technology company headquartered in
   Löhne that develops switchgear, sensors and controls under the tagline "Applied Intelligence",
@@ -47,6 +47,17 @@ created: '2026-07-17'
 modified: '2026-07-21'
 image: https://www.steute.com/_assets/0fec2969a2bae73d42576ee80ea2af42/Icons/icon.png
 tags:
+- Company
+- Industrial
+- Manufacturing
+- Industrial IoT
+- Wireless
+- Sensors
+- Switches
+- Intralogistics
+- Automation
+- Medical Devices
+tags_raw:
 - Company
 - Industrial
 - Manufacturing
@@ -237,3 +248,4 @@ common:
   url: https://www.steute.com/en/data-privacy
 - type: Imprint
   url: https://www.steute.com/en/imprint
+x-legal-name: steute Technologies GmbH & Co. KG

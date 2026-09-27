@@ -154,7 +154,7 @@ components:
           description: id of the notification
       required:
       - id
-    NotificationConfigUpdateDto:
+    NotificationConfigCreateDto:
       type: object
       properties:
         name:
@@ -169,19 +169,23 @@ components:
           type:
           - string
           - 'null'
+          default: null
           example: Sends switch event data to my application.
           description: Optional description provided by the user. (max. 256 chars)
         isEnabled:
           type: boolean
           example: true
+          default: true
           description: If set, switch events and missing wakeups will trigger this notification.
         isEnabledNotManaged:
           type: boolean
           example: false
+          default: false
           description: If set, switch events and missing wakeups will trigger this notification, even if the group of the switch is not managed.
         noWakeups:
           type: boolean
           example: false
+          default: false
           description: If set, wakeup messages will no longer trigger this notification
         notificationSendState:
           type: string
@@ -193,10 +197,12 @@ components:
         useTls:
           type: boolean
           example: false
+          default: false
           description: 'Protocol used: false = HTTP,  true = HTTPS (without certificate validation)'
         responseTimeout:
           type: number
           example: 10
+          default: 10
           description: Time to wait for a server response. (1 - 300 seconds)
         selectedGroups:
           example:
@@ -205,11 +211,15 @@ components:
           - 4
           - 5
           description: A list of corresponding switchGroupIDs
+          default: null
           type:
           - array
           - 'null'
           items:
             type: number
+      required:
+      - name
+      - urlString
     NotificationConfigDto:
       type: object
       properties:
@@ -286,7 +296,7 @@ components:
       - urlString
       - useTls
       - responseTimeout
-    NotificationConfigCreateDto:
+    NotificationConfigUpdateDto:
       type: object
       properties:
         name:
@@ -301,23 +311,19 @@ components:
           type:
           - string
           - 'null'
-          default: null
           example: Sends switch event data to my application.
           description: Optional description provided by the user. (max. 256 chars)
         isEnabled:
           type: boolean
           example: true
-          default: true
           description: If set, switch events and missing wakeups will trigger this notification.
         isEnabledNotManaged:
           type: boolean
           example: false
-          default: false
           description: If set, switch events and missing wakeups will trigger this notification, even if the group of the switch is not managed.
         noWakeups:
           type: boolean
           example: false
-          default: false
           description: If set, wakeup messages will no longer trigger this notification
         notificationSendState:
           type: string
@@ -329,12 +335,10 @@ components:
         useTls:
           type: boolean
           example: false
-          default: false
           description: 'Protocol used: false = HTTP,  true = HTTPS (without certificate validation)'
         responseTimeout:
           type: number
           example: 10
-          default: 10
           description: Time to wait for a server response. (1 - 300 seconds)
         selectedGroups:
           example:
@@ -343,15 +347,11 @@ components:
           - 4
           - 5
           description: A list of corresponding switchGroupIDs
-          default: null
           type:
           - array
           - 'null'
           items:
             type: number
-      required:
-      - name
-      - urlString
   securitySchemes:
     bearer:
       type: apiKey

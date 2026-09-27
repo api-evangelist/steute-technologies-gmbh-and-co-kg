@@ -213,143 +213,6 @@ components:
           type: number
           example: 5
           description: MAKD text display duration. 0 seconds = Do not switch off display (0 - 65535 sec.).
-    SwitchListDto:
-      type: object
-      properties:
-        deviceId:
-          type: string
-          example: 00311B
-          description: Device ID of the switch.
-        deviceType:
-          type: number
-          example: 10
-          description: 'Switch type: 9 = RF 10, 10 = RF 96, 11 = BF 74, 12 = RF I/O, 13 = RF HB, 14 = RF RW, 17 = RF GW, 18 = RF 96 SDS, 19 = RF 96 LDS, 25 = MAK, 26 = MAKD, 33 = RX 4S, 34 = RX 4S 48V, 35 = RF I/O VCC-EXT, 36 = RF 96 VCC-EXT, 37 = RF_UBR, 38 = OEM ACTOR, 41 = RF DESENS, 42 = OEM SENSOR'
-        groupId:
-          type: number
-          example: 1
-          description: Id of the group the switch belongs to.
-        description:
-          type:
-          - string
-          - 'null'
-          example: SWRW-H02-R01-001
-          description: Description text (e.g. position) of the switch provided by the user.
-        parameterOne:
-          type:
-          - string
-          - 'null'
-          example: 1.131.36
-          description: Optional first parameter (e.g. article number) provided by the user.
-        parameterTwo:
-          type:
-          - string
-          - 'null'
-          example: cable ties
-          description: Optional second parameter (e.g. article name) provided by the user.
-        rx4sState1:
-          type: number
-          example: 1
-          description: State of relay 1 in relay receiver upon activation (0/1).
-        rx4sState2:
-          type: number
-          example: 0
-          description: State of relay 2 in relay receiver upon activation (0/1).
-        rx4sState3:
-          type: number
-          example: 1
-          description: State of relay 3 in relay receiver upon activation (0/1).
-        rx4sState4:
-          type: number
-          example: 0
-          description: State of relay 4 in relay receiver upon activation (0/1).
-        rx4sActuateMode:
-          type: number
-          example: 0
-          description: INSTANT = 0; ECO = 1
-        makdText1:
-          type:
-          - string
-          - 'null'
-          example: I am button 1
-          description: Displaytext 1 for MAKD andon display (max. 32 chars).
-        makdText2:
-          type:
-          - string
-          - 'null'
-          example: I am button 2
-          description: Displaytext 2 for MAKD andon display (max. 32 chars).
-        makdText3:
-          type:
-          - string
-          - 'null'
-          example: I am button 3
-          description: Displaytext 3 for MAKD andon display (max. 32 chars).
-        makdWakeupText:
-          type:
-          - string
-          - 'null'
-          example: I am the wakeup text
-          description: Wakeup displaytext for MAKD andon display (max. 32 chars).
-        makdDisplayTime:
-          type: number
-          example: 5
-          description: MAKD text display duration. 0 seconds = Do not switch off display (0 - 65535 sec.).
-        missingWakeup:
-          type: boolean
-          example: false
-          description: Missing Wakeup
-        deviceTypeName:
-          type: string
-          example: MAKD
-          description: Type of the device e.g. MAKD
-        swVersion:
-          type: string
-          example: '2.01'
-          description: Current software version of the actor
-        swVersionTimestamp:
-          type:
-          - number
-          - 'null'
-          example: 1640118081
-          description: Timestamp of requested software version of the actor
-        updateState:
-          type: number
-          example: 0
-          description: Current update status of the actor. 0 = NONE, 2 = RUNNING, 3 = UPTODATE
-        broadcastCount:
-          type: number
-          example: 2100
-          description: Total of broadcast counts till power supply
-        activity:
-          type: number
-          example: 450
-          description: Total of recognized mechanical actuation counts till power supply
-        telegramSend:
-          type: number
-          example: 2100
-          description: Total of telegrams send till power supply (including repetition counts)
-        switchEventData:
-          type:
-          - number
-          - 'null'
-          example: 1
-          description: Last actor switch state
-        switchEventDataTimestamp:
-          type:
-          - number
-          - 'null'
-          example: 1640118081
-          description: Timestamp of last Actor switch state
-        switchEventFlag:
-          type:
-          - number
-          - 'null'
-          example: 64
-          description: Flag of the last switch event
-      required:
-      - deviceId
-      - deviceType
-      - groupId
     SwitchDto:
       type: object
       properties:
@@ -503,6 +366,143 @@ components:
           type: number
           example: 0
           description: Total change of switch status - important for encryption
+      required:
+      - deviceId
+      - deviceType
+      - groupId
+    SwitchListDto:
+      type: object
+      properties:
+        deviceId:
+          type: string
+          example: 00311B
+          description: Device ID of the switch.
+        deviceType:
+          type: number
+          example: 10
+          description: 'Switch type: 9 = RF 10, 10 = RF 96, 11 = BF 74, 12 = RF I/O, 13 = RF HB, 14 = RF RW, 17 = RF GW, 18 = RF 96 SDS, 19 = RF 96 LDS, 25 = MAK, 26 = MAKD, 33 = RX 4S, 34 = RX 4S 48V, 35 = RF I/O VCC-EXT, 36 = RF 96 VCC-EXT, 37 = RF_UBR, 38 = OEM ACTOR, 41 = RF DESENS, 42 = OEM SENSOR'
+        groupId:
+          type: number
+          example: 1
+          description: Id of the group the switch belongs to.
+        description:
+          type:
+          - string
+          - 'null'
+          example: SWRW-H02-R01-001
+          description: Description text (e.g. position) of the switch provided by the user.
+        parameterOne:
+          type:
+          - string
+          - 'null'
+          example: 1.131.36
+          description: Optional first parameter (e.g. article number) provided by the user.
+        parameterTwo:
+          type:
+          - string
+          - 'null'
+          example: cable ties
+          description: Optional second parameter (e.g. article name) provided by the user.
+        rx4sState1:
+          type: number
+          example: 1
+          description: State of relay 1 in relay receiver upon activation (0/1).
+        rx4sState2:
+          type: number
+          example: 0
+          description: State of relay 2 in relay receiver upon activation (0/1).
+        rx4sState3:
+          type: number
+          example: 1
+          description: State of relay 3 in relay receiver upon activation (0/1).
+        rx4sState4:
+          type: number
+          example: 0
+          description: State of relay 4 in relay receiver upon activation (0/1).
+        rx4sActuateMode:
+          type: number
+          example: 0
+          description: INSTANT = 0; ECO = 1
+        makdText1:
+          type:
+          - string
+          - 'null'
+          example: I am button 1
+          description: Displaytext 1 for MAKD andon display (max. 32 chars).
+        makdText2:
+          type:
+          - string
+          - 'null'
+          example: I am button 2
+          description: Displaytext 2 for MAKD andon display (max. 32 chars).
+        makdText3:
+          type:
+          - string
+          - 'null'
+          example: I am button 3
+          description: Displaytext 3 for MAKD andon display (max. 32 chars).
+        makdWakeupText:
+          type:
+          - string
+          - 'null'
+          example: I am the wakeup text
+          description: Wakeup displaytext for MAKD andon display (max. 32 chars).
+        makdDisplayTime:
+          type: number
+          example: 5
+          description: MAKD text display duration. 0 seconds = Do not switch off display (0 - 65535 sec.).
+        missingWakeup:
+          type: boolean
+          example: false
+          description: Missing Wakeup
+        deviceTypeName:
+          type: string
+          example: MAKD
+          description: Type of the device e.g. MAKD
+        swVersion:
+          type: string
+          example: '2.01'
+          description: Current software version of the actor
+        swVersionTimestamp:
+          type:
+          - number
+          - 'null'
+          example: 1640118081
+          description: Timestamp of requested software version of the actor
+        updateState:
+          type: number
+          example: 0
+          description: Current update status of the actor. 0 = NONE, 2 = RUNNING, 3 = UPTODATE
+        broadcastCount:
+          type: number
+          example: 2100
+          description: Total of broadcast counts till power supply
+        activity:
+          type: number
+          example: 450
+          description: Total of recognized mechanical actuation counts till power supply
+        telegramSend:
+          type: number
+          example: 2100
+          description: Total of telegrams send till power supply (including repetition counts)
+        switchEventData:
+          type:
+          - number
+          - 'null'
+          example: 1
+          description: Last actor switch state
+        switchEventDataTimestamp:
+          type:
+          - number
+          - 'null'
+          example: 1640118081
+          description: Timestamp of last Actor switch state
+        switchEventFlag:
+          type:
+          - number
+          - 'null'
+          example: 64
+          description: Flag of the last switch event
       required:
       - deviceId
       - deviceType

@@ -79,6 +79,15 @@ paths:
       - bearer: []
 components:
   schemas:
+    HistoryDto:
+      type: object
+      properties:
+        lastNEvents:
+          type: array
+          items:
+            $ref: '#/components/schemas/SwitchEventDto'
+      required:
+      - lastNEvents
     SwitchEventDto:
       type: object
       properties:
@@ -148,15 +157,6 @@ components:
       - scCount
       - wakeUp
       - rssi
-    HistoryDto:
-      type: object
-      properties:
-        lastNEvents:
-          type: array
-          items:
-            $ref: '#/components/schemas/SwitchEventDto'
-      required:
-      - lastNEvents
   securitySchemes:
     bearer:
       type: apiKey
