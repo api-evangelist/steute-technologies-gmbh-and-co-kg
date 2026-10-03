@@ -148,107 +148,6 @@ paths:
       - bearer: []
 components:
   schemas:
-    SwitchGroupCreateDto:
-      type: object
-      properties:
-        name:
-          type: string
-          example: Sensors in rack B5
-          description: Name of the configuration group. (required, max. 64 chars)
-        description:
-          type:
-          - string
-          - 'null'
-          default: null
-          example: Tiling sensor configuration for rack B5 (chassis mounting)
-          description: Description for the group provided by th user. (max. 256 chars)
-        wakeupHours:
-          type: number
-          example: 0
-          default: 0
-          description: Set cyclic wakeup time to n hours (0 - 15).
-        wakeupMin:
-          type: number
-          example: 10
-          default: 0
-          description: Set cyclic wakeup time to n minutes (0 - 15).
-        cycletimeFactor125ms:
-          type: number
-          example: 24
-          default: 8
-          description: Min. time between transmitting two switch events. n times 125 ms (0 - 255)
-        debouncetimeFactor125ms:
-          type: number
-          example: 24
-          default: 8
-          description: Min. time switch state must have changed before radio transmission. n times 125 ms (0 - 255)
-        useCycletimeRF96:
-          type: boolean
-          example: true
-          default: false
-          description: If true, use cycleTime.
-        rwAngle:
-          type: number
-          example: 3
-          default: 127
-          description: Roller conveyor angle for RF RW tilting sensor. (-27 to 90 degrees)
-        rwLedDisabled:
-          type: boolean
-          example: false
-          default: false
-          description: If set to true, LED in RF RW will be disabled.
-        isManaged:
-          type: boolean
-          example: true
-          default: true
-          description: Only if set to true, parameters for members of this group will be provided to access points.
-      required:
-      - name
-    SwitchGroupUpdateDto:
-      type: object
-      properties:
-        name:
-          type: string
-          example: Sensors in rack B5
-          description: Name of the configuration group. (required, max. 64 chars)
-        description:
-          type:
-          - string
-          - 'null'
-          example: Tiling sensor configuration for rack B5 (chassis mounting)
-          description: Description for the group provided by th user. (max. 256 chars)
-        wakeupHours:
-          type: number
-          example: 0
-          description: Set cyclic wakeup time to n hours (0 - 15).
-        wakeupMin:
-          type: number
-          example: 10
-          description: Set cyclic wakeup time to n minutes (0 - 15).
-        cycletimeFactor125ms:
-          type: number
-          example: 24
-          description: Min. time between transmitting two switch events. n times 125 ms (0 - 255)
-        debouncetimeFactor125ms:
-          type: number
-          example: 24
-          description: Min. time switch state must have changed before radio transmission. n times 125 ms (0 - 255)
-        useCycletimeRF96:
-          type: boolean
-          example: true
-          description: If true, use cycleTime.
-        rwAngle:
-          type: number
-          example: 3
-          description: 'Roller conveyor angle for RF RW tilting sensor. (-27 to 90 degrees). '
-        rwLedDisabled:
-          type: boolean
-          example: false
-          description: If set to true, LED in RF RW will be disabled.
-        isManaged:
-          type: boolean
-          example: true
-          description: Only if set to true, parameters for members of this group will be provided to access points.
     SwitchGroupDto:
       type: object
       properties:
@@ -383,6 +282,107 @@ components:
       - ldsDebounce
       - actuationNumber
       - actuationTimeout
+    SwitchGroupUpdateDto:
+      type: object
+      properties:
+        name:
+          type: string
+          example: Sensors in rack B5
+          description: Name of the configuration group. (required, max. 64 chars)
+        description:
+          type:
+          - string
+          - 'null'
+          example: Tiling sensor configuration for rack B5 (chassis mounting)
+          description: Description for the group provided by th user. (max. 256 chars)
+        wakeupHours:
+          type: number
+          example: 0
+          description: Set cyclic wakeup time to n hours (0 - 15).
+        wakeupMin:
+          type: number
+          example: 10
+          description: Set cyclic wakeup time to n minutes (0 - 15).
+        cycletimeFactor125ms:
+          type: number
+          example: 24
+          description: Min. time between transmitting two switch events. n times 125 ms (0 - 255)
+        debouncetimeFactor125ms:
+          type: number
+          example: 24
+          description: Min. time switch state must have changed before radio transmission. n times 125 ms (0 - 255)
+        useCycletimeRF96:
+          type: boolean
+          example: true
+          description: If true, use cycleTime.
+        rwAngle:
+          type: number
+          example: 3
+          description: 'Roller conveyor angle for RF RW tilting sensor. (-27 to 90 degrees). '
+        rwLedDisabled:
+          type: boolean
+          example: false
+          description: If set to true, LED in RF RW will be disabled.
+        isManaged:
+          type: boolean
+          example: true
+          description: Only if set to true, parameters for members of this group will be provided to access points.
+    SwitchGroupCreateDto:
+      type: object
+      properties:
+        name:
+          type: string
+          example: Sensors in rack B5
+          description: Name of the configuration group. (required, max. 64 chars)
+        description:
+          type:
+          - string
+          - 'null'
+          default: null
+          example: Tiling sensor configuration for rack B5 (chassis mounting)
+          description: Description for the group provided by th user. (max. 256 chars)
+        wakeupHours:
+          type: number
+          example: 0
+          default: 0
+          description: Set cyclic wakeup time to n hours (0 - 15).
+        wakeupMin:
+          type: number
+          example: 10
+          default: 0
+          description: Set cyclic wakeup time to n minutes (0 - 15).
+        cycletimeFactor125ms:
+          type: number
+          example: 24
+          default: 8
+          description: Min. time between transmitting two switch events. n times 125 ms (0 - 255)
+        debouncetimeFactor125ms:
+          type: number
+          example: 24
+          default: 8
+          description: Min. time switch state must have changed before radio transmission. n times 125 ms (0 - 255)
+        useCycletimeRF96:
+          type: boolean
+          example: true
+          default: false
+          description: If true, use cycleTime.
+        rwAngle:
+          type: number
+          example: 3
+          default: 127
+          description: Roller conveyor angle for RF RW tilting sensor. (-27 to 90 degrees)
+        rwLedDisabled:
+          type: boolean
+          example: false
+          default: false
+          description: If set to true, LED in RF RW will be disabled.
+        isManaged:
+          type: boolean
+          example: true
+          default: true
+          description: Only if set to true, parameters for members of this group will be provided to access points.
+      required:
+      - name
   securitySchemes:
     bearer:
       type: apiKey

@@ -157,6 +157,29 @@ paths:
       - bearer: []
 components:
   schemas:
+    AccessPointWarningDto:
+      type: object
+      properties:
+        id:
+          type: number
+          description: Warning message id / counter.
+        timestamp:
+          type: number
+          example: 1537166284
+          description: Time the warning was received (unix timestamp).
+        text:
+          type: string
+          example: 'Primary Server error: Couldnt connect to server (...)'
+          description: Warning message text.
+        accessPointDeviceId:
+          type: string
+          example: 00311B
+          description: Device ID of the access point.
+      required:
+      - id
+      - timestamp
+      - text
+      - accessPointDeviceId
     AccessPointDto:
       type: object
       properties:
@@ -222,29 +245,6 @@ components:
       - rfType
       - canEncrypt
       - timestamp
-    AccessPointWarningDto:
-      type: object
-      properties:
-        id:
-          type: number
-          description: Warning message id / counter.
-        timestamp:
-          type: number
-          example: 1537166284
-          description: Time the warning was received (unix timestamp).
-        text:
-          type: string
-          example: 'Primary Server error: Couldnt connect to server (...)'
-          description: Warning message text.
-        accessPointDeviceId:
-          type: string
-          example: 00311B
-          description: Device ID of the access point.
-      required:
-      - id
-      - timestamp
-      - text
-      - accessPointDeviceId
   securitySchemes:
     bearer:
       type: apiKey
