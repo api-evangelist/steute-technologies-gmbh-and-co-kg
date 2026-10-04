@@ -221,6 +221,15 @@ components:
       - urlString
       - useTls
       - responseTimeout
+    IdDto:
+      type: object
+      properties:
+        id:
+          type: number
+          example: 815
+          description: id of the notification
+      required:
+      - id
     NotificationConfigUpdateDto:
       type: object
       properties:
@@ -277,15 +286,6 @@ components:
           - 'null'
           items:
             type: number
-    IdDto:
-      type: object
-      properties:
-        id:
-          type: number
-          example: 815
-          description: id of the notification
-      required:
-      - id
     NotificationConfigCreateDto:
       type: object
       properties:
