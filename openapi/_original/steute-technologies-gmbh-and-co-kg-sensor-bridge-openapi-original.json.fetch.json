@@ -1,0 +1,12 @@
+{
+ "url": "https://docs.nexy.net/assets/files/sensor-bridge_241_rest-api_v2_openapi-c975978e3ebdd08493f7a913c4d297ba.json",
+ "requested_url": "https://docs.nexy.net/assets/files/sensor-bridge_241_rest-api_v2_openapi-c975978e3ebdd08493f7a913c4d297ba.json",
+ "status": 200,
+ "content_type": "application/json",
+ "bytes": 78649,
+ "sha256": "7d77987c01d15a41f84842dddeba5bb951c7c2764e64e363eec75cbd5dfd4a0b",
+ "fetched_at": "2026-10-04",
+ "fetched_by": "APIEvangelist-Harvest/1.0 (+https://apievangelist.com)",
+ "match": "byte-identical",
+ "note": "Re-fetched from the provider by verify-openapi-sources.py; the archived file is byte-identical to what the provider serves."
+}
