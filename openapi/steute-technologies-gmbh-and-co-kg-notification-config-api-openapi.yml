@@ -145,6 +145,15 @@ paths:
       - bearer: []
 components:
   schemas:
+    IdDto:
+      type: object
+      properties:
+        id:
+          type: number
+          example: 815
+          description: id of the notification
+      required:
+      - id
     NotificationConfigDto:
       type: object
       properties:
@@ -221,15 +230,6 @@ components:
       - urlString
       - useTls
       - responseTimeout
-    IdDto:
-      type: object
-      properties:
-        id:
-          type: number
-          example: 815
-          description: id of the notification
-      required:
-      - id
     NotificationConfigUpdateDto:
       type: object
       properties:
